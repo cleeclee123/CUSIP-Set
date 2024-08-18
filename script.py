@@ -1,10 +1,160 @@
 import asyncio
 import logging
 from datetime import datetime
-from typing import List, Optional
+from typing import List, Optional, TypeAlias
 
+import math
+import requests
 import httpx
 import pandas as pd
+
+JSON: TypeAlias = dict[str, "JSON"] | list["JSON"] | str | int | float | bool | None
+
+
+def build_treasurydirect_header(
+    host_str: Optional[str] = "api.fiscaldata.treasury.gov",
+    cookie_str: Optional[str] = None,
+    origin_str: Optional[str] = None,
+    referer_str: Optional[str] = None,
+):
+    return {
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7,application/json",
+        "Accept-Encoding": "gzip, deflate, br, zstd",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Cache-Control": "no-cache",
+        "Connection": "keep-alive",
+        "Cookie": cookie_str or "",
+        "DNT": "1",
+        "Host": host_str or "",
+        "Origin": origin_str or "",
+        "Referer": referer_str or "",
+        "Pragma": "no-cache",
+        "Sec-CH-UA": '"Not)A;Brand";v="99", "Google Chrome";v="127", "Chromium";v="127"',
+        "Sec-CH-UA-Mobile": "?0",
+        "Sec-CH-UA-Platform": '"Windows"',
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Site": "none",
+        "Sec-Fetch-User": "?1",
+        "Upgrade-Insecure-Requests": "1",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36",
+    }
+    
+def historical_auction_cols():
+    return [
+        "cusip",
+        "security_type",
+        "auction_date",
+        "issue_date",
+        "maturity_date",
+        "price_per100",
+        "allocation_pctage",
+        "avg_med_yield",
+        "bid_to_cover_ratio",
+        "comp_accepted",
+        "comp_tendered",
+        "corpus_cusip",
+        "currently_outstanding",
+        "direct_bidder_accepted",
+        "direct_bidder_tendered",
+        "est_pub_held_mat_by_type_amt",
+        "fima_included",
+        "fima_noncomp_accepted",
+        "fima_noncomp_tendered",
+        "high_discnt_rate",
+        "high_investment_rate",
+        "high_price",
+        "high_yield",
+        "indirect_bidder_accepted",
+        "indirect_bidder_tendered",
+        "int_rate",
+        "low_investment_rate",
+        "low_price",
+        "low_discnt_margin",
+        "low_yield",
+        "max_comp_award",
+        "max_noncomp_award",
+        "noncomp_accepted",
+        "noncomp_tenders_accepted",
+        "offering_amt",
+        "security_term",
+        "original_security_term",
+        "security_term_week_year",
+        "primary_dealer_accepted",
+        "primary_dealer_tendered",
+        "reopening",
+        "total_accepted",
+        "total_tendered",
+        "treas_retail_accepted",
+        "treas_retail_tenders_accepted",
+    ]
+    
+    
+def get_active_cusips(
+    auction_json: Optional[JSON] = None,
+    historical_auctions_df: Optional[pd.DataFrame] = None,
+    as_of_date=datetime.today(),
+    use_issue_date=False,
+) -> pd.DataFrame:
+    if not auction_json and historical_auctions_df is None:
+        return pd.DataFrame(columns=historical_auction_cols())
+
+    if auction_json and historical_auctions_df is None:
+        historical_auctions_df = pd.DataFrame(auction_json)
+
+    historical_auctions_df["issue_date"] = pd.to_datetime(
+        historical_auctions_df["issue_date"]
+    )
+    historical_auctions_df["maturity_date"] = pd.to_datetime(
+        historical_auctions_df["maturity_date"]
+    )
+    historical_auctions_df["auction_date"] = pd.to_datetime(
+        historical_auctions_df["auction_date"]
+    )
+
+    historical_auctions_df.loc[
+        historical_auctions_df["original_security_term"].str.contains(
+            "29-Year", case=False, na=False
+        ),
+        "original_security_term",
+    ] = "30-Year"
+    historical_auctions_df.loc[
+        historical_auctions_df["original_security_term"].str.contains(
+            "30-", case=False, na=False
+        ),
+        "original_security_term",
+    ] = "30-Year"
+
+    historical_auctions_df = historical_auctions_df[
+        (historical_auctions_df["security_type"] == "Bill")
+        | (historical_auctions_df["security_type"] == "Note")
+        | (historical_auctions_df["security_type"] == "Bond")
+    ]
+    historical_auctions_df = historical_auctions_df.drop(
+        historical_auctions_df[
+            (historical_auctions_df["security_type"] == "Bill")
+            & (
+                historical_auctions_df["original_security_term"]
+                != historical_auctions_df["security_term"]
+            )
+        ].index
+    )
+    historical_auctions_df = historical_auctions_df[
+        historical_auctions_df[
+            "auction_date" if not use_issue_date else "issue_date"
+        ].dt.date
+        <= as_of_date.date()
+    ]
+    historical_auctions_df = historical_auctions_df[
+        historical_auctions_df["maturity_date"] >= as_of_date
+    ]
+    historical_auctions_df = historical_auctions_df.drop_duplicates(
+        subset=["cusip"], keep="first"
+    )
+    historical_auctions_df["int_rate"] = pd.to_numeric(
+        historical_auctions_df["int_rate"], errors="coerce"
+    )
+    return historical_auctions_df
 
 
 class FedInvestFetcher:
@@ -58,6 +208,118 @@ class FedInvestFetcher:
 
         if self._debug_verbose or self._info_verbose or self._error_verbose:
             self._logger.setLevel(logging.DEBUG)
+    
+    
+    async def _build_fetch_tasks_historical_treasury_auctions(
+        self,
+        client: httpx.AsyncClient,
+        assume_data_size=True,
+        uid: Optional[str | int] = None,
+        return_df: Optional[bool] = False,
+        as_of_date: Optional[datetime] = None,  # active cusips as of
+    ):
+        MAX_TREASURY_GOV_API_CONTENT_SIZE = 10000
+        NUM_REQS_NEEDED_TREASURY_GOV_API = 2
+
+        def get_treasury_query_sizing() -> List[str]:
+            base_url = "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/auctions_query?page[number]=1&page[size]=1"
+            res = requests.get(base_url, headers=build_treasurydirect_header())
+            if res.ok:
+                meta = res.json()["meta"]
+                size = meta["total-count"]
+                number_requests = math.ceil(size / MAX_TREASURY_GOV_API_CONTENT_SIZE)
+                return [
+                    f"https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/auctions_query?page[number]={i+1}&page[size]={MAX_TREASURY_GOV_API_CONTENT_SIZE}"
+                    for i in range(0, number_requests)
+                ]
+            else:
+                raise ValueError(
+                    f"UST Auctions - Query Sizing Bad Status: ", {res.status_code}
+                )
+
+        links = (
+            get_treasury_query_sizing()
+            if not assume_data_size
+            else [
+                f"https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/auctions_query?page[number]={i+1}&page[size]={MAX_TREASURY_GOV_API_CONTENT_SIZE}"
+                for i in range(0, NUM_REQS_NEEDED_TREASURY_GOV_API)
+            ]
+        )
+        self._logger.debug(f"UST Auctions - Number of Links to Fetch: {len(links)}")
+        self._logger.debug(f"UST Auctions - Links: {links}")
+
+        async def fetch(
+            client: httpx.AsyncClient,
+            url,
+            as_of_date: Optional[datetime] = None,
+            return_df: Optional[bool] = False,
+            uid: Optional[str | int] = None,
+        ):
+            try:
+                response = await client.get(url, headers=build_treasurydirect_header())
+                response.raise_for_status()
+                json_data: JSON = response.json()
+                if as_of_date:
+                    df = get_active_cusips(
+                        auction_json=json_data["data"],
+                        as_of_date=as_of_date,
+                        use_issue_date=self._use_ust_issue_date,
+                    )
+                    if uid:
+                        return df[historical_auction_cols()], uid
+                    return df[historical_auction_cols()]
+
+                if return_df and not as_of_date:
+                    if uid:
+                        return (
+                            pd.DataFrame(json_data["data"])[historical_auction_cols()],
+                            uid,
+                        )
+                    return pd.DataFrame(json_data["data"])[historical_auction_cols()]
+                if uid:
+                    return json_data["data"], uid
+                return json_data["data"]
+            except httpx.HTTPStatusError as e:
+                self._logger.debug(f"UST Prices - Bad Status: {response.status_code}")
+                if uid:
+                    return pd.DataFrame(columns=historical_auction_cols()), uid
+                return pd.DataFrame(columns=historical_auction_cols())
+            except Exception as e:
+                self._logger.debug(f"UST Prices - Error: {e}")
+                if uid:
+                    return pd.DataFrame(columns=historical_auction_cols()), uid
+                return pd.DataFrame(columns=historical_auction_cols())
+
+        tasks = [
+            fetch(
+                client=client,
+                url=url,
+                as_of_date=as_of_date,
+                return_df=return_df,
+                uid=uid,
+            )
+            for url in links
+        ]
+        return tasks
+
+    def get_auctions_df(self, as_of_date: Optional[datetime] = None) -> pd.DataFrame:
+        async def build_tasks(client: httpx.AsyncClient, as_of_date: datetime):
+            tasks = await self._build_fetch_tasks_historical_treasury_auctions(
+                client=client, as_of_date=as_of_date, return_df=True
+            )
+            return await asyncio.gather(*tasks)
+
+        async def run_fetch_all(as_of_date: datetime):
+            async with httpx.AsyncClient() as client:
+                all_data = await build_tasks(client=client, as_of_date=as_of_date)
+                return all_data
+
+        dfs = asyncio.run(run_fetch_all(as_of_date=as_of_date))
+        auctions_df: pd.DataFrame = pd.concat(dfs)
+        auctions_df = auctions_df.sort_values(by=["auction_date"], ascending=False)
+        return auctions_df        
+            
+            
 
     async def _fetch_prices_from_treasury_date_search(
         self,
