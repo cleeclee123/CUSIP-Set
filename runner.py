@@ -70,7 +70,7 @@ def runner(dates):
         return await asyncio.gather(*tasks)
 
     async def run_fetch_all(dates):
-        limits = httpx.Limits(max_connections=10)
+        limits = httpx.Limits(max_connections=20, max_keepalive_connections=5)
         async with httpx.AsyncClient(limits=limits) as client:
             all_data = await build_tasks(client=client, dates=dates)
             return all_data
@@ -92,8 +92,17 @@ def process_dataframe(key, df, raw_auctions_df):
     try:
         cusip_ref_df = raw_auctions_df[
             raw_auctions_df["cusip"].isin(df["cusip"].to_list())
-        ][["cusip", "security_type", "issue_date", "maturity_date", "int_rate"]]
-        
+        ][
+            [
+                "cusip",
+                "security_type",
+                "original_security_term",
+                "issue_date",
+                "maturity_date",
+                "int_rate",
+            ]
+        ]
+
         merged_df = pd.merge(left=df, right=cusip_ref_df, on=["cusip"])
         merged_df = merged_df.replace("null", np.nan)
 
@@ -130,12 +139,28 @@ def process_dataframe(key, df, raw_auctions_df):
             ),
             axis=1,
         )
-        
+
         merged_df["mid_price"] = (merged_df["offer_price"] + merged_df["bid_price"]) / 2
         merged_df["mid_yield"] = (merged_df["offer_yield"] + merged_df["bid_yield"]) / 2
-        merged_df = merged_df[["cusip", "bid_price", "offer_price", "mid_price", "eod_price", "bid_yield", "offer_yield", "eod_yield"]]
+        merged_df = merged_df[
+            [
+                "cusip",
+                "security_type",
+                "original_security_term",
+                "issue_date",
+                "maturity_date",
+                "int_rate",
+                "bid_price",
+                "offer_price",
+                "mid_price",
+                "eod_price",
+                "bid_yield",
+                "offer_yield",
+                "eod_yield",
+            ]
+        ]
         merged_df = merged_df.replace({np.nan: None})
-        records = merged_df.to_dict(orient='records')
+        records = merged_df.to_dict(orient="records")
         json_structure = {"data": records}
         return key, json_structure
     except Exception as e:
@@ -145,20 +170,23 @@ def process_dataframe(key, df, raw_auctions_df):
 
 def parallel_process(dict_df, raw_auctions_df):
     result_dict = {}
-    
+
     with ProcessPoolExecutor(max_workers=mp.cpu_count()) as executor:
-        futures = {executor.submit(process_dataframe, key, df, raw_auctions_df): key for key, df in dict_df.items()}
+        futures = {
+            executor.submit(process_dataframe, key, df, raw_auctions_df): key
+            for key, df in dict_df.items()
+        }
         for future in as_completed(futures):
             key, json_structure = future.result()
             result_dict[key] = json_structure
-    
+
     return result_dict
 
 
 if __name__ == "__main__":
-    t1 = time.time ()
-    start_date = datetime(2012, 1, 1)
-    end_date = datetime(2019, 12, 31)
+    t1 = time.time()
+    start_date = datetime(2008, 5, 30)
+    end_date = datetime(2024, 8, 16)
     weeks = get_business_days_groups(start_date, end_date, group_size=20)
 
     raw_auctions_df = FedInvestFetcher(
@@ -194,12 +222,12 @@ if __name__ == "__main__":
             )
         ].index
     )
-    
+
     for week in weeks:
         dict_df: Dict[datetime, pd.DataFrame] = runner(dates=week)
         output_directory = r"C:\Users\chris\CUSIP-Set"
         to_write = parallel_process(dict_df, raw_auctions_df)
-        
+
         # for key, df in dict_df.items():
         #     try:
         #         cusip_ref_df = raw_auctions_df[
@@ -207,8 +235,8 @@ if __name__ == "__main__":
         #         ][["cusip", "security_type", "issue_date", "maturity_date", "int_rate"]]
         #         merged_df = pd.merge(left=df, right=cusip_ref_df, on=["cusip"])
         #         merged_df = merged_df.replace("null", np.nan)
-                
-        #         """MP""" 
+
+        #         """MP"""
         #         # calculate_yields_partial = partial(
         #         #     calculate_yields, as_of_date=key
         #         # )
@@ -220,8 +248,8 @@ if __name__ == "__main__":
         #         # merged_df["offer_yield"] = offer_yields
         #         # merged_df["bid_yield"] = bid_yields
         #         # merged_df["eod_yield"] = eod_yields
-                
-        #         """"ST""" 
+
+        #         """"ST"""
         #         merged_df["eod_yield"] = merged_df.apply(
         #             lambda row: RL_BondPricer.bond_price_to_ytm(
         #                 type=row["security_type"],
@@ -255,31 +283,33 @@ if __name__ == "__main__":
         #             ),
         #             axis=1,
         #         )
-                
+
         #         merged_df["mid_price"] = (
         #             merged_df["offer_price"] + merged_df["bid_price"]
         #         ) / 2
         #         merged_df["mid_yield"] = (
         #             merged_df["offer_yield"] + merged_df["bid_yield"]
         #         ) / 2
-                
+
         #         merged_df = merged_df[["cusip", "bid_price", "offer_price", "mid_price", "eod_price", "bid_yield", "offer_yield", "eod_yield", "eod_yield"]]
         #         merged_df = merged_df.replace({np.nan: None})
         #         records = merged_df.to_dict(orient='records')
         #         json_structure = {"data": records}
-                
+
         for key, json_structure in to_write.items():
             try:
-                file_name = f"{key.strftime("%Y-%m-%d")}.json"
+                date_str = key.strftime("%Y-%m-%d")
+                file_name = f"{date_str}.json"
                 file_path = os.path.join(output_directory, file_name)
 
-                with open(file_path, 'w') as json_file:
-                    json.dump(json_structure, json_file, indent=4)
-                
+                with open(file_path, "w") as json_file:
+                    json.dump(json_structure, json_file, indent=4, default=str)
+
                 print(bcolors.OKGREEN + f"WROTE {key} to JSON" + bcolors.ENDC)
-            
-            except Exception as e:        
-                print(bcolors.FAIL + f"FAILED JSON WRITE {key} - {str(e)}" + bcolors.ENDC)
-            
+
+            except Exception as e:
+                print(
+                    bcolors.FAIL + f"FAILED JSON WRITE {key} - {str(e)}" + bcolors.ENDC
+                )
 
     print(f"Script took: {time.time() - t1} seconds")
