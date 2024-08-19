@@ -186,7 +186,7 @@ def parallel_process(dict_df, raw_auctions_df):
 if __name__ == "__main__":
     t1 = time.time()
     start_date = datetime(2008, 5, 29)
-    end_date = datetime(2009, 7, 24)
+    end_date = datetime(2024, 8, 17)
     weeks = get_business_days_groups(start_date, end_date, group_size=20)
     weeks.reverse()
 
@@ -223,7 +223,7 @@ if __name__ == "__main__":
             )
         ].index
     )
-    raw_auctions_df = raw_auctions_df.drop_duplicates(subset=["cusip"], keep="first")
+    raw_auctions_df = raw_auctions_df.drop_duplicates(subset=["cusip"], keep="last")
 
     for week in weeks:
         dict_df: Dict[datetime, pd.DataFrame] = runner(dates=week)
