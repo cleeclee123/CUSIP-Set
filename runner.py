@@ -88,8 +88,24 @@ def get_business_days_groups(start_date: datetime, end_date: datetime, group_siz
     return business_day_groups
 
 
-def process_dataframe(key, df, raw_auctions_df):
+def ust_labeler(mat_date: datetime | pd.Timestamp):
+    return mat_date.strftime("%b %y") + "s"
+
+
+def process_dataframe(key: datetime, df: pd.DataFrame, raw_auctions_df: pd.DataFrame):
     try:
+        raw_auctions_df["label"] = raw_auctions_df["maturity_date"].apply(ust_labeler)
+        raw_auctions_df = raw_auctions_df.sort_values(
+            by=["issue_date"], ascending=False
+        )
+        otr_cusips = (
+            raw_auctions_df.groupby("original_security_term")
+            .first()
+            .reset_index()["cusip"]
+            .to_list()
+        )
+        raw_auctions_df["is_on_the_run"] = raw_auctions_df["cusip"].isin(otr_cusips)
+
         cusip_ref_df = raw_auctions_df[
             raw_auctions_df["cusip"].isin(df["cusip"].to_list())
         ][
@@ -97,9 +113,13 @@ def process_dataframe(key, df, raw_auctions_df):
                 "cusip",
                 "security_type",
                 "original_security_term",
+                "auction_date",
                 "issue_date",
                 "maturity_date",
                 "int_rate",
+                "high_investment_rate",
+                "label",
+                "is_on_the_run",
             ]
         ]
 
@@ -147,15 +167,20 @@ def process_dataframe(key, df, raw_auctions_df):
                 "cusip",
                 "security_type",
                 "original_security_term",
+                "auction_date",
                 "issue_date",
                 "maturity_date",
                 "int_rate",
+                "high_investment_rate",
+                "label",
+                "is_on_the_run",
                 "bid_price",
                 "offer_price",
                 "mid_price",
                 "eod_price",
                 "bid_yield",
                 "offer_yield",
+                "mid_yield",
                 "eod_yield",
             ]
         ]
@@ -185,8 +210,8 @@ def parallel_process(dict_df, raw_auctions_df):
 
 if __name__ == "__main__":
     t1 = time.time()
-    start_date = datetime(2008, 5, 29)
-    end_date = datetime(2024, 8, 17)
+    start_date = datetime(2024, 8, 16)
+    end_date = datetime(2024, 8, 16)
     weeks = get_business_days_groups(start_date, end_date, group_size=20)
     weeks.reverse()
 

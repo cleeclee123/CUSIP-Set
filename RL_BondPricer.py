@@ -26,7 +26,7 @@ class RL_BondPricer:
             convention="Act360",
             settle=1,
             curves="bill_curve",
-            calc_mode="us_gbb",
+            calc_mode="ustb",
         )
         settle_pd_ts: pd.Timestamp = as_of + BDay(1)
         return bill_ust.ytm(price=price, settlement=settle_pd_ts.to_pydatetime())
