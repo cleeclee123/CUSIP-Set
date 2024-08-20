@@ -112,6 +112,7 @@ def process_dataframe(key: datetime, df: pd.DataFrame, raw_auctions_df: pd.DataF
             [
                 "cusip",
                 "security_type",
+                "security_term",
                 "original_security_term",
                 "auction_date",
                 "issue_date",
@@ -166,6 +167,7 @@ def process_dataframe(key: datetime, df: pd.DataFrame, raw_auctions_df: pd.DataF
             [
                 "cusip",
                 "security_type",
+                "security_term",
                 "original_security_term",
                 "auction_date",
                 "issue_date",
@@ -210,10 +212,10 @@ def parallel_process(dict_df, raw_auctions_df):
 
 if __name__ == "__main__":
     t1 = time.time()
-    start_date = datetime(2024, 8, 16)
-    end_date = datetime(2024, 8, 16)
+    start_date = datetime(2008, 5, 30)
+    end_date = datetime(2024, 8, 19)
     weeks = get_business_days_groups(start_date, end_date, group_size=20)
-    weeks.reverse()
+    # weeks.reverse()
 
     raw_auctions_df = FedInvestFetcher(
         use_ust_issue_date=True, error_verbose=True
@@ -239,15 +241,15 @@ if __name__ == "__main__":
         | (raw_auctions_df["security_type"] == "Note")
         | (raw_auctions_df["security_type"] == "Bond")
     ]
-    raw_auctions_df = raw_auctions_df.drop(
-        raw_auctions_df[
-            (raw_auctions_df["security_type"] == "Bill")
-            & (
-                raw_auctions_df["original_security_term"]
-                != raw_auctions_df["security_term"]
-            )
-        ].index
-    )
+    # raw_auctions_df = raw_auctions_df.drop(
+    #     raw_auctions_df[
+    #         (raw_auctions_df["security_type"] == "Bill")
+    #         & (
+    #             raw_auctions_df["original_security_term"]
+    #             != raw_auctions_df["security_term"]
+    #         )
+    #     ].index
+    # )
     raw_auctions_df = raw_auctions_df.drop_duplicates(subset=["cusip"], keep="last")
 
     for week in weeks:
