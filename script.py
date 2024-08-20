@@ -130,15 +130,15 @@ def get_active_cusips(
         | (historical_auctions_df["security_type"] == "Note")
         | (historical_auctions_df["security_type"] == "Bond")
     ]
-    historical_auctions_df = historical_auctions_df.drop(
-        historical_auctions_df[
-            (historical_auctions_df["security_type"] == "Bill")
-            & (
-                historical_auctions_df["original_security_term"]
-                != historical_auctions_df["security_term"]
-            )
-        ].index
-    )
+    # historical_auctions_df = historical_auctions_df.drop(
+    #     historical_auctions_df[
+    #         (historical_auctions_df["security_type"] == "Bill")
+    #         & (
+    #             historical_auctions_df["original_security_term"]
+    #             != historical_auctions_df["security_term"]
+    #         )
+    #     ].index
+    # )
     historical_auctions_df = historical_auctions_df[
         historical_auctions_df[
             "auction_date" if not use_issue_date else "issue_date"
