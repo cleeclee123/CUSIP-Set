@@ -45,7 +45,7 @@ class RL_BondPricer:
             fixed_rate=coupon * 100,
             spec="ust",
         )
-        settle_pd_ts: pd.Timestamp = as_of + BDay(2)
+        settle_pd_ts: pd.Timestamp = as_of + BDay(1)
         return fxb_ust.ytm(price=price, settlement=settle_pd_ts.to_pydatetime())
 
     @staticmethod
