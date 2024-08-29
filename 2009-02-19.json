@@ -709,10 +709,10 @@
             "offer_price": 0.0,
             "mid_price": 50.03125,
             "eod_price": 100.09375,
-            "bid_yield": 0.14657529429830823,
-            "offer_yield": null,
-            "mid_yield": null,
-            "eod_yield": -2.088837869000825
+            "bid_yield": 1.832231339122686,
+            "offer_yield": 202697.1291864327,
+            "mid_yield": 101349.48070888591,
+            "eod_yield": 0.4273901328629138
         },
         {
             "cusip": "912828CC2",
@@ -730,10 +730,10 @@
             "offer_price": 0.0,
             "mid_price": 50.0625,
             "eod_price": 100.15625,
-            "bid_yield": 0.3581595137478408,
-            "offer_yield": null,
-            "mid_yield": null,
-            "eod_yield": -0.2003819580576027
+            "bid_yield": 0.649357195395924,
+            "offer_yield": 137602.59716434727,
+            "mid_yield": 68801.62326077133,
+            "eod_yield": 0.16363045308637963
         },
         {
             "cusip": "912828GL8",
@@ -751,10 +751,10 @@
             "offer_price": 0.0,
             "mid_price": 50.21875,
             "eod_price": 100.46875,
-            "bid_yield": 0.07472467586969479,
-            "offer_yield": 146024797193.79904,
-            "mid_yield": 73012398596.93689,
-            "eod_yield": -0.23414701426548673
+            "bid_yield": 0.40767595606452955,
+            "offer_yield": 53049.15824915533,
+            "mid_yield": 26524.782962555695,
+            "eod_yield": 0.12226540358094404
         },
         {
             "cusip": "912828CE8",
@@ -772,10 +772,10 @@
             "offer_price": 0.0,
             "mid_price": 50.203125,
             "eod_price": 100.40625,
-            "bid_yield": 0.22217897316955362,
-            "offer_yield": 1906525640.4229417,
-            "mid_yield": 953262820.3225603,
-            "eod_yield": 0.22217897316955362
+            "bid_yield": 0.3808418299043915,
+            "offer_yield": 61625.115734278865,
+            "mid_yield": 30812.748288054383,
+            "eod_yield": 0.3808418299043915
         },
         {
             "cusip": "912828GP9",
@@ -793,31 +793,10 @@
             "offer_price": 0.0,
             "mid_price": 50.21875,
             "eod_price": 100.78125,
-            "bid_yield": 2.05547157628435,
-            "offer_yield": 25767617.189899404,
-            "mid_yield": 12883809.62268549,
-            "eod_yield": 0.18719789956881225
-        },
-        {
-            "cusip": "912828FE5",
-            "security_type": "Note",
-            "security_term": "3-Year",
-            "original_security_term": "3-Year",
-            "auction_date": "2006-05-09 00:00:00",
-            "issue_date": "2006-05-15 00:00:00",
-            "maturity_date": "2009-05-15 00:00:00",
-            "int_rate": "4.875000",
-            "high_investment_rate": null,
-            "label": "May 09s",
-            "is_on_the_run": false,
-            "bid_price": 101.03125,
-            "offer_price": 0.0,
-            "mid_price": 50.515625,
-            "eod_price": 101.0625,
-            "bid_yield": 0.260113972234417,
-            "offer_yield": 3196363.3360992065,
-            "mid_yield": 1598181.7981065894,
-            "eod_yield": 0.12358735945277162
+            "bid_yield": 2.152541092253506,
+            "offer_yield": 38084.796146646026,
+            "mid_yield": 19043.47434386914,
+            "eod_yield": 0.37055172903983524
         },
         {
             "cusip": "912828CH1",
@@ -835,10 +814,10 @@
             "offer_price": 0.0,
             "mid_price": 50.40625,
             "eod_price": 100.8125,
-            "bid_yield": 0.23939999874304344,
-            "offer_yield": 5280941.492366719,
-            "mid_yield": 2640470.8658833588,
-            "eod_yield": 0.23939999874304344
+            "bid_yield": 0.3667244630426531,
+            "offer_yield": 41877.622055344786,
+            "mid_yield": 20938.994389903914,
+            "eod_yield": 0.3667244630426531
         },
         {
             "cusip": "9128275G3",
@@ -856,10 +835,31 @@
             "offer_price": 0.0,
             "mid_price": 50.59375,
             "eod_price": 101.21875,
-            "bid_yield": 0.1878660501299707,
-            "offer_yield": 2457759.0043982086,
-            "mid_yield": 1228879.5961321294,
-            "eod_yield": 0.0518255236581313
+            "bid_yield": 0.37252658667563177,
+            "offer_yield": 29614.950696805085,
+            "mid_yield": 14807.66161169588,
+            "eod_yield": 0.24127160258101757
+        },
+        {
+            "cusip": "912828FE5",
+            "security_type": "Note",
+            "security_term": "3-Year",
+            "original_security_term": "3-Year",
+            "auction_date": "2006-05-09 00:00:00",
+            "issue_date": "2006-05-15 00:00:00",
+            "maturity_date": "2009-05-15 00:00:00",
+            "int_rate": "4.875000",
+            "high_investment_rate": null,
+            "label": "May 09s",
+            "is_on_the_run": false,
+            "bid_price": 101.03125,
+            "offer_price": 0.0,
+            "mid_price": 50.515625,
+            "eod_price": 101.0625,
+            "bid_yield": 0.42096340644269353,
+            "offer_yield": 33363.893609254425,
+            "mid_yield": 16682.15728633043,
+            "eod_yield": 0.2892785664492887
         },
         {
             "cusip": "912828GT1",
@@ -877,10 +877,10 @@
             "offer_price": 0.0,
             "mid_price": 50.609375,
             "eod_price": 101.25,
-            "bid_yield": 0.2947035288353245,
-            "offer_yield": 927934.7185500034,
-            "mid_yield": 463967.5066267661,
-            "eod_yield": 0.18001754795993422
+            "bid_yield": 0.42881452070339066,
+            "offer_yield": 33588.617886178865,
+            "mid_yield": 16794.523350349784,
+            "eod_yield": 0.31754340050590923
         },
         {
             "cusip": "912828CL2",
@@ -898,10 +898,10 @@
             "offer_price": 0.0,
             "mid_price": 50.5625,
             "eod_price": 101.125,
-            "bid_yield": 0.337469050043363,
-            "offer_yield": 562352.7114387094,
-            "mid_yield": 281176.52445387974,
-            "eod_yield": 0.337469050043363
+            "bid_yield": 0.43110640755407126,
+            "offer_yield": 43533.5496397944,
+            "mid_yield": 21766.990373100976,
+            "eod_yield": 0.43110640755407126
         },
         {
             "cusip": "912828GV6",
@@ -919,10 +919,10 @@
             "offer_price": 0.0,
             "mid_price": 50.796875,
             "eod_price": 101.59375,
-            "bid_yield": 0.30016139033953304,
-            "offer_yield": 235533.06408426765,
-            "mid_yield": 117766.68212282899,
-            "eod_yield": 0.30016139033953304
+            "bid_yield": 0.4032645223236533,
+            "offer_yield": 40905.12820456159,
+            "mid_yield": 20452.765734541957,
+            "eod_yield": 0.4032645223236533
         },
         {
             "cusip": "912828CN8",
@@ -940,10 +940,10 @@
             "offer_price": 0.0,
             "mid_price": 50.625,
             "eod_price": 101.25,
-            "bid_yield": 0.4314047286589656,
-            "offer_yield": 240100.119822824,
-            "mid_yield": 120050.27561377632,
-            "eod_yield": 0.4314047286589656
+            "bid_yield": 0.49631717050699503,
+            "offer_yield": 70258.56123662296,
+            "mid_yield": 35129.52877689673,
+            "eod_yield": 0.49631717050699503
         },
         {
             "cusip": "912828GY0",
@@ -961,52 +961,10 @@
             "offer_price": 0.0,
             "mid_price": 50.90625,
             "eod_price": 101.8125,
-            "bid_yield": 0.46263476770854794,
-            "offer_yield": 163043.61927916057,
-            "mid_yield": 81522.04095696413,
-            "eod_yield": 0.46263476770854794
-        },
-        {
-            "cusip": "912828CS7",
-            "security_type": "Note",
-            "security_term": "5-Year",
-            "original_security_term": "5-Year",
-            "auction_date": "2004-08-11 00:00:00",
-            "issue_date": "2004-08-16 00:00:00",
-            "maturity_date": "2009-08-15 00:00:00",
-            "int_rate": "3.500000",
-            "high_investment_rate": null,
-            "label": "Aug 09s",
-            "is_on_the_run": false,
-            "bid_price": 101.4375,
-            "offer_price": 0.0,
-            "mid_price": 50.71875,
-            "eod_price": 101.4375,
-            "bid_yield": 0.4847353534464749,
-            "offer_yield": 366533.08791163954,
-            "mid_yield": 183266.7863234965,
-            "eod_yield": 0.4847353534464749
-        },
-        {
-            "cusip": "9128275N8",
-            "security_type": "Note",
-            "security_term": "10-Year",
-            "original_security_term": "10-Year",
-            "auction_date": "1999-08-11 00:00:00",
-            "issue_date": "1999-08-16 00:00:00",
-            "maturity_date": "2009-08-15 00:00:00",
-            "int_rate": "6.000000",
-            "high_investment_rate": null,
-            "label": "Aug 09s",
-            "is_on_the_run": false,
-            "bid_price": 102.625,
-            "offer_price": 0.0,
-            "mid_price": 51.3125,
-            "eod_price": 102.625,
-            "bid_yield": 0.4936404652593031,
-            "offer_yield": 211144.16194782394,
-            "mid_yield": 105572.3277941446,
-            "eod_yield": 0.4936404652593031
+            "bid_yield": 0.5385520506913406,
+            "offer_yield": 89803.28520171822,
+            "mid_yield": 44901.91187688446,
+            "eod_yield": 0.5385520506913406
         },
         {
             "cusip": "912828FP0",
@@ -1024,10 +982,52 @@
             "offer_price": 0.0,
             "mid_price": 51.046875,
             "eod_price": 102.09375,
-            "bid_yield": 0.4832461411183402,
-            "offer_yield": 260925.1321344959,
-            "mid_yield": 130462.80769031851,
-            "eod_yield": 0.4832461411183402
+            "bid_yield": 0.5565102758735898,
+            "offer_yield": 312703.8694630771,
+            "mid_yield": 156352.2129866765,
+            "eod_yield": 0.5565102758735898
+        },
+        {
+            "cusip": "912828CS7",
+            "security_type": "Note",
+            "security_term": "5-Year",
+            "original_security_term": "5-Year",
+            "auction_date": "2004-08-11 00:00:00",
+            "issue_date": "2004-08-16 00:00:00",
+            "maturity_date": "2009-08-15 00:00:00",
+            "int_rate": "3.500000",
+            "high_investment_rate": null,
+            "label": "Aug 09s",
+            "is_on_the_run": false,
+            "bid_price": 101.4375,
+            "offer_price": 0.0,
+            "mid_price": 50.71875,
+            "eod_price": 101.4375,
+            "bid_yield": 0.5353691214757759,
+            "offer_yield": 432707.5324675252,
+            "mid_yield": 216354.03391832334,
+            "eod_yield": 0.5353691214757759
+        },
+        {
+            "cusip": "9128275N8",
+            "security_type": "Note",
+            "security_term": "10-Year",
+            "original_security_term": "10-Year",
+            "auction_date": "1999-08-11 00:00:00",
+            "issue_date": "1999-08-16 00:00:00",
+            "maturity_date": "2009-08-15 00:00:00",
+            "int_rate": "6.000000",
+            "high_investment_rate": null,
+            "label": "Aug 09s",
+            "is_on_the_run": false,
+            "bid_price": 102.625,
+            "offer_price": 0.0,
+            "mid_price": 51.3125,
+            "eod_price": 102.625,
+            "bid_yield": 0.5850109203872149,
+            "offer_yield": 255429.39394031055,
+            "mid_yield": 127714.98947561547,
+            "eod_yield": 0.5850109203872149
         },
         {
             "cusip": "912828HB9",
@@ -1045,10 +1045,10 @@
             "offer_price": 101.796875,
             "mid_price": 101.7890625,
             "eod_price": 101.78125,
-            "bid_yield": 0.5239219048397792,
-            "offer_yield": 0.49397002739614415,
-            "mid_yield": 0.5089459661179616,
-            "eod_yield": 0.5239219048397792
+            "bid_yield": 0.577947286547066,
+            "offer_yield": 0.5484656563797964,
+            "mid_yield": 0.5632064714634312,
+            "eod_yield": 0.577947286547066
         },
         {
             "cusip": "912828CV0",
@@ -1066,10 +1066,10 @@
             "offer_price": 101.609375,
             "mid_price": 101.6015625,
             "eod_price": 101.59375,
-            "bid_yield": 0.496768864900937,
-            "offer_yield": 0.46900006937998645,
-            "mid_yield": 0.48288446714046174,
-            "eod_yield": 0.496768864900937
+            "bid_yield": 0.5382583069222416,
+            "offer_yield": 0.5108978610293998,
+            "mid_yield": 0.5245780839758207,
+            "eod_yield": 0.5382583069222416
         },
         {
             "cusip": "912828HD5",
@@ -1087,10 +1087,10 @@
             "offer_price": 102.078125,
             "mid_price": 102.0703125,
             "eod_price": 102.0625,
-            "bid_yield": 0.532609401560887,
-            "offer_yield": 0.5068719419751114,
-            "mid_yield": 0.5197406717679992,
-            "eod_yield": 0.532609401560887
+            "bid_yield": 0.5789333475251677,
+            "offer_yield": 0.5535500726556511,
+            "mid_yield": 0.5662417100904094,
+            "eod_yield": 0.5789333475251677
         },
         {
             "cusip": "912828CX6",
@@ -1108,10 +1108,10 @@
             "offer_price": 101.828125,
             "mid_price": 101.8203125,
             "eod_price": 101.78125,
-            "bid_yield": 0.5341210532046325,
-            "offer_yield": 0.5100607618334131,
-            "mid_yield": 0.5220909075190228,
-            "eod_yield": 0.5822613601788023
+            "bid_yield": 0.5693990708790081,
+            "offer_yield": 0.5456486575234397,
+            "mid_yield": 0.5575238642012239,
+            "eod_yield": 0.6169178791599104
         },
         {
             "cusip": "912828HF0",
@@ -1129,31 +1129,10 @@
             "offer_price": 102.078125,
             "mid_price": 102.0703125,
             "eod_price": 102.03125,
-            "bid_yield": 0.59075746057421,
-            "offer_yield": 0.5682184519116444,
-            "mid_yield": 0.5794879562429271,
-            "eod_yield": 0.63585341481902
-        },
-        {
-            "cusip": "912828DB3",
-            "security_type": "Note",
-            "security_term": "5-Year",
-            "original_security_term": "5-Year",
-            "auction_date": "2004-11-09 00:00:00",
-            "issue_date": "2004-11-15 00:00:00",
-            "maturity_date": "2009-11-15 00:00:00",
-            "int_rate": "3.500000",
-            "high_investment_rate": null,
-            "label": "Nov 09s",
-            "is_on_the_run": false,
-            "bid_price": 102.0625,
-            "offer_price": 102.078125,
-            "mid_price": 102.0703125,
-            "eod_price": 102.0625,
-            "bid_yield": 0.6381993890220854,
-            "offer_yield": 0.6169320747369706,
-            "mid_yield": 0.627565731879528,
-            "eod_yield": 0.6381993890220854
+            "bid_yield": 0.6262200322762663,
+            "offer_yield": 0.603956316296159,
+            "mid_yield": 0.6150881742862127,
+            "eod_yield": 0.6707638063427777
         },
         {
             "cusip": "912828FX3",
@@ -1171,10 +1150,31 @@
             "offer_price": 102.921875,
             "mid_price": 102.9140625,
             "eod_price": 102.875,
-            "bid_yield": 0.5937279811769475,
-            "offer_yield": 0.5726241872692299,
-            "mid_yield": 0.5831760842230886,
-            "eod_yield": 0.6359518313695716
+            "bid_yield": 0.6379119145054973,
+            "offer_yield": 0.6170496216733943,
+            "mid_yield": 0.6274807680894459,
+            "eod_yield": 0.6796513778536699
+        },
+        {
+            "cusip": "912828DB3",
+            "security_type": "Note",
+            "security_term": "5-Year",
+            "original_security_term": "5-Year",
+            "auction_date": "2004-11-09 00:00:00",
+            "issue_date": "2004-11-15 00:00:00",
+            "maturity_date": "2009-11-15 00:00:00",
+            "int_rate": "3.500000",
+            "high_investment_rate": null,
+            "label": "Nov 09s",
+            "is_on_the_run": false,
+            "bid_price": 102.0625,
+            "offer_price": 102.078125,
+            "mid_price": 102.0703125,
+            "eod_price": 102.0625,
+            "bid_yield": 0.6697259873471918,
+            "offer_yield": 0.6487048710189469,
+            "mid_yield": 0.6592154291830694,
+            "eod_yield": 0.6697259873471918
         },
         {
             "cusip": "912828HJ2",
@@ -1192,10 +1192,10 @@
             "offer_price": 101.921875,
             "mid_price": 101.9140625,
             "eod_price": 101.875,
-            "bid_yield": 0.6231818113088302,
-            "offer_yield": 0.6030277492252258,
-            "mid_yield": 0.613104780267028,
-            "eod_yield": 0.6635052783689034
+            "bid_yield": 0.6493107973630053,
+            "offer_yield": 0.629377439568883,
+            "mid_yield": 0.6393441184659442,
+            "eod_yield": 0.6891916613342127
         },
         {
             "cusip": "912828DE7",
@@ -1213,10 +1213,10 @@
             "offer_price": 102.328125,
             "mid_price": 102.3203125,
             "eod_price": 102.28125,
-            "bid_yield": 0.624409484747371,
-            "offer_yield": 0.6053688469009822,
-            "mid_yield": 0.6148891658241766,
-            "eod_yield": 0.6625049091192309
+            "bid_yield": 0.6526771498885071,
+            "offer_yield": 0.63383160152349,
+            "mid_yield": 0.6432543757059985,
+            "eod_yield": 0.6903814314952605
         },
         {
             "cusip": "912828HL7",
@@ -1234,10 +1234,10 @@
             "offer_price": 102.203125,
             "mid_price": 102.1953125,
             "eod_price": 102.1875,
-            "bid_yield": 0.6667268706025052,
-            "offer_yield": 0.6486148936710961,
-            "mid_yield": 0.6576708821368007,
-            "eod_yield": 0.6667268706025052
+            "bid_yield": 0.6910091358816176,
+            "offer_yield": 0.6730738411495092,
+            "mid_yield": 0.6820414885155635,
+            "eod_yield": 0.6910091358816176
         },
         {
             "cusip": "912828DG2",
@@ -1255,10 +1255,10 @@
             "offer_price": 102.671875,
             "mid_price": 102.6640625,
             "eod_price": 102.625,
-            "bid_yield": 0.6343293104275712,
-            "offer_yield": 0.6171143422535347,
-            "mid_yield": 0.625721826340553,
-            "eod_yield": 0.6687715558033834
+            "bid_yield": 0.6611289236119274,
+            "offer_yield": 0.6440716122336583,
+            "mid_yield": 0.6526002679227929,
+            "eod_yield": 0.695255315365876
         },
         {
             "cusip": "912828HP8",
@@ -1276,31 +1276,10 @@
             "offer_price": 101.328125,
             "mid_price": 101.3203125,
             "eod_price": 101.28125,
-            "bid_yield": 0.7160139804749308,
-            "offer_yield": 0.6994175076416084,
-            "mid_yield": 0.7077157440582695,
-            "eod_yield": 0.7492187379099873
-        },
-        {
-            "cusip": "912828DL1",
-            "security_type": "Note",
-            "security_term": "5-Year",
-            "original_security_term": "5-Year",
-            "auction_date": "2005-02-09 00:00:00",
-            "issue_date": "2005-02-15 00:00:00",
-            "maturity_date": "2010-02-15 00:00:00",
-            "int_rate": "3.500000",
-            "high_investment_rate": null,
-            "label": "Feb 10s",
-            "is_on_the_run": false,
-            "bid_price": 102.75,
-            "offer_price": 102.765625,
-            "mid_price": 102.7578125,
-            "eod_price": 102.71875,
-            "bid_yield": 0.6737178168968595,
-            "offer_yield": 0.6579921000175896,
-            "mid_yield": 0.6658549584572245,
-            "eod_yield": 0.7051801513004983
+            "bid_yield": 0.7281623004813605,
+            "offer_yield": 0.711711444019394,
+            "mid_yield": 0.7199368722503773,
+            "eod_yield": 0.7610754753306064
         },
         {
             "cusip": "912828GG9",
@@ -1318,10 +1297,31 @@
             "offer_price": 103.953125,
             "mid_price": 103.9453125,
             "eod_price": 103.90625,
-            "bid_yield": 0.7024248390346504,
-            "offer_yield": 0.6868340115840573,
-            "mid_yield": 0.6946294253093539,
-            "eod_yield": 0.7336171963187069
+            "bid_yield": 0.7353833380878715,
+            "offer_yield": 0.7199174034946779,
+            "mid_yield": 0.7276503707912747,
+            "eod_yield": 0.7663257472938777
+        },
+        {
+            "cusip": "912828DL1",
+            "security_type": "Note",
+            "security_term": "5-Year",
+            "original_security_term": "5-Year",
+            "auction_date": "2005-02-09 00:00:00",
+            "issue_date": "2005-02-15 00:00:00",
+            "maturity_date": "2010-02-15 00:00:00",
+            "int_rate": "3.500000",
+            "high_investment_rate": null,
+            "label": "Feb 10s",
+            "is_on_the_run": false,
+            "bid_price": 102.75,
+            "offer_price": 102.765625,
+            "mid_price": 102.7578125,
+            "eod_price": 102.71875,
+            "bid_yield": 0.6969347671815393,
+            "offer_yield": 0.6813368572658085,
+            "mid_yield": 0.6891358122236739,
+            "eod_yield": 0.7281413204880829
         },
         {
             "cusip": "9128275Z1",
@@ -1339,10 +1339,10 @@
             "offer_price": 105.671875,
             "mid_price": 105.6640625,
             "eod_price": 105.625,
-            "bid_yield": 0.68633270119449,
-            "offer_yield": 0.6709394078263765,
-            "mid_yield": 0.6786360545104333,
-            "eod_yield": 0.7171297076171461
+            "bid_yield": 0.7330861243727865,
+            "offer_yield": 0.717813599254807,
+            "mid_yield": 0.7254498618137968,
+            "eod_yield": 0.7636414386260042
         },
         {
             "cusip": "912828HS2",
@@ -1360,10 +1360,10 @@
             "offer_price": 101.265625,
             "mid_price": 101.2578125,
             "eod_price": 101.25,
-            "bid_yield": 0.7597015366137229,
-            "offer_yield": 0.7443447474274335,
-            "mid_yield": 0.7520231420205782,
-            "eod_yield": 0.7597015366137229
+            "bid_yield": 0.7694608264563687,
+            "offer_yield": 0.754227010260579,
+            "mid_yield": 0.7618439183584739,
+            "eod_yield": 0.7694608264563687
         },
         {
             "cusip": "912828DP2",
@@ -1381,10 +1381,10 @@
             "offer_price": 103.484375,
             "mid_price": 103.4765625,
             "eod_price": 103.4375,
-            "bid_yield": 0.6947643710115979,
-            "offer_yield": 0.6802571673485778,
-            "mid_yield": 0.6875107691800879,
-            "eod_yield": 0.7237885285936163
+            "bid_yield": 0.7196638191120965,
+            "offer_yield": 0.7052691099345137,
+            "mid_yield": 0.7124664645233052,
+            "eod_yield": 0.7484627208701443
         },
         {
             "cusip": "912828HU7",
@@ -1402,10 +1402,10 @@
             "offer_price": 101.109375,
             "mid_price": 101.1015625,
             "eod_price": 101.0625,
-            "bid_yield": 0.7484898186496601,
-            "offer_yield": 0.7343050929362621,
-            "mid_yield": 0.7413974557929611,
-            "eod_yield": 0.7768688698563294
+            "bid_yield": 0.7557294536516141,
+            "offer_yield": 0.7416530973977851,
+            "mid_yield": 0.7486912755246996,
+            "eod_yield": 0.783891441355222
         },
         {
             "cusip": "912828DR8",
@@ -1423,10 +1423,10 @@
             "offer_price": 103.765625,
             "mid_price": 103.7578125,
             "eod_price": 103.71875,
-            "bid_yield": 0.6915619238163895,
-            "offer_yield": 0.6781549434064563,
-            "mid_yield": 0.684858433611423,
-            "eod_yield": 0.7183846591514801
+            "bid_yield": 0.714432609810032,
+            "offer_yield": 0.7011229260444858,
+            "mid_yield": 0.7077777679272589,
+            "eod_yield": 0.7410604216397046
         },
         {
             "cusip": "912828HX1",
@@ -1444,31 +1444,10 @@
             "offer_price": 101.671875,
             "mid_price": 101.6640625,
             "eod_price": 101.625,
-            "bid_yield": 0.7141680902474342,
-            "offer_yield": 0.701025378189085,
-            "mid_yield": 0.7075967342182596,
-            "eod_yield": 0.7404621748958241
-        },
-        {
-            "cusip": "912828DU1",
-            "security_type": "Note",
-            "security_term": "5-Year",
-            "original_security_term": "5-Year",
-            "auction_date": "2005-05-11 00:00:00",
-            "issue_date": "2005-05-16 00:00:00",
-            "maturity_date": "2010-05-15 00:00:00",
-            "int_rate": "3.875000",
-            "high_investment_rate": null,
-            "label": "May 10s",
-            "is_on_the_run": false,
-            "bid_price": 103.90625,
-            "offer_price": 103.921875,
-            "mid_price": 103.9140625,
-            "eod_price": 103.875,
-            "bid_yield": 0.6640493364175334,
-            "offer_yield": 0.6515658174936009,
-            "mid_yield": 0.6578075769555671,
-            "eod_yield": 0.6890243671312989
+            "bid_yield": 0.7236454167635581,
+            "offer_yield": 0.7105967850858077,
+            "mid_yield": 0.717121100924683,
+            "eod_yield": 0.7497510050034362
         },
         {
             "cusip": "912828GR5",
@@ -1486,10 +1465,31 @@
             "offer_price": 104.6875,
             "mid_price": 104.671875,
             "eod_price": 104.65625,
-            "bid_yield": 0.6722868382728582,
-            "offer_yield": 0.6474522709743765,
-            "mid_yield": 0.6598695546236173,
-            "eod_yield": 0.6722868382728582
+            "bid_yield": 0.6969565735377096,
+            "offer_yield": 0.6722903528266775,
+            "mid_yield": 0.6846234631821935,
+            "eod_yield": 0.6969565735377096
+        },
+        {
+            "cusip": "912828DU1",
+            "security_type": "Note",
+            "security_term": "5-Year",
+            "original_security_term": "5-Year",
+            "auction_date": "2005-05-11 00:00:00",
+            "issue_date": "2005-05-16 00:00:00",
+            "maturity_date": "2010-05-15 00:00:00",
+            "int_rate": "3.875000",
+            "high_investment_rate": null,
+            "label": "May 10s",
+            "is_on_the_run": false,
+            "bid_price": 103.90625,
+            "offer_price": 103.921875,
+            "mid_price": 103.9140625,
+            "eod_price": 103.875,
+            "bid_yield": 0.6848395311457436,
+            "offer_yield": 0.6724411154105346,
+            "mid_yield": 0.6786403232781391,
+            "eod_yield": 0.7096440481015671
         },
         {
             "cusip": "912828JA9",
@@ -1507,10 +1507,10 @@
             "offer_price": 102.390625,
             "mid_price": 102.3828125,
             "eod_price": 102.34375,
-            "bid_yield": 0.7370322756378612,
-            "offer_yield": 0.724826397678797,
-            "mid_yield": 0.7309293366583292,
-            "eod_yield": 0.7614518710715502
+            "bid_yield": 0.748841029298439,
+            "offer_yield": 0.7367164147020583,
+            "mid_yield": 0.7427787220002486,
+            "eod_yield": 0.7730978148523637
         },
         {
             "cusip": "912828DX5",
@@ -1528,10 +1528,10 @@
             "offer_price": 103.859375,
             "mid_price": 103.8515625,
             "eod_price": 103.8125,
-            "bid_yield": 0.6673662323959272,
-            "offer_yield": 0.6556678498444359,
-            "mid_yield": 0.6615170411201816,
-            "eod_yield": 0.6907703576138768
+            "bid_yield": 0.6852213467885888,
+            "offer_yield": 0.6735968637877447,
+            "mid_yield": 0.6794091052881668,
+            "eod_yield": 0.7084774320154161
         },
         {
             "cusip": "912828JC5",
@@ -1549,10 +1549,10 @@
             "offer_price": 102.859375,
             "mid_price": 102.8515625,
             "eod_price": 102.8125,
-            "bid_yield": 0.7517122319418185,
-            "offer_yield": 0.7402791499954561,
-            "mid_yield": 0.7459956909686373,
-            "eod_yield": 0.7745855899394222
+            "bid_yield": 0.7641913487795616,
+            "offer_yield": 0.7528287269202957,
+            "mid_yield": 0.7585100378499287,
+            "eod_yield": 0.7869235836299537
         },
         {
             "cusip": "912828DZ0",
@@ -1570,10 +1570,10 @@
             "offer_price": 104.4375,
             "mid_price": 104.421875,
             "eod_price": 104.40625,
-            "bid_yield": 0.6891304330712542,
-            "offer_yield": 0.6672137445518266,
-            "mid_yield": 0.6781720888115403,
-            "eod_yield": 0.6891304330712542
+            "bid_yield": 0.7072860890672695,
+            "offer_yield": 0.6854973664353702,
+            "mid_yield": 0.6963917277513199,
+            "eod_yield": 0.7072860890672695
         },
         {
             "cusip": "912828JF8",
@@ -1591,10 +1591,10 @@
             "offer_price": 102.859375,
             "mid_price": 102.8515625,
             "eod_price": 102.8125,
-            "bid_yield": 0.7556103679605217,
-            "offer_yield": 0.7448637772096399,
-            "mid_yield": 0.7502370725850809,
-            "eod_yield": 0.7771102063326054
+            "bid_yield": 0.7667435895317033,
+            "offer_yield": 0.7560579315863024,
+            "mid_yield": 0.7614007605590029,
+            "eod_yield": 0.788121456644314
         },
         {
             "cusip": "912828ED8",
@@ -1612,10 +1612,10 @@
             "offer_price": 105.046875,
             "mid_price": 105.0390625,
             "eod_price": 105.0,
-            "bid_yield": 0.6970791339447615,
-            "offer_yield": 0.6867837429952077,
-            "mid_yield": 0.6919314384699846,
-            "eod_yield": 0.7176761441299904
+            "bid_yield": 0.7154985870759858,
+            "offer_yield": 0.7052577925316926,
+            "mid_yield": 0.7103781898038393,
+            "eod_yield": 0.7359863494331766
         },
         {
             "cusip": "9128276J6",
@@ -1633,10 +1633,10 @@
             "offer_price": 107.453125,
             "mid_price": 107.4296875,
             "eod_price": 107.40625,
-            "bid_yield": 0.7036123410658948,
-            "offer_yield": 0.6732005334062945,
-            "mid_yield": 0.6884064372360946,
-            "eod_yield": 0.7036123410658948
+            "bid_yield": 0.7303176168823271,
+            "offer_yield": 0.7000634569260554,
+            "mid_yield": 0.7151905369041913,
+            "eod_yield": 0.7303176168823271
         },
         {
             "cusip": "912828JJ0",
@@ -1654,10 +1654,10 @@
             "offer_price": 102.390625,
             "mid_price": 102.3828125,
             "eod_price": 102.34375,
-            "bid_yield": 0.79351983688699,
-            "offer_yield": 0.7832794335295094,
-            "mid_yield": 0.7883996352082496,
-            "eod_yield": 0.8140069308602036
+            "bid_yield": 0.8018990838151163,
+            "offer_yield": 0.7917139055262378,
+            "mid_yield": 0.796806494670677,
+            "eod_yield": 0.8222756631673837
         },
         {
             "cusip": "912828EG1",
@@ -1675,10 +1675,10 @@
             "offer_price": 104.859375,
             "mid_price": 104.8515625,
             "eod_price": 104.8125,
-            "bid_yield": 0.736710438373611,
-            "offer_yield": 0.7269062946241869,
-            "mid_yield": 0.731808366498899,
-            "eod_yield": 0.7563245922155915
+            "bid_yield": 0.7526503591320427,
+            "offer_yield": 0.7428976160689649,
+            "mid_yield": 0.7477739876005038,
+            "eod_yield": 0.7721616208882502
         },
         {
             "cusip": "912828JL5",
@@ -1696,10 +1696,10 @@
             "offer_price": 101.859375,
             "mid_price": 101.8515625,
             "eod_price": 101.8125,
-            "bid_yield": 0.8349357022003018,
-            "offer_yield": 0.8251858193672936,
-            "mid_yield": 0.8300607607837978,
-            "eod_yield": 0.8544414016312744
+            "bid_yield": 0.8407325986451932,
+            "offer_yield": 0.831034261833998,
+            "mid_yield": 0.8358834302395957,
+            "eod_yield": 0.8601350930820221
         },
         {
             "cusip": "912828EJ5",
@@ -1717,10 +1717,10 @@
             "offer_price": 105.765625,
             "mid_price": 105.7578125,
             "eod_price": 105.71875,
-            "bid_yield": 0.716741356679609,
-            "offer_yield": 0.707496213867557,
-            "mid_yield": 0.7121187852735831,
-            "eod_yield": 0.7352370667966256
+            "bid_yield": 0.7335531114863691,
+            "offer_yield": 0.7243542768010887,
+            "mid_yield": 0.7289536941437289,
+            "eod_yield": 0.75195608875187
         },
         {
             "cusip": "912828JP6",
@@ -1738,10 +1738,10 @@
             "offer_price": 100.984375,
             "mid_price": 100.9765625,
             "eod_price": 100.9375,
-            "bid_yield": 0.9181400880094837,
-            "offer_yield": 0.9088212604419128,
-            "mid_yield": 0.9134806742256982,
-            "eod_yield": 0.9367833866546942
+            "bid_yield": 0.9207977826727285,
+            "offer_yield": 0.9115269728645286,
+            "mid_yield": 0.9161623777686285,
+            "eod_yield": 0.9393449193370473
         },
         {
             "cusip": "912828EM8",
@@ -1759,10 +1759,10 @@
             "offer_price": 106.3125,
             "mid_price": 106.296875,
             "eod_price": 106.25,
-            "bid_yield": 0.8220401601794391,
-            "offer_yield": 0.8044770408540927,
-            "mid_yield": 0.8132586005167659,
-            "eod_yield": 0.8396100492614355
+            "bid_yield": 0.8386840296735071,
+            "offer_yield": 0.8212058461119797,
+            "mid_yield": 0.8299449378927434,
+            "eod_yield": 0.856168829861821
         },
         {
             "cusip": "912828JS0",
@@ -1780,10 +1780,10 @@
             "offer_price": 100.5625,
             "mid_price": 100.5625,
             "eod_price": 100.53125,
-            "bid_yield": 0.9277816121130955,
-            "offer_yield": 0.9277816121130955,
-            "mid_yield": 0.9277816121130955,
-            "eod_yield": 0.9456065473776593
+            "bid_yield": 0.9291182061883703,
+            "offer_yield": 0.9291182061883703,
+            "mid_yield": 0.9291182061883703,
+            "eod_yield": 0.9468550544286387
         },
         {
             "cusip": "912828EQ9",
@@ -1801,10 +1801,10 @@
             "offer_price": 106.40625,
             "mid_price": 106.390625,
             "eod_price": 106.34375,
-            "bid_yield": 0.8146103190285223,
-            "offer_yield": 0.7978598174096279,
-            "mid_yield": 0.8062350682190751,
-            "eod_yield": 0.8313672093935315
+            "bid_yield": 0.8299073094670396,
+            "offer_yield": 0.813233016661609,
+            "mid_yield": 0.8215701630643243,
+            "eod_yield": 0.8465878644672076
         },
         {
             "cusip": "912828JV3",
@@ -1822,10 +1822,10 @@
             "offer_price": 99.859375,
             "mid_price": 99.8515625,
             "eod_price": 99.8125,
-            "bid_yield": 0.9602567561107077,
-            "offer_yield": 0.9517125113917559,
-            "mid_yield": 0.9559846337512319,
-            "eod_yield": 0.9773503606174094
+            "bid_yield": 0.9597575772387754,
+            "offer_yield": 0.951253311903752,
+            "mid_yield": 0.9555054445712636,
+            "eod_yield": 0.9767711350207512
         },
         {
             "cusip": "912828ES5",
@@ -1843,10 +1843,10 @@
             "offer_price": 106.5,
             "mid_price": 106.484375,
             "eod_price": 106.4375,
-            "bid_yield": 0.7983899125831521,
-            "offer_yield": 0.7823850222986836,
-            "mid_yield": 0.7903874674409178,
-            "eod_yield": 0.8144008489515814
+            "bid_yield": 0.8126823109005453,
+            "offer_yield": 0.7967457539005561,
+            "mid_yield": 0.8047140324005507,
+            "eod_yield": 0.8286248287728564
         },
         {
             "cusip": "912828JY7",
@@ -1864,10 +1864,10 @@
             "offer_price": 99.828125,
             "mid_price": 99.8203125,
             "eod_price": 99.78125,
-            "bid_yield": 0.9729254431960666,
-            "offer_yield": 0.9647523075206209,
-            "mid_yield": 0.9688388753583437,
-            "eod_yield": 0.9892765647659567
+            "bid_yield": 0.9724587038523909,
+            "offer_yield": 0.9643210563761692,
+            "mid_yield": 0.9683898801142801,
+            "eod_yield": 0.9887387987334879
         },
         {
             "cusip": "9128276T4",
@@ -1885,10 +1885,10 @@
             "offer_price": 108.265625,
             "mid_price": 108.2421875,
             "eod_price": 108.1875,
-            "bid_yield": 0.8031716897091742,
-            "offer_yield": 0.7804215846699903,
-            "mid_yield": 0.7917966371895823,
-            "eod_yield": 0.8183454423201282
+            "bid_yield": 0.8197153463429216,
+            "offer_yield": 0.7970535237122143,
+            "mid_yield": 0.808384435027568,
+            "eod_yield": 0.8348302023828825
         },
         {
             "cusip": "912828EX4",
@@ -1906,10 +1906,10 @@
             "offer_price": 107.1875,
             "mid_price": 107.171875,
             "eod_price": 107.125,
-            "bid_yield": 0.9054176425139477,
-            "offer_yield": 0.8903989990600168,
-            "mid_yield": 0.8979083207869822,
-            "eod_yield": 0.9204418706065077
+            "bid_yield": 0.919102804449041,
+            "offer_yield": 0.9041424975306941,
+            "mid_yield": 0.9116226509898675,
+            "eod_yield": 0.9340686578542238
         },
         {
             "cusip": "912828FA3",
@@ -1927,10 +1927,10 @@
             "offer_price": 107.90625,
             "mid_price": 107.890625,
             "eod_price": 107.84375,
-            "bid_yield": 0.9511164010802416,
-            "offer_yield": 0.9367561908407492,
-            "mid_yield": 0.9439362959604954,
-            "eod_yield": 0.9654818810976927
+            "bid_yield": 0.9650113448117219,
+            "offer_yield": 0.950706963630224,
+            "mid_yield": 0.9578591542209729,
+            "eod_yield": 0.9793209284487482
         },
         {
             "cusip": "912828FD7",
@@ -1948,10 +1948,10 @@
             "offer_price": 108.421875,
             "mid_price": 108.4140625,
             "eod_price": 108.375,
-            "bid_yield": 0.9703500989440922,
-            "offer_yield": 0.9634568423128234,
-            "mid_yield": 0.9669034706284578,
-            "eod_yield": 0.9841403658878966
+            "bid_yield": 0.9840184418338174,
+            "offer_yield": 0.9771513621009621,
+            "mid_yield": 0.9805849019673898,
+            "eod_yield": 0.9977562983449182
         },
         {
             "cusip": "912828FH8",
@@ -1969,10 +1969,10 @@
             "offer_price": 108.6875,
             "mid_price": 108.671875,
             "eod_price": 108.625,
-            "bid_yield": 1.0019892112142632,
-            "offer_yield": 0.9887260659014878,
-            "mid_yield": 0.9953576385578755,
-            "eod_yield": 1.0152571322224047
+            "bid_yield": 1.0150116073930309,
+            "offer_yield": 1.0017969461231062,
+            "mid_yield": 1.0084042767580685,
+            "eod_yield": 1.0282309744222962
         },
         {
             "cusip": "912828FK1",
@@ -1990,10 +1990,10 @@
             "offer_price": 109.46875,
             "mid_price": 109.453125,
             "eod_price": 109.40625,
-            "bid_yield": 1.0464703780589573,
-            "offer_yield": 1.0337121192899925,
-            "mid_yield": 1.0400912486744749,
-            "eod_yield": 1.059233180860956
+            "bid_yield": 1.0596737443382171,
+            "offer_yield": 1.0469595950740596,
+            "mid_yield": 1.0533166697061382,
+            "eod_yield": 1.0723923831060873
         },
         {
             "cusip": "912828FN5",
@@ -2011,10 +2011,10 @@
             "offer_price": 109.1875,
             "mid_price": 109.171875,
             "eod_price": 109.125,
-            "bid_yield": 1.058113859862191,
-            "offer_yield": 1.0457789976051253,
-            "mid_yield": 1.0519464287336582,
-            "eod_yield": 1.0704531009764053
+            "bid_yield": 1.0701838287194985,
+            "offer_yield": 1.0578887505349635,
+            "mid_yield": 1.0640362896272308,
+            "eod_yield": 1.0824832540140636
         },
         {
             "cusip": "9128277B2",
@@ -2032,10 +2032,10 @@
             "offer_price": 109.96875,
             "mid_price": 109.953125,
             "eod_price": 109.875,
-            "bid_yield": 0.9335321988329284,
-            "offer_yield": 0.921472960438066,
-            "mid_yield": 0.9275025796354972,
-            "eod_yield": 0.9576634127282805
+            "bid_yield": 0.9461932027406386,
+            "offer_yield": 0.9341710016341832,
+            "mid_yield": 0.9401821021874108,
+            "eod_yield": 0.9702502859964621
         },
         {
             "cusip": "912828FS4",
@@ -2053,10 +2053,10 @@
             "offer_price": 108.78125,
             "mid_price": 108.765625,
             "eod_price": 108.6875,
-            "bid_yield": 1.0869429725103579,
-            "offer_yield": 1.0749442297485072,
-            "mid_yield": 1.0809436011294324,
-            "eod_yield": 1.1109532208512194
+            "bid_yield": 1.0977707777866665,
+            "offer_yield": 1.085809710129389,
+            "mid_yield": 1.0917902439580278,
+            "eod_yield": 1.1217056102355083
         },
         {
             "cusip": "912828FU9",
@@ -2074,10 +2074,10 @@
             "offer_price": 108.578125,
             "mid_price": 108.5546875,
             "eod_price": 108.5,
-            "bid_yield": 1.1551651620362389,
-            "offer_yield": 1.1376958834025526,
-            "mid_yield": 1.1464305227193958,
-            "eod_yield": 1.166816490684693
+            "bid_yield": 1.1649946159047166,
+            "offer_yield": 1.1475808294551546,
+            "mid_yield": 1.1562877226799357,
+            "eod_yield": 1.1766089025261102
         },
         {
             "cusip": "912828FW5",
@@ -2095,10 +2095,10 @@
             "offer_price": 109.0625,
             "mid_price": 109.046875,
             "eod_price": 108.96875,
-            "bid_yield": 1.193237590686394,
-            "offer_yield": 1.181981215182498,
-            "mid_yield": 1.187609402934446,
-            "eod_yield": 1.2157621770124067
+            "bid_yield": 1.2029231938448253,
+            "offer_yield": 1.1917021862708266,
+            "mid_yield": 1.197312690057826,
+            "eod_yield": 1.2253769143413662
         },
         {
             "cusip": "912828JU5",
@@ -2116,10 +2116,10 @@
             "offer_price": 101.359375,
             "mid_price": 101.3515625,
             "eod_price": 101.3125,
-            "bid_yield": 1.2464563831425732,
-            "offer_yield": 1.2406522993384743,
-            "mid_yield": 1.2435543412405239,
-            "eod_yield": 1.2580677682355663
+            "bid_yield": 1.2477633627567657,
+            "offer_yield": 1.241978111822842,
+            "mid_yield": 1.2448707372898038,
+            "eod_yield": 1.2593370468761649
         },
         {
             "cusip": "912828GA2",
@@ -2137,10 +2137,10 @@
             "offer_price": 108.90625,
             "mid_price": 108.890625,
             "eod_price": 108.84375,
-            "bid_yield": 1.2253263931330869,
-            "offer_yield": 1.2143844458260584,
-            "mid_yield": 1.2198554194795728,
-            "eod_yield": 1.2362721631928144
+            "bid_yield": 1.234282554766254,
+            "offer_yield": 1.2233740694146729,
+            "mid_yield": 1.2288283120904633,
+            "eod_yield": 1.2451948217138806
         },
         {
             "cusip": "912828KA7",
@@ -2158,10 +2158,10 @@
             "offer_price": 99.609375,
             "mid_price": 99.6015625,
             "eod_price": 99.5625,
-            "bid_yield": 1.2725984144398057,
-            "offer_yield": 1.2669031145357368,
-            "mid_yield": 1.2697507644877712,
-            "eod_yield": 1.2839921993996875
+            "bid_yield": 1.2720062500123686,
+            "offer_yield": 1.2663288643655308,
+            "mid_yield": 1.2691675571889496,
+            "eod_yield": 1.2833641748924978
         },
         {
             "cusip": "912828GC8",
@@ -2179,10 +2179,10 @@
             "offer_price": 109.5,
             "mid_price": 109.484375,
             "eod_price": 109.4375,
-            "bid_yield": 1.2340613501216962,
-            "offer_yield": 1.2234733447969053,
-            "mid_yield": 1.2287673474593008,
-            "eod_yield": 1.2446530250637131
+            "bid_yield": 1.2430738762278963,
+            "offer_yield": 1.232516521354955,
+            "mid_yield": 1.2377951987914257,
+            "eod_yield": 1.2536348681710976
         },
         {
             "cusip": "912828KB5",
@@ -2200,10 +2200,10 @@
             "offer_price": 99.453125,
             "mid_price": 99.4453125,
             "eod_price": 99.40625,
-            "bid_yield": 1.3237631029055055,
-            "offer_yield": 1.318221340481501,
-            "mid_yield": 1.3209922216935033,
-            "eod_yield": 1.3348497194012698
+            "bid_yield": 1.3230887279514805,
+            "offer_yield": 1.317563543492537,
+            "mid_yield": 1.3203261357220089,
+            "eod_yield": 1.334142165371558
         },
         {
             "cusip": "912828GF1",
@@ -2221,31 +2221,10 @@
             "offer_price": 110.03125,
             "mid_price": 110.015625,
             "eod_price": 109.96875,
-            "bid_yield": 1.2695841340534086,
-            "offer_yield": 1.259319764712725,
-            "mid_yield": 1.2644519493830668,
-            "eod_yield": 1.2798520364056982
-        },
-        {
-            "cusip": "9128277L0",
-            "security_type": "Note",
-            "security_term": "10-Year",
-            "original_security_term": "10-Year",
-            "auction_date": "2002-02-06 00:00:00",
-            "issue_date": "2002-02-15 00:00:00",
-            "maturity_date": "2012-02-15 00:00:00",
-            "int_rate": "4.875000",
-            "high_investment_rate": null,
-            "label": "Feb 12s",
-            "is_on_the_run": false,
-            "bid_price": 110.34375,
-            "offer_price": 110.375,
-            "mid_price": 110.359375,
-            "eod_price": 110.28125,
-            "bid_yield": 1.3211450440016501,
-            "offer_yield": 1.311029085235297,
-            "mid_yield": 1.3160870646184737,
-            "eod_yield": 1.3413873730239918
+            "bid_yield": 1.2786189668654537,
+            "offer_yield": 1.2683820773623458,
+            "mid_yield": 1.2735005221138997,
+            "eod_yield": 1.2888593698245483
         },
         {
             "cusip": "912828KC3",
@@ -2263,10 +2242,31 @@
             "offer_price": 100.0625,
             "mid_price": 100.0625,
             "eod_price": 100.0,
-            "bid_yield": 1.3534984671249533,
-            "offer_yield": 1.3534984671249533,
-            "mid_yield": 1.3534984671249533,
-            "eod_yield": 1.374982872509964
+            "bid_yield": 1.3535485165608796,
+            "offer_yield": 1.3535485165608796,
+            "mid_yield": 1.3535485165608796,
+            "eod_yield": 1.3749740498155512
+        },
+        {
+            "cusip": "9128277L0",
+            "security_type": "Note",
+            "security_term": "10-Year",
+            "original_security_term": "10-Year",
+            "auction_date": "2002-02-06 00:00:00",
+            "issue_date": "2002-02-15 00:00:00",
+            "maturity_date": "2012-02-15 00:00:00",
+            "int_rate": "4.875000",
+            "high_investment_rate": null,
+            "label": "Feb 12s",
+            "is_on_the_run": false,
+            "bid_price": 110.34375,
+            "offer_price": 110.375,
+            "mid_price": 110.359375,
+            "eod_price": 110.28125,
+            "bid_yield": 1.3302776306403248,
+            "offer_yield": 1.3201874457717382,
+            "mid_yield": 1.3252325382060315,
+            "eod_yield": 1.350468375759141
         },
         {
             "cusip": "912828GK0",
@@ -2284,10 +2284,10 @@
             "offer_price": 109.703125,
             "mid_price": 109.6796875,
             "eod_price": 109.625,
-            "bid_yield": 1.3446531620884845,
-            "offer_yield": 1.329591733898893,
-            "mid_yield": 1.3371224479936887,
-            "eod_yield": 1.3546984339812789
+            "bid_yield": 1.3528304492016259,
+            "offer_yield": 1.3378078657945094,
+            "mid_yield": 1.3453191574980676,
+            "eod_yield": 1.3628498072983173
         },
         {
             "cusip": "912828GM6",
@@ -2305,10 +2305,10 @@
             "offer_price": 109.46875,
             "mid_price": 109.453125,
             "eod_price": 109.375,
-            "bid_yield": 1.3781845553111958,
-            "offer_yield": 1.3683962603723279,
-            "mid_yield": 1.3732904078417618,
-            "eod_yield": 1.3977712328340746
+            "bid_yield": 1.3856991489294301,
+            "offer_yield": 1.3759369282343825,
+            "mid_yield": 1.3808180385819062,
+            "eod_yield": 1.4052336062847035
         },
         {
             "cusip": "912828GQ7",
@@ -2326,10 +2326,10 @@
             "offer_price": 109.65625,
             "mid_price": 109.640625,
             "eod_price": 109.5625,
-            "bid_yield": 1.3957321513848129,
-            "offer_yield": 1.3861985500477274,
-            "mid_yield": 1.3909653507162703,
-            "eod_yield": 1.4148091352410574
+            "bid_yield": 1.402951129909924,
+            "offer_yield": 1.3934429041445897,
+            "mid_yield": 1.3981970170272568,
+            "eod_yield": 1.4219772802239752
         },
         {
             "cusip": "912828GU8",
@@ -2347,10 +2347,10 @@
             "offer_price": 110.65625,
             "mid_price": 110.640625,
             "eod_price": 110.5625,
-            "bid_yield": 1.4097009796116113,
-            "offer_yield": 1.4004580414418617,
-            "mid_yield": 1.4050795105267366,
-            "eod_yield": 1.4281962463823838
+            "bid_yield": 1.417233053591846,
+            "offer_yield": 1.4080140063614928,
+            "mid_yield": 1.4126235299766694,
+            "eod_yield": 1.4356804603615743
         },
         {
             "cusip": "912828GW4",
@@ -2368,10 +2368,10 @@
             "offer_price": 111.25,
             "mid_price": 111.234375,
             "eod_price": 111.15625,
-            "bid_yield": 1.4315434505220095,
-            "offer_yield": 1.4225463195780104,
-            "mid_yield": 1.42704488505001,
-            "eod_yield": 1.4495467940505622
+            "bid_yield": 1.4391363612121493,
+            "offer_yield": 1.4301613349455606,
+            "mid_yield": 1.4346488480788548,
+            "eod_yield": 1.4570954320334149
         },
         {
             "cusip": "912828GZ7",
@@ -2389,10 +2389,10 @@
             "offer_price": 110.625,
             "mid_price": 110.609375,
             "eod_price": 110.53125,
-            "bid_yield": 1.4531778294859694,
-            "offer_yield": 1.4443676649244497,
-            "mid_yield": 1.4487727472052097,
-            "eod_yield": 1.4708070690130925
+            "bid_yield": 1.460136576020918,
+            "offer_yield": 1.4513465632412408,
+            "mid_yield": 1.4557415696310794,
+            "eod_yield": 1.4777254726113214
         },
         {
             "cusip": "912828AJ9",
@@ -2410,10 +2410,10 @@
             "offer_price": 110.1875,
             "mid_price": 110.171875,
             "eod_price": 110.0625,
-            "bid_yield": 1.3743168324865591,
-            "offer_yield": 1.3655995955139888,
-            "mid_yield": 1.369958214000274,
-            "eod_yield": 1.4004862008237728
+            "bid_yield": 1.3809066220510835,
+            "offer_yield": 1.3722084279422213,
+            "mid_yield": 1.3765575249966524,
+            "eod_yield": 1.4070188113286626
         },
         {
             "cusip": "912828HC7",
@@ -2431,10 +2431,10 @@
             "offer_price": 109.125,
             "mid_price": 109.109375,
             "eod_price": 109.03125,
-            "bid_yield": 1.4605272677231491,
-            "offer_yield": 1.4518313680344965,
-            "mid_yield": 1.456179317878823,
-            "eod_yield": 1.4779279339670623
+            "bid_yield": 1.4662645913419174,
+            "offer_yield": 1.4575881625861742,
+            "mid_yield": 1.4619263769640458,
+            "eod_yield": 1.4836262863913452
         },
         {
             "cusip": "912828HE3",
@@ -2452,10 +2452,10 @@
             "offer_price": 109.78125,
             "mid_price": 109.765625,
             "eod_price": 109.65625,
-            "bid_yield": 1.4572996879884128,
-            "offer_yield": 1.4488306905272061,
-            "mid_yield": 1.4530651892578095,
-            "eod_yield": 1.4827238301006735
+            "bid_yield": 1.4630648700983049,
+            "offer_yield": 1.4546154009364727,
+            "mid_yield": 1.4588401355173888,
+            "eod_yield": 1.4884303305794537
         },
         {
             "cusip": "912828HG8",
@@ -2473,10 +2473,10 @@
             "offer_price": 108.65625,
             "mid_price": 108.640625,
             "eod_price": 108.5625,
-            "bid_yield": 1.4601964679537216,
-            "offer_yield": 1.4518672514003204,
-            "mid_yield": 1.456031859677021,
-            "eod_yield": 1.476863376390527
+            "bid_yield": 1.4650318288962045,
+            "offer_yield": 1.4567220097525608,
+            "mid_yield": 1.4608769193243827,
+            "eod_yield": 1.4816598855543468
         },
         {
             "cusip": "912828AP5",
@@ -2494,10 +2494,10 @@
             "offer_price": 109.25,
             "mid_price": 109.234375,
             "eod_price": 109.125,
-            "bid_yield": 1.4475778996606519,
-            "offer_yield": 1.439367530280348,
-            "mid_yield": 1.4434727149705,
-            "eod_yield": 1.4722256314802231
+            "bid_yield": 1.4526239138660884,
+            "offer_yield": 1.44443245920792,
+            "mid_yield": 1.448528186537004,
+            "eod_yield": 1.477214788126924
         },
         {
             "cusip": "912828HK9",
@@ -2515,10 +2515,10 @@
             "offer_price": 106.90625,
             "mid_price": 106.890625,
             "eod_price": 106.8125,
-            "bid_yield": 1.4901423112726553,
-            "offer_yield": 1.4819064881074808,
-            "mid_yield": 1.4860243996900682,
-            "eod_yield": 1.5066224235369454
+            "bid_yield": 1.493820862740678,
+            "offer_yield": 1.4856040172311193,
+            "mid_yield": 1.4897124399858988,
+            "eod_yield": 1.5102629633518156
         },
         {
             "cusip": "912828HM5",
@@ -2536,10 +2536,10 @@
             "offer_price": 107.984375,
             "mid_price": 107.9609375,
             "eod_price": 107.84375,
-            "bid_yield": 1.4957480599576236,
-            "offer_yield": 1.483730145526683,
-            "mid_yield": 1.4897391027421532,
-            "eod_yield": 1.5198022510381692
+            "bid_yield": 1.4998513563118658,
+            "offer_yield": 1.4878597268467981,
+            "mid_yield": 1.493855541579332,
+            "eod_yield": 1.523852874465646
         },
         {
             "cusip": "912828HQ6",
@@ -2557,10 +2557,10 @@
             "offer_price": 105.234375,
             "mid_price": 105.2109375,
             "eod_price": 105.125,
-            "bid_yield": 1.5124421301859166,
-            "offer_yield": 1.500491121752616,
-            "mid_yield": 1.5064666259692663,
-            "eod_yield": 1.528386440181198
+            "bid_yield": 1.51508262753732,
+            "offer_yield": 1.5031562542798433,
+            "mid_yield": 1.5091194409085817,
+            "eod_yield": 1.5309940549731949
         },
         {
             "cusip": "912828AU4",
@@ -2578,10 +2578,10 @@
             "offer_price": 109.171875,
             "mid_price": 109.1484375,
             "eod_price": 109.03125,
-            "bid_yield": 1.5031264626519436,
-            "offer_yield": 1.4915510957053197,
-            "mid_yield": 1.4973387791786317,
-            "eod_yield": 1.5262946956436305
+            "bid_yield": 1.507681565752984,
+            "offer_yield": 1.4961283994528873,
+            "mid_yield": 1.5019049826029356,
+            "eod_yield": 1.5308053549223208
         },
         {
             "cusip": "912828HT0",
@@ -2599,10 +2599,10 @@
             "offer_price": 104.65625,
             "mid_price": 104.640625,
             "eod_price": 104.5625,
-            "bid_yield": 1.5567955697134461,
-            "offer_yield": 1.548943121228716,
-            "mid_yield": 1.552869345471081,
-            "eod_yield": 1.57250862664462
+            "bid_yield": 1.5590376507953074,
+            "offer_yield": 1.5512007273351054,
+            "mid_yield": 1.5551191890652065,
+            "eod_yield": 1.574719634919489
         },
         {
             "cusip": "912828HV5",
@@ -2620,10 +2620,10 @@
             "offer_price": 103.75,
             "mid_price": 103.734375,
             "eod_price": 103.625,
-            "bid_yield": 1.5597080646136914,
-            "offer_yield": 1.5519747917535118,
-            "mid_yield": 1.5558414281836015,
-            "eod_yield": 1.5829240287148079
+            "bid_yield": 1.5613537433559148,
+            "offer_yield": 1.553636524275382,
+            "mid_yield": 1.5574951338156484,
+            "eod_yield": 1.5845214709070794
         },
         {
             "cusip": "912828HY9",
@@ -2641,10 +2641,10 @@
             "offer_price": 106.28125,
             "mid_price": 106.265625,
             "eod_price": 106.1875,
-            "bid_yield": 1.5742953667304418,
-            "offer_yield": 1.566813441785439,
-            "mid_yield": 1.5705544042579405,
-            "eod_yield": 1.5892668758528963
+            "bid_yield": 1.5769523672513426,
+            "offer_yield": 1.5694859488549746,
+            "mid_yield": 1.5732191580531585,
+            "eod_yield": 1.5918928211198018
         },
         {
             "cusip": "912828BA7",
@@ -2662,10 +2662,10 @@
             "offer_price": 108.234375,
             "mid_price": 108.2109375,
             "eod_price": 108.09375,
-            "bid_yield": 1.6115979234687132,
-            "offer_yield": 1.6005932230692153,
-            "mid_yield": 1.6060955732689641,
-            "eod_yield": 1.6336239943389226
+            "bid_yield": 1.6150291741335314,
+            "offer_yield": 1.604047120568115,
+            "mid_yield": 1.6095381473508232,
+            "eod_yield": 1.637009857489754
         },
         {
             "cusip": "912828JB7",
@@ -2683,10 +2683,10 @@
             "offer_price": 107.75,
             "mid_price": 107.734375,
             "eod_price": 107.65625,
-            "bid_yield": 1.6198621736276912,
-            "offer_yield": 1.6125757979271012,
-            "mid_yield": 1.616218985777396,
-            "eod_yield": 1.6344423003543775
+            "bid_yield": 1.6230134668040102,
+            "offer_yield": 1.615741867260752,
+            "mid_yield": 1.619377667032381,
+            "eod_yield": 1.6375640006928944
         },
         {
             "cusip": "912828JD3",
@@ -2704,10 +2704,10 @@
             "offer_price": 107.3125,
             "mid_price": 107.296875,
             "eod_price": 107.1875,
-            "bid_yield": 1.6333864222000978,
-            "offer_yield": 1.626213240652154,
-            "mid_yield": 1.629799831426126,
-            "eod_yield": 1.6549205165536183
+            "bid_yield": 1.63628208445353,
+            "offer_yield": 1.6291228512808562,
+            "mid_yield": 1.632702467867193,
+            "eod_yield": 1.6577742654039522
         },
         {
             "cusip": "912828JG6",
@@ -2725,10 +2725,10 @@
             "offer_price": 107.328125,
             "mid_price": 107.3203125,
             "eod_price": 107.21875,
-            "bid_yield": 1.6583488163739346,
-            "offer_yield": 1.6548281806617644,
-            "mid_yield": 1.6565884985178494,
-            "eod_yield": 1.6794851120422982
+            "bid_yield": 1.6612489850986363,
+            "offer_yield": 1.6577347060369592,
+            "mid_yield": 1.6594918455677976,
+            "eod_yield": 1.6823471020214218
         },
         {
             "cusip": "912828BH2",
@@ -2746,10 +2746,10 @@
             "offer_price": 111.265625,
             "mid_price": 111.2421875,
             "eod_price": 111.125,
-            "bid_yield": 1.6411116286795482,
-            "offer_yield": 1.6308671978785712,
-            "mid_yield": 1.6359894132790598,
-            "eod_yield": 1.6616156368497519
+            "bid_yield": 1.6454857553285935,
+            "offer_yield": 1.6352584952420834,
+            "mid_yield": 1.6403721252853385,
+            "eod_yield": 1.6659553908453428
         },
         {
             "cusip": "912828JK7",
@@ -2767,10 +2767,10 @@
             "offer_price": 105.984375,
             "mid_price": 105.9765625,
             "eod_price": 105.875,
-            "bid_yield": 1.7441394863408584,
-            "offer_yield": 1.7406437385445743,
-            "mid_yield": 1.7423916124427163,
-            "eod_yield": 1.7651264803978215
+            "bid_yield": 1.746431105029498,
+            "offer_yield": 1.7429415047337757,
+            "mid_yield": 1.744686304881637,
+            "eod_yield": 1.7673811839262825
         },
         {
             "cusip": "912828JM3",
@@ -2788,10 +2788,10 @@
             "offer_price": 105.953125,
             "mid_price": 105.9453125,
             "eod_price": 105.84375,
-            "bid_yield": 1.7739660216282722,
-            "offer_yield": 1.7705280015679628,
-            "mid_yield": 1.7722470115981175,
-            "eod_yield": 1.7946064312462369
+            "bid_yield": 1.7760557256773284,
+            "offer_yield": 1.772624062761799,
+            "mid_yield": 1.7743398942195636,
+            "eod_yield": 1.7966579440378556
         },
         {
             "cusip": "912828JQ4",
@@ -2809,10 +2809,10 @@
             "offer_price": 104.34375,
             "mid_price": 104.328125,
             "eod_price": 104.25,
-            "bid_yield": 1.7855260776957456,
-            "offer_yield": 1.7787086109797046,
-            "mid_yield": 1.782117344337725,
-            "eod_yield": 1.7991680425212193
+            "bid_yield": 1.7869013523172919,
+            "offer_yield": 1.7800967945284665,
+            "mid_yield": 1.7834990734228793,
+            "eod_yield": 1.8005174664554642
         },
         {
             "cusip": "912828BR0",
@@ -2830,10 +2830,10 @@
             "offer_price": 111.6875,
             "mid_price": 111.671875,
             "eod_price": 111.5625,
-            "bid_yield": 1.6728556864415898,
-            "offer_yield": 1.666378074472672,
-            "mid_yield": 1.6696168804571307,
-            "eod_yield": 1.6923012061795408
+            "bid_yield": 1.6767191862378759,
+            "offer_yield": 1.6702533464790377,
+            "mid_yield": 1.6734862663584567,
+            "eod_yield": 1.696129328926433
         },
         {
             "cusip": "912828JT8",
@@ -2851,10 +2851,10 @@
             "offer_price": 100.796875,
             "mid_price": 100.7890625,
             "eod_price": 100.6875,
-            "bid_yield": 1.8278161406076538,
-            "offer_yield": 1.8243932657507815,
-            "mid_yield": 1.8261047031792177,
-            "eod_yield": 1.8483660536985795
+            "bid_yield": 1.827875475682432,
+            "offer_yield": 1.8244591074977048,
+            "mid_yield": 1.8261672915900684,
+            "eod_yield": 1.8483862897934917
         },
         {
             "cusip": "912828JW1",
@@ -2872,10 +2872,10 @@
             "offer_price": 98.453125,
             "mid_price": 98.4453125,
             "eod_price": 98.34375,
-            "bid_yield": 1.838004210863994,
-            "offer_yield": 1.8345930438902378,
-            "mid_yield": 1.8362986273771158,
-            "eod_yield": 1.8584840358550572
+            "bid_yield": 1.8372715785103662,
+            "offer_yield": 1.8338666901706135,
+            "mid_yield": 1.8355691343404898,
+            "eod_yield": 1.8577136803840855
         },
         {
             "cusip": "912828JZ4",
@@ -2893,10 +2893,10 @@
             "offer_price": 99.46875,
             "mid_price": 99.46875,
             "eod_price": 99.375,
-            "bid_yield": 1.8630631189076894,
-            "offer_yield": 1.8630631189076894,
-            "mid_yield": 1.8630631189076894,
-            "eod_yield": 1.8830993591843939
+            "bid_yield": 1.8628034041690944,
+            "offer_yield": 1.8628034041690944,
+            "mid_yield": 1.8628034041690944,
+            "eod_yield": 1.8828056756372504
         },
         {
             "cusip": "912828CA6",
@@ -2914,10 +2914,10 @@
             "offer_price": 110.703125,
             "mid_price": 110.6796875,
             "eod_price": 110.5625,
-            "bid_yield": 1.7549697603480188,
-            "offer_yield": 1.745657660107565,
-            "mid_yield": 1.750313710227792,
-            "eod_yield": 1.7736077019068557
+            "bid_yield": 1.7583425371773431,
+            "offer_yield": 1.7490444643610585,
+            "mid_yield": 1.753693500769201,
+            "eod_yield": 1.776952399021401
         },
         {
             "cusip": "912828CJ7",
@@ -2935,10 +2935,10 @@
             "offer_price": 114.640625,
             "mid_price": 114.6171875,
             "eod_price": 114.5,
-            "bid_yield": 1.8090507542797356,
-            "offer_yield": 1.800328223551163,
-            "mid_yield": 1.8046894889154492,
-            "eod_yield": 1.8265083243076787
+            "bid_yield": 1.8129337186365584,
+            "offer_yield": 1.804225453884457,
+            "mid_yield": 1.8085795862605076,
+            "eod_yield": 1.830362705226483
         },
         {
             "cusip": "912828CT5",
@@ -2956,10 +2956,10 @@
             "offer_price": 112.21875,
             "mid_price": 112.1875,
             "eod_price": 112.03125,
-            "bid_yield": 1.9025944496853933,
-            "offer_yield": 1.8913027942767997,
-            "mid_yield": 1.8969486219810965,
-            "eod_yield": 1.9251996892978547
+            "bid_yield": 1.9057476054663234,
+            "offer_yield": 1.8944711877587102,
+            "mid_yield": 1.9001093966125167,
+            "eod_yield": 1.928322334956318
         },
         {
             "cusip": "912828DC1",
@@ -2977,10 +2977,10 @@
             "offer_price": 112.421875,
             "mid_price": 112.3984375,
             "eod_price": 112.21875,
-            "bid_yield": 1.953807531218986,
-            "offer_yield": 1.9456810187216875,
-            "mid_yield": 1.9497442749703366,
-            "eod_yield": 1.9809243199769404
+            "bid_yield": 1.9565068977830582,
+            "offer_yield": 1.9483926973042127,
+            "mid_yield": 1.9524497975436355,
+            "eod_yield": 1.9835825443121637
         },
         {
             "cusip": "912828DM9",
@@ -2998,10 +2998,10 @@
             "offer_price": 110.609375,
             "mid_price": 110.5859375,
             "eod_price": 110.4375,
-            "bid_yield": 2.1099318481057816,
-            "offer_yield": 2.102016965236348,
-            "mid_yield": 2.1059744066710646,
-            "eod_yield": 2.1310571804388956
+            "bid_yield": 2.1122495729042488,
+            "offer_yield": 2.1043444842045647,
+            "mid_yield": 2.1082970285544067,
+            "eod_yield": 2.133348760398375
         },
         {
             "cusip": "912828DV9",
@@ -3019,10 +3019,10 @@
             "offer_price": 110.90625,
             "mid_price": 110.875,
             "eod_price": 110.6875,
-            "bid_yield": 2.247725024042196,
-            "offer_yield": 2.2375359395875534,
-            "mid_yield": 2.242630481814875,
-            "eod_yield": 2.2732268533488518
+            "bid_yield": 2.2496308876920126,
+            "offer_yield": 2.239456290243221,
+            "mid_yield": 2.244543588967617,
+            "eod_yield": 2.275096406027189
         },
         {
             "cusip": "912828EE6",
@@ -3040,10 +3040,10 @@
             "offer_price": 111.84375,
             "mid_price": 111.8125,
             "eod_price": 111.59375,
-            "bid_yield": 2.2830876155362274,
-            "offer_yield": 2.273305941358953,
-            "mid_yield": 2.2781967784475903,
-            "eod_yield": 2.3124707367348916
+            "bid_yield": 2.2852740676453442,
+            "offer_yield": 2.275503395412688,
+            "mid_yield": 2.2803887315290163,
+            "eod_yield": 2.314624134645149
         },
         {
             "cusip": "912828EN6",
@@ -3061,10 +3061,10 @@
             "offer_price": 113.84375,
             "mid_price": 113.828125,
             "eod_price": 113.5625,
-            "bid_yield": 2.2726335895210887,
-            "offer_yield": 2.2679603156109622,
-            "mid_yield": 2.2702969525660253,
-            "eod_yield": 2.3100736031517415
+            "bid_yield": 2.2747128297014685,
+            "offer_yield": 2.2700456386244383,
+            "mid_yield": 2.2723792341629534,
+            "eod_yield": 2.312104026186524
         },
         {
             "cusip": "912828EW6",
@@ -3082,10 +3082,10 @@
             "offer_price": 113.25,
             "mid_price": 113.234375,
             "eod_price": 112.96875,
-            "bid_yield": 2.42900831787706,
-            "offer_yield": 2.4244529471768193,
-            "mid_yield": 2.4267306325269393,
-            "eod_yield": 2.465504088431342
+            "bid_yield": 2.431105566112371,
+            "offer_yield": 2.426554875593117,
+            "mid_yield": 2.4288302208527437,
+            "eod_yield": 2.467563835171195
         },
         {
             "cusip": "912828FF2",
@@ -3103,10 +3103,10 @@
             "offer_price": 117.3125,
             "mid_price": 117.296875,
             "eod_price": 116.96875,
-            "bid_yield": 2.4951960874063452,
-            "offer_yield": 2.4908657283370843,
-            "mid_yield": 2.4930309078717148,
-            "eod_yield": 2.5385744090140525
+            "bid_yield": 2.4973847965237757,
+            "offer_yield": 2.4930596860783347,
+            "mid_yield": 2.495222241301055,
+            "eod_yield": 2.540710436075595
         },
         {
             "cusip": "912828FQ8",
@@ -3124,10 +3124,10 @@
             "offer_price": 115.46875,
             "mid_price": 115.453125,
             "eod_price": 115.15625,
-            "bid_yield": 2.590757819388215,
-            "offer_yield": 2.5865059597425093,
-            "mid_yield": 2.588631889565362,
-            "eod_yield": 2.6290854266595134
+            "bid_yield": 2.592864730182571,
+            "offer_yield": 2.588616861874842,
+            "mid_yield": 2.5907407960287063,
+            "eod_yield": 2.6311563534418236
         },
         {
             "cusip": "912828FY1",
@@ -3145,10 +3145,10 @@
             "offer_price": 113.875,
             "mid_price": 113.859375,
             "eod_price": 113.59375,
-            "bid_yield": 2.632020687627201,
-            "offer_yield": 2.627851277171022,
-            "mid_yield": 2.6299359823991115,
-            "eod_yield": 2.6654242408786915
+            "bid_yield": 2.6334784228732198,
+            "offer_yield": 2.6293138114728634,
+            "mid_yield": 2.6313961171730416,
+            "eod_yield": 2.6668434685684494
         },
         {
             "cusip": "912828GH7",
@@ -3166,10 +3166,10 @@
             "offer_price": 114.125,
             "mid_price": 114.109375,
             "eod_price": 113.8125,
-            "bid_yield": 2.6531108685826505,
-            "offer_yield": 2.6490626347770396,
-            "mid_yield": 2.651086751679845,
-            "eod_yield": 2.6896035192498897
+            "bid_yield": 2.654809524231535,
+            "offer_yield": 2.6507648495819573,
+            "mid_yield": 2.652787186906746,
+            "eod_yield": 2.6912700873601563
         },
         {
             "cusip": "912828GS3",
@@ -3187,10 +3187,10 @@
             "offer_price": 113.28125,
             "mid_price": 113.265625,
             "eod_price": 113.03125,
-            "bid_yield": 2.6925687494188972,
-            "offer_yield": 2.688606210346166,
-            "mid_yield": 2.6905874798825318,
-            "eod_yield": 2.7203423934490853
+            "bid_yield": 2.693755914605726,
+            "offer_yield": 2.6897976682938647,
+            "mid_yield": 2.6917767914497954,
+            "eod_yield": 2.721499431037824
         },
         {
             "cusip": "912828HA1",
@@ -3208,10 +3208,10 @@
             "offer_price": 115.21875,
             "mid_price": 115.203125,
             "eod_price": 115.0,
-            "bid_yield": 2.730960680001347,
-            "offer_yield": 2.7271368323980107,
-            "mid_yield": 2.7290487561996786,
-            "eod_yield": 2.75392942595062
+            "bid_yield": 2.7325706997382446,
+            "offer_yield": 2.7287499724124706,
+            "mid_yield": 2.7306603360753576,
+            "eod_yield": 2.7555207019505015
         },
         {
             "cusip": "912828HH6",
@@ -3229,10 +3229,10 @@
             "offer_price": 111.703125,
             "mid_price": 111.6796875,
             "eod_price": 111.46875,
-            "bid_yield": 2.7383598411694567,
-            "offer_yield": 2.732662408035321,
-            "mid_yield": 2.7355111246023887,
-            "eod_yield": 2.761177544885036
+            "bid_yield": 2.739233929322262,
+            "offer_yield": 2.733542336611507,
+            "mid_yield": 2.7363881329668844,
+            "eod_yield": 2.762028215248927
         },
         {
             "cusip": "912828HR4",
@@ -3250,10 +3250,10 @@
             "offer_price": 106.03125,
             "mid_price": 106.015625,
             "eod_price": 105.8125,
-            "bid_yield": 2.741467347491187,
-            "offer_yield": 2.7376479776751195,
-            "mid_yield": 2.7395576625831533,
-            "eod_yield": 2.7644108877154845
+            "bid_yield": 2.74205471046302,
+            "offer_yield": 2.738238403490233,
+            "mid_yield": 2.740146556976627,
+            "eod_yield": 2.7649798504204086
         },
         {
             "cusip": "912828HZ6",
@@ -3271,10 +3271,10 @@
             "offer_price": 109.15625,
             "mid_price": 109.140625,
             "eod_price": 108.90625,
-            "bid_yield": 2.7478951455164307,
-            "offer_yield": 2.744228123616295,
-            "mid_yield": 2.746061634566363,
-            "eod_yield": 2.773598545797452
+            "bid_yield": 2.748439240939618,
+            "offer_yield": 2.7447757895410323,
+            "mid_yield": 2.746607515240325,
+            "eod_yield": 2.7741175844132537
         },
         {
             "cusip": "912828JH4",
@@ -3292,10 +3292,10 @@
             "offer_price": 110.078125,
             "mid_price": 110.0703125,
             "eod_price": 109.8125,
-            "bid_yield": 2.7846588413537017,
-            "offer_yield": 2.782874282095444,
-            "mid_yield": 2.7837665617245726,
-            "eod_yield": 2.813252088173878
+            "bid_yield": 2.78552921602759,
+            "offer_yield": 2.7837459733899252,
+            "mid_yield": 2.784637594708758,
+            "eod_yield": 2.8141013660514447
         },
         {
             "cusip": "912828JR2",
@@ -3313,10 +3313,10 @@
             "offer_price": 108.015625,
             "mid_price": 108.0078125,
             "eod_price": 107.78125,
-            "bid_yield": 2.8039399304992187,
-            "offer_yield": 2.802173883858663,
-            "mid_yield": 2.8030569071789406,
-            "eod_yield": 2.828695841882326
+            "bid_yield": 2.8043121845731087,
+            "offer_yield": 2.8025477733093647,
+            "mid_yield": 2.803429978941237,
+            "eod_yield": 2.8290451469921827
         },
         {
             "cusip": "912828KD1",
@@ -3334,10 +3334,10 @@
             "offer_price": 99.328125,
             "mid_price": 99.3203125,
             "eod_price": 99.125,
-            "bid_yield": 2.8295453081644752,
-            "offer_yield": 2.827729970750391,
-            "mid_yield": 2.8286376394574333,
-            "eod_yield": 2.851354802421456
+            "bid_yield": 2.8294750787876013,
+            "offer_yield": 2.827661076455353,
+            "mid_yield": 2.828568077621477,
+            "eod_yield": 2.8512685324229263
         },
         {
             "cusip": "912810DJ4",
@@ -3355,10 +3355,10 @@
             "offer_price": 0.0,
             "mid_price": 51.40625,
             "eod_price": 103.0,
-            "bid_yield": 12.487725071514346,
-            "offer_yield": 952.785631962505,
-            "mid_yield": 482.63667851700967,
-            "eod_yield": 12.438807187712584
+            "bid_yield": 12.475849814789727,
+            "offer_yield": 628.9252358147085,
+            "mid_yield": 320.7005428147491,
+            "eod_yield": 12.427090484114398
         },
         {
             "cusip": "912810DL9",
@@ -3376,10 +3376,10 @@
             "offer_price": 105.6875,
             "mid_price": 105.625,
             "eod_price": 105.5625,
-            "bid_yield": 11.11533287368624,
-            "offer_yield": 11.085355217134145,
-            "mid_yield": 11.100344045410193,
-            "eod_yield": 11.11533287368624
+            "bid_yield": 11.11645172585326,
+            "offer_yield": 11.086509120014943,
+            "mid_yield": 11.101480422934102,
+            "eod_yield": 11.11645172585326
         },
         {
             "cusip": "912810DN5",
@@ -3397,10 +3397,10 @@
             "offer_price": 107.90625,
             "mid_price": 107.84375,
             "eod_price": 107.96875,
-            "bid_yield": 9.927113977503842,
-            "offer_yield": 9.899379749043682,
-            "mid_yield": 9.913246863273763,
-            "eod_yield": 9.885528095672445
+            "bid_yield": 9.921767010019861,
+            "offer_yield": 9.894103334678555,
+            "mid_yield": 9.907935172349209,
+            "eod_yield": 9.880286871170975
         },
         {
             "cusip": "912810DP0",
@@ -3418,10 +3418,10 @@
             "offer_price": 149.0625,
             "mid_price": 148.9375,
             "eod_price": 148.78125,
-            "bid_yield": 2.427966248636704,
-            "offer_yield": 2.3925996430424137,
-            "mid_yield": 2.410282945839559,
-            "eod_yield": 2.4323922574308647
+            "bid_yield": 2.436895080976593,
+            "offer_yield": 2.4015649606813114,
+            "mid_yield": 2.419230020828952,
+            "eod_yield": 2.4413165232091116
         },
         {
             "cusip": "912810DS4",
@@ -3439,10 +3439,10 @@
             "offer_price": 148.34375,
             "mid_price": 148.265625,
             "eod_price": 147.96875,
-            "bid_yield": 2.5166002377173378,
-            "offer_yield": 2.4959530430720362,
-            "mid_yield": 2.5062766403946872,
-            "eod_yield": 2.545551657076028
+            "bid_yield": 2.5241261420211947,
+            "offer_yield": 2.5034985874981492,
+            "mid_yield": 2.513812364759672,
+            "eod_yield": 2.5530500185931753
         },
         {
             "cusip": "912810DT2",
@@ -3460,10 +3460,10 @@
             "offer_price": 144.453125,
             "mid_price": 144.3359375,
             "eod_price": 144.09375,
-            "bid_yield": 2.6504354736800906,
-            "offer_yield": 2.61986175223048,
-            "mid_yield": 2.6351486129552852,
-            "eod_yield": 2.6667665173525137
+            "bid_yield": 2.6565127690150105,
+            "offer_yield": 2.6259768910323533,
+            "mid_yield": 2.641244830023682,
+            "eod_yield": 2.6728235533621985
         },
         {
             "cusip": "912810DV7",
@@ -3481,10 +3481,10 @@
             "offer_price": 141.34375,
             "mid_price": 141.21875,
             "eod_price": 141.0,
-            "bid_yield": 2.7396925929706106,
-            "offer_yield": 2.7076105600958225,
-            "mid_yield": 2.7236515765332165,
-            "eod_yield": 2.7517413792666168
+            "bid_yield": 2.745396472960056,
+            "offer_yield": 2.7133433031638465,
+            "mid_yield": 2.7293698880619512,
+            "eod_yield": 2.757434418333773
         },
         {
             "cusip": "912810DW5",
@@ -3502,10 +3502,10 @@
             "offer_price": 128.875,
             "mid_price": 128.796875,
             "eod_price": 128.5,
-            "bid_yield": 2.8259271572726914,
-            "offer_yield": 2.805259539010806,
-            "mid_yield": 2.815593348141749,
-            "eod_yield": 2.8549127687118583
+            "bid_yield": 2.8294284692578495,
+            "offer_yield": 2.8087857243168464,
+            "mid_yield": 2.8191070967873477,
+            "eod_yield": 2.8583791200832582
         },
         {
             "cusip": "912810DX3",
@@ -3523,10 +3523,10 @@
             "offer_price": 130.96875,
             "mid_price": 130.890625,
             "eod_price": 130.59375,
-            "bid_yield": 2.999951320545899,
-            "offer_yield": 2.9805669576372105,
-            "mid_yield": 2.9902591390915547,
-            "eod_yield": 3.0271367533454483
+            "bid_yield": 3.003138447698096,
+            "offer_yield": 2.9837760339178034,
+            "mid_yield": 2.99345724080795,
+            "eod_yield": 3.0302930339539267
         },
         {
             "cusip": "912810DY1",
@@ -3544,10 +3544,10 @@
             "offer_price": 141.3125,
             "mid_price": 141.234375,
             "eod_price": 140.90625,
-            "bid_yield": 3.0521058016977083,
-            "offer_yield": 3.0346143482843098,
-            "mid_yield": 3.043360074991009,
-            "eod_yield": 3.080141945326319
+            "bid_yield": 3.055728973383993,
+            "offer_yield": 3.038255816791611,
+            "mid_yield": 3.046992395087802,
+            "eod_yield": 3.0837357270863652
         },
         {
             "cusip": "912810DZ8",
@@ -3565,10 +3565,10 @@
             "offer_price": 143.1875,
             "mid_price": 143.0625,
             "eod_price": 142.6875,
-            "bid_yield": 3.0812098589810035,
-            "offer_yield": 3.0541618971726843,
-            "mid_yield": 3.067685878076844,
-            "eod_yield": 3.1083165564944335
+            "bid_yield": 3.0851961282122673,
+            "offer_yield": 3.05816761865907,
+            "mid_yield": 3.0716818734356686,
+            "eod_yield": 3.1122833308487765
         },
         {
             "cusip": "912810EA2",
@@ -3586,10 +3586,10 @@
             "offer_price": 148.5625,
             "mid_price": 148.484375,
             "eod_price": 148.125,
-            "bid_yield": 3.0605776309052377,
-            "offer_yield": 3.0452725766315836,
-            "mid_yield": 3.052925103768411,
-            "eod_yield": 3.0881775311829402
+            "bid_yield": 3.063838721063907,
+            "offer_yield": 3.0485477492258264,
+            "mid_yield": 3.0561932351448666,
+            "eod_yield": 3.0914131727341476
         },
         {
             "cusip": "912810EB0",
@@ -3607,10 +3607,10 @@
             "offer_price": 148.65625,
             "mid_price": 148.5625,
             "eod_price": 148.25,
-            "bid_yield": 3.1681647441246437,
-            "offer_yield": 3.15055165727395,
-            "mid_yield": 3.159358200699297,
-            "eod_yield": 3.188748631661905
+            "bid_yield": 3.1710413946548432,
+            "offer_yield": 3.153443791714567,
+            "mid_yield": 3.162242593184705,
+            "eod_yield": 3.1916071525142473
         },
         {
             "cusip": "912810EC8",
@@ -3628,10 +3628,10 @@
             "offer_price": 147.515625,
             "mid_price": 147.4609375,
             "eod_price": 147.0625,
-            "bid_yield": 3.268534688579389,
-            "offer_yield": 3.2583887623078422,
-            "mid_yield": 3.263461725443616,
-            "eod_yield": 3.300483580968314
+            "bid_yield": 3.271630157735302,
+            "offer_yield": 3.26149020287598,
+            "mid_yield": 3.2665601803056408,
+            "eod_yield": 3.3035602479185284
         },
         {
             "cusip": "912810ED6",
@@ -3649,10 +3649,10 @@
             "offer_price": 141.78125,
             "mid_price": 141.65625,
             "eod_price": 141.3125,
-            "bid_yield": 3.3839144603639735,
-            "offer_yield": 3.3609566881036743,
-            "mid_yield": 3.372435574233824,
-            "eod_yield": 3.404044242028719
+            "bid_yield": 3.3864315706858035,
+            "offer_yield": 3.3634867731353064,
+            "mid_yield": 3.3749591719105547,
+            "eod_yield": 3.406549976995034
         },
         {
             "cusip": "912810EE4",
@@ -3670,10 +3670,10 @@
             "offer_price": 145.59375,
             "mid_price": 145.515625,
             "eod_price": 145.1875,
-            "bid_yield": 3.4835752406881797,
-            "offer_yield": 3.4699588639679084,
-            "mid_yield": 3.476767052328044,
-            "eod_yield": 3.5053999749920646
+            "bid_yield": 3.486031824439234,
+            "offer_yield": 3.472422624987342,
+            "mid_yield": 3.479227224713288,
+            "eod_yield": 3.507845056108898
         },
         {
             "cusip": "912810EF1",
@@ -3691,10 +3691,10 @@
             "offer_price": 148.59375,
             "mid_price": 148.515625,
             "eod_price": 148.09375,
-            "bid_yield": 3.4946830569235026,
-            "offer_yield": 3.4814951166600263,
-            "mid_yield": 3.4880890867917644,
-            "eod_yield": 3.5237587034196776
+            "bid_yield": 3.496672676029936,
+            "offer_yield": 3.483495021604421,
+            "mid_yield": 3.4900838488171786,
+            "eod_yield": 3.5257255969426216
         },
         {
             "cusip": "912810EG9",
@@ -3712,10 +3712,10 @@
             "offer_price": 148.90625,
             "mid_price": 148.828125,
             "eod_price": 148.5,
-            "bid_yield": 3.543430907965233,
-            "offer_yield": 3.5304716403742726,
-            "mid_yield": 3.536951274169753,
-            "eod_yield": 3.5642018576705716
+            "bid_yield": 3.54579909553759,
+            "offer_yield": 3.5328462378000283,
+            "mid_yield": 3.5393226666688093,
+            "eod_yield": 3.566559773034561
         },
         {
             "cusip": "912810EH7",
@@ -3733,10 +3733,10 @@
             "offer_price": 141.28125,
             "mid_price": 141.21875,
             "eod_price": 140.84375,
-            "bid_yield": 3.6117256254592407,
-            "offer_yield": 3.6013187111204,
-            "mid_yield": 3.6065221682898203,
-            "eod_yield": 3.6377941449519318
+            "bid_yield": 3.613618768209056,
+            "offer_yield": 3.603216849902412,
+            "mid_yield": 3.608417809055734,
+            "eod_yield": 3.6396747750998206
         },
         {
             "cusip": "912810EJ3",
@@ -3754,10 +3754,10 @@
             "offer_price": 144.296875,
             "mid_price": 144.1953125,
             "eod_price": 143.84375,
-            "bid_yield": 3.626397865092737,
-            "offer_yield": 3.6099905328976987,
-            "mid_yield": 3.6181941989952175,
-            "eod_yield": 3.6466320220081054
+            "bid_yield": 3.6278421560923446,
+            "offer_yield": 3.6114467222400406,
+            "mid_yield": 3.6196444391661924,
+            "eod_yield": 3.6480616123724237
         },
         {
             "cusip": "912810EK0",
@@ -3775,10 +3775,10 @@
             "offer_price": 144.5625,
             "mid_price": 144.453125,
             "eod_price": 144.09375,
-            "bid_yield": 3.664867552758383,
-            "offer_yield": 3.647474389667477,
-            "mid_yield": 3.65617097121293,
-            "eod_yield": 3.6847867646232606
+            "bid_yield": 3.6667135862563174,
+            "offer_yield": 3.649328284206353,
+            "mid_yield": 3.658020935231335,
+            "eod_yield": 3.6866237972525373
         },
         {
             "cusip": "912810EL8",
@@ -3796,10 +3796,10 @@
             "offer_price": 143.75,
             "mid_price": 143.640625,
             "eod_price": 143.3125,
-            "bid_yield": 3.6829969122864528,
-            "offer_yield": 3.6657967861626686,
-            "mid_yield": 3.6743968492245607,
-            "eod_yield": 3.70023060394217
+            "bid_yield": 3.684270264356905,
+            "offer_yield": 3.6670821702319603,
+            "mid_yield": 3.6756762172944324,
+            "eod_yield": 3.701491879410165
         },
         {
             "cusip": "912810EM6",
@@ -3817,10 +3817,10 @@
             "offer_price": 136.84375,
             "mid_price": 136.734375,
             "eod_price": 136.34375,
-            "bid_yield": 3.760871474608098,
-            "offer_yield": 3.7438105318167816,
-            "mid_yield": 3.7523410032124396,
-            "eod_yield": 3.782858335009516
+            "bid_yield": 3.7622151461461137,
+            "offer_yield": 3.7451613651329794,
+            "mid_yield": 3.7536882556395463,
+            "eod_yield": 3.7841927794254087
         },
         {
             "cusip": "912810EN4",
@@ -3838,10 +3838,10 @@
             "offer_price": 141.359375,
             "mid_price": 141.2421875,
             "eod_price": 140.875,
-            "bid_yield": 3.7605814750683253,
-            "offer_yield": 3.742955811082824,
-            "mid_yield": 3.7517686430755743,
-            "eod_yield": 3.779423723441235
+            "bid_yield": 3.7615438349703876,
+            "offer_yield": 3.7439296733379166,
+            "mid_yield": 3.752736754154152,
+            "eod_yield": 3.78037376394535
         },
         {
             "cusip": "912810EP9",
@@ -3859,10 +3859,10 @@
             "offer_price": 135.96875,
             "mid_price": 135.859375,
             "eod_price": 135.5625,
-            "bid_yield": 3.8036958820936,
-            "offer_yield": 3.7870023857499615,
-            "mid_yield": 3.795349133921781,
-            "eod_yield": 3.8180320672197654
+            "bid_yield": 3.8049153418152155,
+            "offer_yield": 3.78822855045089,
+            "mid_yield": 3.796571946133053,
+            "eod_yield": 3.819245770136344
         },
         {
             "cusip": "912810EQ7",
@@ -3880,10 +3880,10 @@
             "offer_price": 127.03125,
             "mid_price": 126.953125,
             "eod_price": 126.71875,
-            "bid_yield": 3.8165522875586575,
-            "offer_yield": 3.8043992498651265,
-            "mid_yield": 3.8104757687118918,
-            "eod_yield": 3.828724383832803
+            "bid_yield": 3.8174394011035364,
+            "offer_yield": 3.8052911712169974,
+            "mid_yield": 3.811365286160267,
+            "eod_yield": 3.8296066829475848
         },
         {
             "cusip": "912810ES3",
@@ -3901,10 +3901,10 @@
             "offer_price": 146.4375,
             "mid_price": 146.390625,
             "eod_price": 145.96875,
-            "bid_yield": 3.610691362789609,
-            "offer_yield": 3.6045583896040383,
-            "mid_yield": 3.607624876196824,
-            "eod_yield": 3.6352745402151863
+            "bid_yield": 3.6114917980630628,
+            "offer_yield": 3.6053622408418753,
+            "mid_yield": 3.608427019452469,
+            "eod_yield": 3.636061260171136
         },
         {
             "cusip": "912810ET1",
@@ -3922,10 +3922,10 @@
             "offer_price": 148.28125,
             "mid_price": 148.234375,
             "eod_price": 147.8125,
-            "bid_yield": 3.6251902896842845,
-            "offer_yield": 3.6191786664341077,
-            "mid_yield": 3.622184478059196,
-            "eod_yield": 3.649286626540878
+            "bid_yield": 3.6263693079942354,
+            "offer_yield": 3.6203596826824533,
+            "mid_yield": 3.623364495338344,
+            "eod_yield": 3.6504576392477084
         },
         {
             "cusip": "912810EV6",
@@ -3943,10 +3943,10 @@
             "offer_price": 139.015625,
             "mid_price": 138.9453125,
             "eod_price": 138.5,
-            "bid_yield": 3.70222211875392,
-            "offer_yield": 3.692963804476804,
-            "mid_yield": 3.6975929616153618,
-            "eod_yield": 3.7269708038285083
+            "bid_yield": 3.7031501255316033,
+            "offer_yield": 3.6938948310763737,
+            "mid_yield": 3.6985224783039885,
+            "eod_yield": 3.727890741473751
         },
         {
             "cusip": "912810EW4",
@@ -3964,10 +3964,10 @@
             "offer_price": 127.578125,
             "mid_price": 127.5078125,
             "eod_price": 127.125,
-            "bid_yield": 3.7932140880886003,
-            "offer_yield": 3.783553442884095,
-            "mid_yield": 3.7883837654863477,
-            "eod_yield": 3.814731682608683
+            "bid_yield": 3.793860218397399,
+            "offer_yield": 3.7842026925097962,
+            "mid_yield": 3.7890314554535975,
+            "eod_yield": 3.8153708677616573
         },
         {
             "cusip": "912810EX2",
@@ -3985,10 +3985,10 @@
             "offer_price": 137.8125,
             "mid_price": 137.734375,
             "eod_price": 137.21875,
-            "bid_yield": 3.785107707775562,
-            "offer_yield": 3.77514618202541,
-            "mid_yield": 3.780126944900486,
-            "eod_yield": 3.813079194076255
+            "bid_yield": 3.7859034095909805,
+            "offer_yield": 3.775944890781098,
+            "mid_yield": 3.7809241501860393,
+            "eod_yield": 3.813866456956847
         },
         {
             "cusip": "912810EY0",
@@ -4006,10 +4006,10 @@
             "offer_price": 134.5625,
             "mid_price": 134.484375,
             "eod_price": 133.9375,
-            "bid_yield": 3.811442304199393,
-            "offer_yield": 3.8014005341643506,
-            "mid_yield": 3.8064214191818717,
-            "eod_yield": 3.8416597724079793
+            "bid_yield": 3.8117779048940768,
+            "offer_yield": 3.801741209147311,
+            "mid_yield": 3.806759557020694,
+            "eod_yield": 3.8419800698396642
         },
         {
             "cusip": "912810EZ7",
@@ -4027,10 +4027,10 @@
             "offer_price": 136.4375,
             "mid_price": 136.375,
             "eod_price": 135.71875,
-            "bid_yield": 3.8152912425930445,
-            "offer_yield": 3.807413183642412,
-            "mid_yield": 3.811352213117728,
-            "eod_yield": 3.852842466054452
+            "bid_yield": 3.8160174615670526,
+            "offer_yield": 3.8081416987018666,
+            "mid_yield": 3.8120795801344594,
+            "eod_yield": 3.853557747919396
         },
         {
             "cusip": "912810FA1",
@@ -4048,10 +4048,10 @@
             "offer_price": 133.21875,
             "mid_price": 133.15625,
             "eod_price": 132.59375,
-            "bid_yield": 3.854527956197668,
-            "offer_yield": 3.8466524912092837,
-            "mid_yield": 3.8505902237034757,
-            "eod_yield": 3.8861277075323897
+            "bid_yield": 3.8551603918071535,
+            "offer_yield": 3.847287154442521,
+            "mid_yield": 3.851223773124837,
+            "eod_yield": 3.8867512104583706
         },
         {
             "cusip": "912810FB9",
@@ -4069,10 +4069,10 @@
             "offer_price": 130.125,
             "mid_price": 130.0625,
             "eod_price": 129.4375,
-            "bid_yield": 3.8594127913533436,
-            "offer_yield": 3.851481580118233,
-            "mid_yield": 3.8554471857357884,
-            "eod_yield": 3.8952279872159563
+            "bid_yield": 3.859607215431213,
+            "offer_yield": 3.851679818305031,
+            "mid_yield": 3.8556435168681222,
+            "eod_yield": 3.895405145924696
         },
         {
             "cusip": "912810FE3",
@@ -4090,10 +4090,10 @@
             "offer_price": 121.9375,
             "mid_price": 121.859375,
             "eod_price": 121.21875,
-            "bid_yield": 3.894114352231079,
-            "offer_yield": 3.8840035161214255,
-            "mid_yield": 3.8890589341762523,
-            "eod_yield": 3.9306549915675797
+            "bid_yield": 3.894504075257096,
+            "offer_yield": 3.8843959885250876,
+            "mid_yield": 3.8894500318910916,
+            "eod_yield": 3.9310347861612933
         },
         {
             "cusip": "912810FF0",
@@ -4111,10 +4111,10 @@
             "offer_price": 118.59375,
             "mid_price": 118.515625,
             "eod_price": 117.90625,
-            "bid_yield": 3.90082741592672,
-            "offer_yield": 3.890608513882573,
-            "mid_yield": 3.8957179649046463,
-            "eod_yield": 3.9357043134761267
+            "bid_yield": 3.900799133827543,
+            "offer_yield": 3.890584936874247,
+            "mid_yield": 3.895692035350895,
+            "eod_yield": 3.9356599335682185
         },
         {
             "cusip": "912810FG8",
@@ -4132,10 +4132,10 @@
             "offer_price": 118.78125,
             "mid_price": 118.703125,
             "eod_price": 118.03125,
-            "bid_yield": 3.8992342361363033,
-            "offer_yield": 3.8891152753789084,
-            "mid_yield": 3.894174755757606,
-            "eod_yield": 3.937846601897141
+            "bid_yield": 3.8995532226959226,
+            "offer_yield": 3.889436946607506,
+            "mid_yield": 3.894495084651714,
+            "eod_yield": 3.9381553530154907
         },
         {
             "cusip": "912810FJ2",
@@ -4153,10 +4153,10 @@
             "offer_price": 131.53125,
             "mid_price": 131.453125,
             "eod_price": 130.75,
-            "bid_yield": 3.8885469860168222,
-            "offer_yield": 3.8792804303930564,
-            "mid_yield": 3.8839137082049393,
-            "eod_yield": 3.925761168354046
+            "bid_yield": 3.889030124739849,
+            "offer_yield": 3.8797658574902263,
+            "mid_yield": 3.884397991115038,
+            "eod_yield": 3.92623512542959
         },
         {
             "cusip": "912810FM5",
@@ -4174,10 +4174,10 @@
             "offer_price": 134.15625,
             "mid_price": 134.078125,
             "eod_price": 133.3125,
-            "bid_yield": 3.883061818907609,
-            "offer_yield": 3.874148922207942,
-            "mid_yield": 3.8786053705577754,
-            "eod_yield": 3.92244559467826
+            "bid_yield": 3.883193208218759,
+            "offer_yield": 3.8742840839591177,
+            "mid_yield": 3.878738646088938,
+            "eod_yield": 3.9225602661191075
         },
         {
             "cusip": "912810FP8",
@@ -4195,10 +4195,10 @@
             "offer_price": 121.796875,
             "mid_price": 121.7109375,
             "eod_price": 120.84375,
-            "bid_yield": 3.9006805276898024,
-            "offer_yield": 3.8904149701705504,
-            "mid_yield": 3.895547748930176,
-            "eod_yield": 3.9475881261653427
+            "bid_yield": 3.9009774638487684,
+            "offer_yield": 3.8907142676311977,
+            "mid_yield": 3.8958458657399833,
+            "eod_yield": 3.947874286312539
         },
         {
             "cusip": "912810FT0",
@@ -4216,10 +4216,10 @@
             "offer_price": 112.46875,
             "mid_price": 112.40625,
             "eod_price": 111.5625,
-            "bid_yield": 3.7672195687297765,
-            "offer_yield": 3.760372275106192,
-            "mid_yield": 3.763795921917984,
-            "eod_yield": 3.8102519881571775
+            "bid_yield": 3.767329036882834,
+            "offer_yield": 3.7604829628780845,
+            "mid_yield": 3.763905999880459,
+            "eod_yield": 3.810353804090264
         },
         {
             "cusip": "912810PT9",
@@ -4237,10 +4237,10 @@
             "offer_price": 117.5625,
             "mid_price": 117.515625,
             "eod_price": 116.6875,
-            "bid_yield": 3.7378772752836644,
-            "offer_yield": 3.7330213332289652,
-            "mid_yield": 3.735449304256315,
-            "eod_yield": 3.778552534653834
+            "bid_yield": 3.7380196412627553,
+            "offer_yield": 3.7331645081119254,
+            "mid_yield": 3.7355920746873403,
+            "eod_yield": 3.7786881359457714
         },
         {
             "cusip": "912810PU6",
@@ -4258,10 +4258,10 @@
             "offer_price": 122.296875,
             "mid_price": 122.2421875,
             "eod_price": 121.40625,
-            "bid_yield": 3.7228471073600313,
-            "offer_yield": 3.7173773187457875,
-            "mid_yield": 3.7201122130529094,
-            "eod_yield": 3.7621155758718645
+            "bid_yield": 3.7227691434062438,
+            "offer_yield": 3.717301059736596,
+            "mid_yield": 3.72003510157142,
+            "eod_yield": 3.762025334826792
         },
         {
             "cusip": "912810PW2",
@@ -4279,10 +4279,10 @@
             "offer_price": 112.21875,
             "mid_price": 112.171875,
             "eod_price": 111.34375,
-            "bid_yield": 3.6901767829631247,
-            "offer_yield": 3.685287254671456,
-            "mid_yield": 3.6877320188172904,
-            "eod_yield": 3.731143139070154
+            "bid_yield": 3.6902683473144346,
+            "offer_yield": 3.6853796080845034,
+            "mid_yield": 3.687823977699469,
+            "eod_yield": 3.7312281037667505
         },
         {
             "cusip": "912810PX0",
@@ -4300,10 +4300,10 @@
             "offer_price": 115.265625,
             "mid_price": 115.2265625,
             "eod_price": 114.40625,
-            "bid_yield": 3.6501601985688223,
-            "offer_yield": 3.646200079760866,
-            "mid_yield": 3.648180139164844,
-            "eod_yield": 3.6899665805791924
+            "bid_yield": 3.6500414997067874,
+            "offer_yield": 3.6460825623994344,
+            "mid_yield": 3.6480620310531107,
+            "eod_yield": 3.689835970878053
         },
         {
             "cusip": "912810QA9",
@@ -4321,10 +4321,10 @@
             "offer_price": 97.5,
             "mid_price": 97.484375,
             "eod_price": 96.75,
-            "bid_yield": 3.6393886265952524,
-            "offer_yield": 3.6376377584700426,
-            "mid_yield": 3.6385131925326473,
-            "eod_yield": 3.679870138353138
+            "bid_yield": 3.6393570332696776,
+            "offer_yield": 3.637606449194015,
+            "mid_yield": 3.638481741231846,
+            "eod_yield": 3.679831988256763
         }
     ]
 }

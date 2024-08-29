@@ -212,7 +212,7 @@ def parallel_process(dict_df, raw_auctions_df):
 
 if __name__ == "__main__":
     t1 = time.time()
-    start_date = datetime(2024, 8, 26)
+    start_date = datetime(2008, 5, 29) 
     end_date = datetime(2024, 8, 27)
     weeks = get_business_days_groups(start_date, end_date, group_size=20)
     # weeks.reverse()
