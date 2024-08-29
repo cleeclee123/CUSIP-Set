@@ -14,6 +14,7 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 
 
 from RL_BondPricer import RL_BondPricer
+from QL_BondPricer import QL_BondPricer
 from script import FedInvestFetcher
 
 JSON: TypeAlias = dict[str, "JSON"] | list["JSON"] | str | int | float | bool | None
@@ -31,31 +32,57 @@ class bcolors:
     UNDERLINE = "\033[4m"
 
 
-def calculate_yields(row, as_of_date):
-    offer_yield = RL_BondPricer.bond_price_to_ytm(
-        type=row["security_type"],
-        issue_date=row["issue_date"],
-        maturity_date=row["maturity_date"],
-        as_of=as_of_date,
-        coupon=float(row["int_rate"]) / 100,
-        price=row["offer_price"],
-    )
-    bid_yield = RL_BondPricer.bond_price_to_ytm(
-        type=row["security_type"],
-        issue_date=row["issue_date"],
-        maturity_date=row["maturity_date"],
-        as_of=as_of_date,
-        coupon=float(row["int_rate"]) / 100,
-        price=row["bid_price"],
-    )
-    eod_yield = RL_BondPricer.bond_price_to_ytm(
-        type=row["security_type"],
-        issue_date=row["issue_date"],
-        maturity_date=row["maturity_date"],
-        as_of=as_of_date,
-        coupon=float(row["int_rate"]) / 100,
-        price=row["eod_price"],
-    )
+def calculate_yields(row, as_of_date, use_quantlib=True):
+    if use_quantlib:
+        offer_yield = QL_BondPricer.bond_price_to_ytm(
+            type=row["security_type"],
+            issue_date=row["issue_date"],
+            maturity_date=row["maturity_date"],
+            as_of=as_of_date,
+            coupon=float(row["int_rate"]),
+            price=row["offer_price"],
+        )
+        bid_yield = QL_BondPricer.bond_price_to_ytm(
+            type=row["security_type"],
+            issue_date=row["issue_date"],
+            maturity_date=row["maturity_date"],
+            as_of=as_of_date,
+            coupon=float(row["int_rate"]),
+            price=row["bid_price"],
+        )
+        eod_yield = QL_BondPricer.bond_price_to_ytm(
+            type=row["security_type"],
+            issue_date=row["issue_date"],
+            maturity_date=row["maturity_date"],
+            as_of=as_of_date,
+            coupon=float(row["int_rate"]),
+            price=row["eod_price"],
+        )
+    else:
+        offer_yield = RL_BondPricer.bond_price_to_ytm(
+            type=row["security_type"],
+            issue_date=row["issue_date"],
+            maturity_date=row["maturity_date"],
+            as_of=as_of_date,
+            coupon=float(row["int_rate"]) / 100,
+            price=row["offer_price"],
+        )
+        bid_yield = RL_BondPricer.bond_price_to_ytm(
+            type=row["security_type"],
+            issue_date=row["issue_date"],
+            maturity_date=row["maturity_date"],
+            as_of=as_of_date,
+            coupon=float(row["int_rate"]) / 100,
+            price=row["bid_price"],
+        )
+        eod_yield = RL_BondPricer.bond_price_to_ytm(
+            type=row["security_type"],
+            issue_date=row["issue_date"],
+            maturity_date=row["maturity_date"],
+            as_of=as_of_date,
+            coupon=float(row["int_rate"]) / 100,
+            price=row["eod_price"],
+        )
 
     return offer_yield, bid_yield, eod_yield
 
@@ -212,8 +239,8 @@ def parallel_process(dict_df, raw_auctions_df):
 
 if __name__ == "__main__":
     t1 = time.time()
-    start_date = datetime(2008, 5, 29) 
-    end_date = datetime(2024, 8, 27)
+    start_date = datetime(2024, 8, 1)
+    end_date = datetime(2024, 8, 28)
     weeks = get_business_days_groups(start_date, end_date, group_size=20)
     # weeks.reverse()
 

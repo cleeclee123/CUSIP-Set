@@ -25,6 +25,7 @@ class RL_BondPricer:
             currency="usd",
             convention="Act360",
             settle=1,
+            notional=-1e6,
             curves="bill_curve",
             calc_mode="ustb",
         )
