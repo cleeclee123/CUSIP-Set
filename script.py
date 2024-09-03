@@ -1,7 +1,7 @@
 import asyncio
 import logging
 from datetime import datetime
-from typing import List, Optional, TypeAlias
+from typing import List, Optional, TypeAlias, Tuple
 
 import math
 import requests
@@ -39,7 +39,8 @@ def build_treasurydirect_header(
         "Upgrade-Insecure-Requests": "1",
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36",
     }
-    
+
+
 def historical_auction_cols():
     return [
         "cusip",
@@ -88,8 +89,8 @@ def historical_auction_cols():
         "treas_retail_accepted",
         "treas_retail_tenders_accepted",
     ]
-    
-    
+
+
 def get_active_cusips(
     auction_json: Optional[JSON] = None,
     historical_auctions_df: Optional[pd.DataFrame] = None,
@@ -208,8 +209,7 @@ class FedInvestFetcher:
 
         if self._debug_verbose or self._info_verbose or self._error_verbose:
             self._logger.setLevel(logging.DEBUG)
-    
-    
+
     async def _build_fetch_tasks_historical_treasury_auctions(
         self,
         client: httpx.AsyncClient,
@@ -317,9 +317,7 @@ class FedInvestFetcher:
         dfs = asyncio.run(run_fetch_all(as_of_date=as_of_date))
         auctions_df: pd.DataFrame = pd.concat(dfs)
         auctions_df = auctions_df.sort_values(by=["auction_date"], ascending=False)
-        return auctions_df        
-            
-            
+        return auctions_df
 
     async def _fetch_prices_from_treasury_date_search(
         self,
@@ -455,3 +453,247 @@ class FedInvestFetcher:
             for date in dates
         ]
         return tasks
+
+    def _fetch_public_dotcome_jwt(self) -> str:
+        try:
+            jwt_headers = {
+                "authority": "prod-api.154310543964.hellopublic.com",
+                "method": "GET",
+                "path": "/static/anonymoususer/credentials.json",
+                "scheme": "https",
+                "accept": "*/*",
+                "accept-encoding": "gzip, deflate, br, zstd",
+                "accept-language": "en-US,en;q=0.9",
+                "cache-control": "no-cache",
+                "content-type": "application/json",
+                "dnt": "1",
+                "origin": "https://public.com",
+                "pragma": "no-cache",
+                "priority": "u=1, i",
+                "sec-ch-ua": '"Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"',
+                "sec-ch-ua-mobile": "?0",
+                "sec-ch-ua-platform": '"Windows"',
+                "sec-fetch-dest": "empty",
+                "sec-fetch-mode": "cors",
+                "sec-fetch-site": "cross-site",
+                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+                "x-app-version": "web-1.0.9",
+            }
+            jwt_url = "https://prod-api.154310543964.hellopublic.com/static/anonymoususer/credentials.json"
+            jwt_res = requests.get(jwt_url, headers=jwt_headers)
+            jwt_str = jwt_res.json()["jwt"]
+            return jwt_str
+        except Exception as e:
+            self._logger.error(f"Public.com JWT Request Failed: {e}")
+            return None
+
+    async def _fetch_cusip_timeseries_public_dotcom(
+        self,
+        client: httpx.AsyncClient,
+        cusip: str,
+        jwt_str: str,
+        start_date: Optional[datetime] = None,
+        end_date: Optional[datetime] = None,
+        max_retries: Optional[int] = 3,
+        backoff_factor: Optional[int] = 1,
+        uid: Optional[str | int] = None,
+    ):
+        cols_to_return = ["Date", "Price", "YTM"]  # YTW is same as YTM for cash USTs
+        retries = 0
+        try:
+            while retries < max_retries:
+                try:
+                    span = "MAX"
+                    data_headers = {
+                        "authority": "prod-api.154310543964.hellopublic.com",
+                        "method": "GET",
+                        "path": f"/fixedincomegateway/v1/graph/data?cusip={cusip}&span={span}",
+                        "scheme": "https",
+                        "accept": "*/*",
+                        "accept-encoding": "gzip, deflate, br, zstd",
+                        "accept-language": "en-US,en;q=0.9",
+                        "cache-control": "no-cache",
+                        "content-type": "application/json",
+                        "dnt": "1",
+                        "origin": "https://public.com",
+                        "pragma": "no-cache",
+                        "priority": "u=1, i",
+                        "sec-ch-ua": '"Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"',
+                        "sec-ch-ua-mobile": "?0",
+                        "sec-ch-ua-platform": '"Windows"',
+                        "sec-fetch-dest": "empty",
+                        "sec-fetch-mode": "cors",
+                        "sec-fetch-site": "cross-site",
+                        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+                        "x-app-version": "web-1.0.9",
+                        "authorization": jwt_str,
+                    }
+
+                    data_url = f"https://prod-api.154310543964.hellopublic.com/fixedincomegateway/v1/graph/data?cusip={cusip}&span={span}"
+                    response = await client.get(data_url, headers=data_headers)
+                    response.raise_for_status()
+                    df = pd.DataFrame(response.json()["data"])
+                    df["timestamp"] = pd.to_datetime(df["timestamp"], errors="coerce")
+                    df["unitPrice"] = pd.to_numeric(df["unitPrice"]) * 100
+                    df["yieldToWorst"] = pd.to_numeric(df["yieldToWorst"]) * 100
+                    df.columns = cols_to_return
+                    if start_date:
+                        df = df[df["Date"].dt.date >= start_date.date()]
+                    if end_date:
+                        df = df[df["Date"].dt.date <= end_date.date()]
+                    if uid:
+                        return cusip, df, uid
+                    return cusip, df
+
+                except httpx.HTTPStatusError as e:
+                    self._logger.error(
+                        f"Public.com - Bad Status: {response.status_code}"
+                    )
+                    if response.status_code == 404:
+                        if uid:
+                            return cusip, pd.DataFrame(columns=cols_to_return), uid
+                        return cusip, pd.DataFrame(columns=cols_to_return)
+
+                    retries += 1
+                    wait_time = backoff_factor * (2 ** (retries - 1))
+                    self._logger.debug(
+                        f"Public.com - Throttled for {cusip}. Waiting for {wait_time} seconds before retrying..."
+                    )
+                    await asyncio.sleep(wait_time)
+
+                except Exception as e:
+                    self._logger.error(f"Public.com - Error: {str(e)}")
+                    retries += 1
+                    wait_time = backoff_factor * (2 ** (retries - 1))
+                    self._logger.debug(
+                        f"Public.com - Throttled for {cusip}. Waiting for {wait_time} seconds before retrying..."
+                    )
+                    await asyncio.sleep(wait_time)
+
+            raise ValueError(f"Public.com - Max retries exceeded for {cusip}")
+
+        except Exception as e:
+            self._logger.error(e)
+            if uid:
+                return cusip, pd.DataFrame(columns=cols_to_return), uid
+            return cusip, pd.DataFrame(columns=cols_to_return)
+
+    async def _fetch_cusip_timeseries_public_dotcome_with_semaphore(
+        self, semaphore, *args, **kwargs
+    ):
+        async with semaphore:
+            return await self._fetch_cusip_timeseries_public_dotcom(*args, **kwargs)
+
+    def public_dotcom_timeseries_api(
+        self,
+        cusips: List[str],
+        start_date: Optional[datetime] = None,
+        end_date: Optional[datetime] = None,
+        refresh_jwt: Optional[bool] = False,
+        max_concurrent_tasks: int = 64,
+    ):
+        if refresh_jwt or not self._public_dotcom_jwt:
+            self._public_dotcom_jwt = self._fetch_public_dotcome_jwt()
+            if not self._public_dotcom_jwt:
+                raise ValueError("Public.com JWT Request Failed")
+
+        async def build_tasks(
+            client: httpx.AsyncClient,
+            cusips: List[str],
+            start_date: datetime,
+            end_date: datetime,
+            jwt_str: str,
+        ):
+            semaphore = asyncio.Semaphore(max_concurrent_tasks)
+            tasks = [
+                self._fetch_cusip_timeseries_public_dotcome_with_semaphore(
+                    semaphore=semaphore,
+                    client=client,
+                    cusip=cusip,
+                    start_date=start_date,
+                    end_date=end_date,
+                    jwt_str=jwt_str,
+                )
+                for cusip in cusips
+            ]
+            return await asyncio.gather(*tasks)
+
+        async def run_fetch_all(
+            cusips: List[str], start_date: datetime, end_date: datetime, jwt_str: str
+        ):
+            async with httpx.AsyncClient(proxy=self._proxies["https"]) as client:
+                all_data = await build_tasks(
+                    client=client,
+                    cusips=cusips,
+                    start_date=start_date,
+                    end_date=end_date,
+                    jwt_str=jwt_str,
+                )
+                return all_data
+
+        dfs: List[Tuple[str, pd.DataFrame]] = asyncio.run(
+            run_fetch_all(
+                cusips=cusips,
+                start_date=start_date,
+                end_date=end_date,
+                jwt_str=self._public_dotcom_jwt,
+            )
+        )
+        return dict(dfs)
+
+    # def public_dotcom_specifc_dates_api(
+    #     self,
+    #     dates: List[datetime],
+    #     cusips: List[str],
+    #     refresh_jwt: Optional[bool] = False,
+    #     max_concurrent_tasks: int = 64,
+    # ):
+    #     if refresh_jwt or not self._public_dotcom_jwt:
+    #         self._public_dotcom_jwt = self._fetch_public_dotcome_jwt()
+    #         if not self._public_dotcom_jwt:
+    #             raise ValueError("Public.com JWT Request Failed")
+
+    #     async def build_tasks(
+    #         client: httpx.AsyncClient,
+    #         cusips: List[str],
+    #         start_date: datetime,
+    #         end_date: datetime,
+    #         jwt_str: str,
+    #     ):
+    #         semaphore = asyncio.Semaphore(max_concurrent_tasks)
+    #         tasks = []
+    #         for date in dates:
+    #             curr_date_tasks = [self._fetch_cusip_timeseries_public_dotcome_with_semaphore(
+    #                 semaphore=semaphore,
+    #                 client=client,
+    #                 cusip=cusip,
+    #                 start_date=start_date,
+    #                 end_date=end_date,
+    #                 jwt_str=jwt_str,
+    #             )
+    #             for cusip in cusips
+    #         ]
+    #         return await asyncio.gather(*tasks)
+
+    #     async def run_fetch_all(
+    #         cusips: List[str], start_date: datetime, end_date: datetime, jwt_str: str
+    #     ):
+    #         async with httpx.AsyncClient(proxy=self._proxies["https"]) as client:
+    #             all_data = await build_tasks(
+    #                 client=client,
+    #                 cusips=cusips,
+    #                 start_date=start_date,
+    #                 end_date=end_date,
+    #                 jwt_str=jwt_str,
+    #             )
+    #             return all_data
+
+    #     dfs: List[Tuple[str, pd.DataFrame]] = asyncio.run(
+    #         run_fetch_all(
+    #             cusips=cusips,
+    #             start_date=start_date,
+    #             end_date=end_date,
+    #             jwt_str=self._public_dotcom_jwt,
+    #         )
+    #     )
+    #     return dict(dfs)
