@@ -243,7 +243,7 @@ if __name__ == "__main__":
     t1_parent = time.time()
     t1 = time.time()
 
-    y2bday: pd.Timestamp = datetime.today() - BDay(2)
+    y2bday: pd.Timestamp = datetime.today() - BDay(5)
     y2bday = y2bday.to_pydatetime()
     y2bday = y2bday.replace(hour=0, minute=0, second=0, microsecond=0)
 
@@ -253,7 +253,11 @@ if __name__ == "__main__":
 
     start_date = y2bday
     end_date = ybday
-    print(bcolors.OKBLUE + f"Fetching UST Prices for {start_date} and {end_date}" + bcolors.ENDC)
+    print(
+        bcolors.OKBLUE
+        + f"Fetching UST Prices for {start_date} and {end_date}"
+        + bcolors.ENDC
+    )
     weeks = get_business_days_groups(start_date, end_date, group_size=20)
 
     raw_auctions_df = FedInvestFetcher(
