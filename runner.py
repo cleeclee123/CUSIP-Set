@@ -361,38 +361,6 @@ if __name__ == "__main__":
         except Exception as e:
             print(bcolors.FAIL + f"FAILED {file_name} - {str(e)}" + bcolors.ENDC)
 
-    """ Single File """
-
-    # file_name = r"C:\Users\chris\CUSIP-Set\2024-08-19.json"
-    # try:
-    #     if file_name.endswith(".json"):
-    #         file_path = os.path.join(input_directory, file_name)
-    #         with open(file_path, "r") as json_file:
-    #             daily_data = json.load(json_file)
-
-    #         date_str = file_name.split(".json")[0]
-    #         date = datetime.strptime(date_str, "%Y-%m-%d")
-
-    #         for entry in daily_data["data"]:
-    #             cusip = entry["cusip"]
-    #             to_write = {
-    #                 "Date": date_str,
-    #                 "bid_price": entry["bid_price"],
-    #                 "offer_price": entry["offer_price"],
-    #                 "mid_price": entry["mid_price"],
-    #                 "eod_price": entry["eod_price"],
-    #                 "bid_yield": entry["bid_yield"],
-    #                 "offer_yield": entry["offer_yield"],
-    #                 "eod_yield": entry["eod_yield"],
-    #             }
-    #             cusip_timeseries[cusip].append(to_write)
-
-    #     print(bcolors.OKBLUE + f"Saw {file_name}" + bcolors.ENDC)
-
-    # except Exception as e:
-    #     print(bcolors.FAIL + f"FAILED {file_name} - {str(e)}" + bcolors.ENDC)
-
-    """"""
 
     for cusip, timeseries in cusip_timeseries.items():
         try:
@@ -425,10 +393,10 @@ if __name__ == "__main__":
         df.to_json(file_path, orient=orient, date_format=date_format, indent=4)
 
     cusip_curve_builder = CUSIP_Curve(use_ust_issue_date=True, error_verbose=True)
-    ybday: pd.Timestamp = datetime.today() - BDay(1)
+    ybday: pd.Timestamp = (datetime.today() - BDay(1))
     ybday = ybday.to_pydatetime()
     ybday = ybday.replace(hour=0, minute=0, second=0, microsecond=0)
-    print(f"Fetching to {ybday}")
+    print(bcolors.OKBLUE + f"Fetching to {ybday}" + bcolors.ENDC)
     ct_bid_df = cusip_curve_builder.get_historical_cts_INTERNAL(
         start_date=datetime(2008, 5, 30),
         end_date=ybday,
