@@ -428,7 +428,7 @@ if __name__ == "__main__":
     ybday: pd.Timestamp = datetime.today() - BDay(1)
     ybday = ybday.to_pydatetime()
     ybday = ybday.replace(hour=0, minute=0, second=0, microsecond=0)
-
+    print(f"Fetching to {ybday}")
     ct_bid_df = cusip_curve_builder.get_historical_cts_INTERNAL(
         start_date=datetime(2008, 5, 30),
         end_date=ybday,
