@@ -51,7 +51,7 @@ if __name__ == "__main__":
         file_path=r"C:\Users\chris\CUSIP-Timeseries\historical_ct_yields_bid_side.json",
         date_format="iso",
     )
-    print(ct_bid_df)
+    print(ct_bid_df
     print(bcolors.OKGREEN + f"Wrote Bid CT Yields time series" + bcolors.ENDC)
 
     ct_offer_df = cusip_curve_builder.get_historical_cts_INTERNAL(

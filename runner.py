@@ -321,12 +321,13 @@ if __name__ == "__main__":
     keys_to_include = [
         "Date",
         "cusip",
-        "bid_price"
-        "offer_price"
-        "mid_price"
-        "eod_price"
-        "bid_yield"
-        "offer_yield"
+        "bid_price",
+        "offer_price",
+        "mid_price",
+        "eod_price",
+        "bid_yield",
+        "offer_yield",
+        "mid_yield"
         "eod_yield",
     ]
 
@@ -352,6 +353,7 @@ if __name__ == "__main__":
                         "eod_price": entry["eod_price"],
                         "bid_yield": entry["bid_yield"],
                         "offer_yield": entry["offer_yield"],
+                        "mid_yield": entry["mid_yield"],
                         "eod_yield": entry["eod_yield"],
                     }
                     cusip_timeseries[cusip].append(to_write)
