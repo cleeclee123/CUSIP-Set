@@ -253,6 +253,9 @@ if __name__ == "__main__":
 
     start_date = y2bday
     end_date = ybday
+    # start_date = datetime(2024, 6, 26)
+    # end_date = datetime(2024, 7, 1)
+    
     print(
         bcolors.OKBLUE
         + f"Fetching UST Prices for {start_date} and {end_date}"
