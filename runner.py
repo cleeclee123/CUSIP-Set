@@ -253,8 +253,8 @@ if __name__ == "__main__":
 
     start_date = y2bday
     end_date = ybday
-    # start_date = datetime(2024, 6, 26)
-    # end_date = datetime(2024, 7, 1)
+    # start_date = datetime(2024, 9, 25)
+    # end_date = datetime(2024, 10, 1)
     
     print(
         bcolors.OKBLUE
