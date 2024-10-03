@@ -245,16 +245,16 @@ if __name__ == "__main__":
 
     y2bday: pd.Timestamp = datetime.today() - BDay(5)
     y2bday = y2bday.to_pydatetime()
-    y2bday = y2bday.replace(hour=0, minute=0, second=0, microsecond=0)
+    # y2bday = y2bday.replace(hour=0, minute=0, second=0, microsecond=0)
 
     ybday: pd.Timestamp = datetime.today() - BDay(1)
     ybday = ybday.to_pydatetime()
-    ybday = ybday.replace(hour=0, minute=0, second=0, microsecond=0)
+    # ybday = ybday.replace(hour=0, minute=0, second=0, microsecond=0)
 
     start_date = y2bday
     end_date = ybday
     # start_date = datetime(2024, 9, 25)
-    # end_date = datetime(2024, 10, 1)
+    # end_date = datetime(2024, 10, 2)
     
     print(
         bcolors.OKBLUE
@@ -312,8 +312,10 @@ if __name__ == "__main__":
 
     print(f"FedInvest Scraper Script took: {time.time() - t1} seconds")
 
-    print(bcolors.OKBLUE + "STARTING TIMESERIES SCRIPT" + bcolors.ENDC)
-
+    # print(bcolors.OKBLUE + "STARTING TIMESERIES SCRIPT" + bcolors.ENDC)
+    
+    time.sleep(10)
+    
     t1 = time.time()
 
     input_directory = r"C:\Users\chris\CUSIP-Set"
@@ -385,7 +387,9 @@ if __name__ == "__main__":
             )
 
     print(f"Timeseries Script took: {time.time() - t1} seconds")
-
+    
+    ########################################################################################
+    
     # print(bcolors.OKBLUE + "STARTING CT TIMESERIES SCRIPT" + bcolors.ENDC)
     # t1 = time.time()
 
