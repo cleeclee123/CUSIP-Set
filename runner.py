@@ -237,11 +237,12 @@ if __name__ == "__main__":
 
     start_date = y2bday
     end_date = ybday
-    # start_date = datetime(2024, 9, 25)
-    # end_date = datetime(2024, 10, 2)
+    
+    start_date = datetime(2008, 5, 29)
+    end_date = datetime(2024, 11, 4)
 
     print(bcolors.OKBLUE + f"Fetching UST Prices for {start_date} and {end_date}" + bcolors.ENDC)
-    weeks = get_business_days_groups(start_date, end_date, group_size=20)
+    weeks = get_business_days_groups(start_date, end_date, group_size=60)
 
     raw_auctions_df = FedInvestFetcher(use_ust_issue_date=True, error_verbose=True).get_auctions_df()
     raw_auctions_df["issue_date"] = pd.to_datetime(raw_auctions_df["issue_date"])
