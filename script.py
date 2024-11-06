@@ -127,9 +127,6 @@ def get_active_cusips(
     ]
     historical_auctions_df = historical_auctions_df[historical_auctions_df["maturity_date"] >= as_of_date]
 
-    # historical_auctions_df.loc[historical_auctions_df["security_term"] == "4-Week", "original_security_term"] = "4-Week"
-    # historical_auctions_df.loc[historical_auctions_df["security_term"] == "8-Week", "original_security_term"] = "8-Week"
-    
     historical_auctions_df = historical_auctions_df.drop_duplicates(subset=["cusip"], keep="first")
     historical_auctions_df["int_rate"] = pd.to_numeric(historical_auctions_df["int_rate"], errors="coerce")
     return historical_auctions_df

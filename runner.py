@@ -120,8 +120,7 @@ def process_dataframe(key: datetime, df: pd.DataFrame, raw_auctions_df: pd.DataF
     try:
         raw_auctions_df["label"] = raw_auctions_df["maturity_date"].apply(ust_labeler)
         raw_auctions_df = raw_auctions_df.sort_values(by=["issue_date"], ascending=False)
-        raw_auctions_df.loc[raw_auctions_df["security_term"] == "4-Week", "original_security_term"] = "4-Week"
-        raw_auctions_df.loc[raw_auctions_df["security_term"] == "8-Week", "original_security_term"] = "8-Week"
+        raw_auctions_df = raw_auctions_df[raw_auctions_df["issue_date"] < key]
         otr_cusips = raw_auctions_df.groupby("original_security_term").first().reset_index()["cusip"].to_list()
         raw_auctions_df["is_on_the_run"] = raw_auctions_df["cusip"].isin(otr_cusips)
 
@@ -269,11 +268,11 @@ if __name__ == "__main__":
     raw_auctions_df.loc[raw_auctions_df["security_term"] == "26-Week", "original_security_term"] = "26-Week"
     raw_auctions_df.loc[raw_auctions_df["security_term"] == "52-Week", "original_security_term"] = "52-Week"
 
-    raw_auctions_df_1 = raw_auctions_df[raw_auctions_df["security_type"] == "Bill"].drop_duplicates(subset=["cusip"], keep="first")
+    raw_auctions_df_1 = raw_auctions_df[raw_auctions_df["security_type"] == "Bill"].iloc[::-1].drop_duplicates(subset=["cusip"], keep="last")
     raw_auctions_df_2 = raw_auctions_df[raw_auctions_df["security_type"] != "Bill"].drop_duplicates(subset=["cusip"], keep="last")
 
     raw_auctions_df = pd.concat([raw_auctions_df_1, raw_auctions_df_2])
-
+    
     for week in weeks:
         dict_df: Dict[datetime, pd.DataFrame] = runner(dates=week)
         output_directory = r"C:\Users\chris\CUSIP-Set"
@@ -315,7 +314,8 @@ if __name__ == "__main__":
         "eod_price",
         "bid_yield",
         "offer_yield",
-        "mid_yield" "eod_yield",
+        "mid_yield",
+        "eod_yield",
     ]
 
     """ Entire Dir """
