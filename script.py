@@ -103,26 +103,16 @@ def get_active_cusips(
     if auction_json and historical_auctions_df is None:
         historical_auctions_df = pd.DataFrame(auction_json)
 
-    historical_auctions_df["issue_date"] = pd.to_datetime(
-        historical_auctions_df["issue_date"]
-    )
-    historical_auctions_df["maturity_date"] = pd.to_datetime(
-        historical_auctions_df["maturity_date"]
-    )
-    historical_auctions_df["auction_date"] = pd.to_datetime(
-        historical_auctions_df["auction_date"]
-    )
+    historical_auctions_df["issue_date"] = pd.to_datetime(historical_auctions_df["issue_date"])
+    historical_auctions_df["maturity_date"] = pd.to_datetime(historical_auctions_df["maturity_date"])
+    historical_auctions_df["auction_date"] = pd.to_datetime(historical_auctions_df["auction_date"])
 
     historical_auctions_df.loc[
-        historical_auctions_df["original_security_term"].str.contains(
-            "29-Year", case=False, na=False
-        ),
+        historical_auctions_df["original_security_term"].str.contains("29-Year", case=False, na=False),
         "original_security_term",
     ] = "30-Year"
     historical_auctions_df.loc[
-        historical_auctions_df["original_security_term"].str.contains(
-            "30-", case=False, na=False
-        ),
+        historical_auctions_df["original_security_term"].str.contains("30-", case=False, na=False),
         "original_security_term",
     ] = "30-Year"
 
@@ -131,30 +121,17 @@ def get_active_cusips(
         | (historical_auctions_df["security_type"] == "Note")
         | (historical_auctions_df["security_type"] == "Bond")
     ]
-    # historical_auctions_df = historical_auctions_df.drop(
-    #     historical_auctions_df[
-    #         (historical_auctions_df["security_type"] == "Bill")
-    #         & (
-    #             historical_auctions_df["original_security_term"]
-    #             != historical_auctions_df["security_term"]
-    #         )
-    #     ].index
-    # )
+
     historical_auctions_df = historical_auctions_df[
-        historical_auctions_df[
-            "auction_date" if not use_issue_date else "issue_date"
-        ].dt.date
-        <= as_of_date.date()
+        historical_auctions_df["auction_date" if not use_issue_date else "issue_date"].dt.date <= as_of_date.date()
     ]
-    historical_auctions_df = historical_auctions_df[
-        historical_auctions_df["maturity_date"] >= as_of_date
-    ]
-    historical_auctions_df = historical_auctions_df.drop_duplicates(
-        subset=["cusip"], keep="first"
-    )
-    historical_auctions_df["int_rate"] = pd.to_numeric(
-        historical_auctions_df["int_rate"], errors="coerce"
-    )
+    historical_auctions_df = historical_auctions_df[historical_auctions_df["maturity_date"] >= as_of_date]
+
+    # historical_auctions_df.loc[historical_auctions_df["security_term"] == "4-Week", "original_security_term"] = "4-Week"
+    # historical_auctions_df.loc[historical_auctions_df["security_term"] == "8-Week", "original_security_term"] = "8-Week"
+    
+    historical_auctions_df = historical_auctions_df.drop_duplicates(subset=["cusip"], keep="first")
+    historical_auctions_df["int_rate"] = pd.to_numeric(historical_auctions_df["int_rate"], errors="coerce")
     return historical_auctions_df
 
 
@@ -187,11 +164,7 @@ class FedInvestFetcher:
 
         if not self._logger.hasHandlers():
             handler = logging.StreamHandler()
-            handler.setFormatter(
-                logging.Formatter(
-                    "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-                )
-            )
+            handler.setFormatter(logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s"))
             self._logger.addHandler(handler)
 
         if self._debug_verbose:
@@ -233,9 +206,7 @@ class FedInvestFetcher:
                     for i in range(0, number_requests)
                 ]
             else:
-                raise ValueError(
-                    f"UST Auctions - Query Sizing Bad Status: ", {res.status_code}
-                )
+                raise ValueError(f"UST Auctions - Query Sizing Bad Status: ", {res.status_code})
 
         links = (
             get_treasury_query_sizing()
@@ -304,9 +275,7 @@ class FedInvestFetcher:
 
     def get_auctions_df(self, as_of_date: Optional[datetime] = None) -> pd.DataFrame:
         async def build_tasks(client: httpx.AsyncClient, as_of_date: datetime):
-            tasks = await self._build_fetch_tasks_historical_treasury_auctions(
-                client=client, as_of_date=as_of_date, return_df=True
-            )
+            tasks = await self._build_fetch_tasks_historical_treasury_auctions(client=client, as_of_date=as_of_date, return_df=True)
             return await asyncio.gather(*tasks)
 
         async def run_fetch_all(as_of_date: datetime):
@@ -372,22 +341,16 @@ class FedInvestFetcher:
                     )
                     if response.is_redirect:
                         redirect_url = response.headers.get("Location")
-                        self._logger.debug(
-                            f"UST Prices - {date} Redirecting to {redirect_url}"
-                        )
+                        self._logger.debug(f"UST Prices - {date} Redirecting to {redirect_url}")
                         response = await client.get(redirect_url)
 
                     response.raise_for_status()
                     tables = pd.read_html(response.content, header=0)
                     df = tables[0]
                     if cusips:
-                        missing_cusips = [
-                            cusip for cusip in cusips if cusip not in df["CUSIP"].values
-                        ]
+                        missing_cusips = [cusip for cusip in cusips if cusip not in df["CUSIP"].values]
                         if missing_cusips:
-                            self._logger.warning(
-                                f"UST Prices Warning - The following CUSIPs are not found in the DataFrame: {missing_cusips}"
-                            )
+                            self._logger.warning(f"UST Prices Warning - The following CUSIPs are not found in the DataFrame: {missing_cusips}")
                     df = df[df["CUSIP"].isin(cusips)] if cusips else df
                     df.columns = df.columns.str.lower()
                     df = df.query("`security type` not in ['TIPS', 'MARKET BASED FRN']")
@@ -403,23 +366,17 @@ class FedInvestFetcher:
                     return date, df[cols_to_return]
 
                 except httpx.HTTPStatusError as e:
-                    self._logger.error(
-                        f"UST Prices - Bad Status for {date}: {response.status_code}"
-                    )
+                    self._logger.error(f"UST Prices - Bad Status for {date}: {response.status_code}")
                     retries += 1
                     wait_time = backoff_factor * (2 ** (retries - 1))
-                    self._logger.debug(
-                        f"UST Prices - Throttled. Waiting for {wait_time} seconds before retrying..."
-                    )
+                    self._logger.debug(f"UST Prices - Throttled. Waiting for {wait_time} seconds before retrying...")
                     await asyncio.sleep(wait_time)
 
                 except Exception as e:
                     self._logger.error(f"UST Prices - Error for {date}: {e}")
                     retries += 1
                     wait_time = backoff_factor * (2 ** (retries - 1))
-                    self._logger.debug(
-                        f"UST Prices - Throttled. Waiting for {wait_time} seconds before retrying..."
-                    )
+                    self._logger.debug(f"UST Prices - Throttled. Waiting for {wait_time} seconds before retrying...")
                     await asyncio.sleep(wait_time)
 
             raise ValueError(f"UST Prices - Max retries exceeded for {date}")
@@ -546,9 +503,7 @@ class FedInvestFetcher:
                     return cusip, df
 
                 except httpx.HTTPStatusError as e:
-                    self._logger.error(
-                        f"Public.com - Bad Status: {response.status_code}"
-                    )
+                    self._logger.error(f"Public.com - Bad Status: {response.status_code}")
                     if response.status_code == 404:
                         if uid:
                             return cusip, pd.DataFrame(columns=cols_to_return), uid
@@ -556,18 +511,14 @@ class FedInvestFetcher:
 
                     retries += 1
                     wait_time = backoff_factor * (2 ** (retries - 1))
-                    self._logger.debug(
-                        f"Public.com - Throttled for {cusip}. Waiting for {wait_time} seconds before retrying..."
-                    )
+                    self._logger.debug(f"Public.com - Throttled for {cusip}. Waiting for {wait_time} seconds before retrying...")
                     await asyncio.sleep(wait_time)
 
                 except Exception as e:
                     self._logger.error(f"Public.com - Error: {str(e)}")
                     retries += 1
                     wait_time = backoff_factor * (2 ** (retries - 1))
-                    self._logger.debug(
-                        f"Public.com - Throttled for {cusip}. Waiting for {wait_time} seconds before retrying..."
-                    )
+                    self._logger.debug(f"Public.com - Throttled for {cusip}. Waiting for {wait_time} seconds before retrying...")
                     await asyncio.sleep(wait_time)
 
             raise ValueError(f"Public.com - Max retries exceeded for {cusip}")
@@ -578,9 +529,7 @@ class FedInvestFetcher:
                 return cusip, pd.DataFrame(columns=cols_to_return), uid
             return cusip, pd.DataFrame(columns=cols_to_return)
 
-    async def _fetch_cusip_timeseries_public_dotcome_with_semaphore(
-        self, semaphore, *args, **kwargs
-    ):
+    async def _fetch_cusip_timeseries_public_dotcome_with_semaphore(self, semaphore, *args, **kwargs):
         async with semaphore:
             return await self._fetch_cusip_timeseries_public_dotcom(*args, **kwargs)
 
@@ -618,9 +567,7 @@ class FedInvestFetcher:
             ]
             return await asyncio.gather(*tasks)
 
-        async def run_fetch_all(
-            cusips: List[str], start_date: datetime, end_date: datetime, jwt_str: str
-        ):
+        async def run_fetch_all(cusips: List[str], start_date: datetime, end_date: datetime, jwt_str: str):
             async with httpx.AsyncClient(proxy=self._proxies["https"]) as client:
                 all_data = await build_tasks(
                     client=client,

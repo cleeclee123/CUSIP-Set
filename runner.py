@@ -91,9 +91,7 @@ def calculate_yields(row, as_of_date, use_quantlib=True):
 
 def runner(dates):
     async def build_tasks(client: httpx.AsyncClient, dates):
-        tasks = await FedInvestFetcher(
-            use_ust_issue_date=True, error_verbose=True
-        )._build_fetch_tasks_historical_cusip_prices(
+        tasks = await FedInvestFetcher(use_ust_issue_date=True, error_verbose=True)._build_fetch_tasks_historical_cusip_prices(
             client=client, dates=dates, max_concurrent_tasks=5
         )
         return await asyncio.gather(*tasks)
@@ -110,10 +108,7 @@ def runner(dates):
 
 def get_business_days_groups(start_date: datetime, end_date: datetime, group_size=3):
     date_range = pd.date_range(start=start_date, end=end_date, freq="B")
-    business_day_groups = [
-        [bday.to_pydatetime() for bday in date_range[i : i + group_size].tolist()]
-        for i in range(0, len(date_range), group_size)
-    ]
+    business_day_groups = [[bday.to_pydatetime() for bday in date_range[i : i + group_size].tolist()] for i in range(0, len(date_range), group_size)]
     return business_day_groups
 
 
@@ -124,22 +119,13 @@ def ust_labeler(mat_date: datetime | pd.Timestamp):
 def process_dataframe(key: datetime, df: pd.DataFrame, raw_auctions_df: pd.DataFrame):
     try:
         raw_auctions_df["label"] = raw_auctions_df["maturity_date"].apply(ust_labeler)
-        raw_auctions_df = raw_auctions_df.sort_values(
-            by=["issue_date"], ascending=False
-        )
-        raw_auctions_df.loc[df["security_term"] == "4-Week", "original_security_term"] = "4-Week"
-        raw_auctions_df.loc[df["security_term"] == "8-Week", "original_security_term"] = "8-Week"
-        otr_cusips = (
-            raw_auctions_df.groupby("original_security_term")
-            .first()
-            .reset_index()["cusip"]
-            .to_list()
-        )
+        raw_auctions_df = raw_auctions_df.sort_values(by=["issue_date"], ascending=False)
+        raw_auctions_df.loc[raw_auctions_df["security_term"] == "4-Week", "original_security_term"] = "4-Week"
+        raw_auctions_df.loc[raw_auctions_df["security_term"] == "8-Week", "original_security_term"] = "8-Week"
+        otr_cusips = raw_auctions_df.groupby("original_security_term").first().reset_index()["cusip"].to_list()
         raw_auctions_df["is_on_the_run"] = raw_auctions_df["cusip"].isin(otr_cusips)
 
-        cusip_ref_df = raw_auctions_df[
-            raw_auctions_df["cusip"].isin(df["cusip"].to_list())
-        ][
+        cusip_ref_df = raw_auctions_df[raw_auctions_df["cusip"].isin(df["cusip"].to_list())][
             [
                 "cusip",
                 "security_type",
@@ -230,10 +216,7 @@ def parallel_process(dict_df, raw_auctions_df):
     result_dict = {}
 
     with ProcessPoolExecutor(max_workers=mp.cpu_count()) as executor:
-        futures = {
-            executor.submit(process_dataframe, key, df, raw_auctions_df): key
-            for key, df in dict_df.items()
-        }
+        futures = {executor.submit(process_dataframe, key, df, raw_auctions_df): key for key, df in dict_df.items()}
         for future in as_completed(futures):
             key, json_structure = future.result()
             result_dict[key] = json_structure
@@ -257,39 +240,39 @@ if __name__ == "__main__":
     end_date = ybday
     # start_date = datetime(2024, 9, 25)
     # end_date = datetime(2024, 10, 2)
-    
-    print(
-        bcolors.OKBLUE
-        + f"Fetching UST Prices for {start_date} and {end_date}"
-        + bcolors.ENDC
-    )
+
+    print(bcolors.OKBLUE + f"Fetching UST Prices for {start_date} and {end_date}" + bcolors.ENDC)
     weeks = get_business_days_groups(start_date, end_date, group_size=20)
 
-    raw_auctions_df = FedInvestFetcher(
-        use_ust_issue_date=True, error_verbose=True
-    ).get_auctions_df()
+    raw_auctions_df = FedInvestFetcher(use_ust_issue_date=True, error_verbose=True).get_auctions_df()
     raw_auctions_df["issue_date"] = pd.to_datetime(raw_auctions_df["issue_date"])
     raw_auctions_df["maturity_date"] = pd.to_datetime(raw_auctions_df["maturity_date"])
     raw_auctions_df["auction_date"] = pd.to_datetime(raw_auctions_df["auction_date"])
     raw_auctions_df.loc[
-        raw_auctions_df["original_security_term"].str.contains(
-            "29-Year", case=False, na=False
-        ),
+        raw_auctions_df["original_security_term"].str.contains("29-Year", case=False, na=False),
         "original_security_term",
     ] = "30-Year"
     raw_auctions_df.loc[
-        raw_auctions_df["original_security_term"].str.contains(
-            "30-", case=False, na=False
-        ),
+        raw_auctions_df["original_security_term"].str.contains("30-", case=False, na=False),
         "original_security_term",
     ] = "30-Year"
 
     raw_auctions_df = raw_auctions_df[
-        (raw_auctions_df["security_type"] == "Bill")
-        | (raw_auctions_df["security_type"] == "Note")
-        | (raw_auctions_df["security_type"] == "Bond")
+        (raw_auctions_df["security_type"] == "Bill") | (raw_auctions_df["security_type"] == "Note") | (raw_auctions_df["security_type"] == "Bond")
     ]
-    raw_auctions_df = raw_auctions_df.drop_duplicates(subset=["cusip"], keep="last")
+
+    raw_auctions_df.loc[raw_auctions_df["security_term"] == "4-Week", "original_security_term"] = "4-Week"
+    raw_auctions_df.loc[raw_auctions_df["security_term"] == "8-Week", "original_security_term"] = "8-Week"
+    raw_auctions_df.loc[raw_auctions_df["security_term"] == "17-Week", "original_security_term"] = "17-Week"
+
+    raw_auctions_df.loc[raw_auctions_df["security_term"] == "13-Week", "original_security_term"] = "13-Week"
+    raw_auctions_df.loc[raw_auctions_df["security_term"] == "26-Week", "original_security_term"] = "26-Week"
+    raw_auctions_df.loc[raw_auctions_df["security_term"] == "52-Week", "original_security_term"] = "52-Week"
+
+    raw_auctions_df_1 = raw_auctions_df[raw_auctions_df["security_type"] == "Bill"].drop_duplicates(subset=["cusip"], keep="first")
+    raw_auctions_df_2 = raw_auctions_df[raw_auctions_df["security_type"] != "Bill"].drop_duplicates(subset=["cusip"], keep="last")
+
+    raw_auctions_df = pd.concat([raw_auctions_df_1, raw_auctions_df_2])
 
     for week in weeks:
         dict_df: Dict[datetime, pd.DataFrame] = runner(dates=week)
@@ -308,16 +291,14 @@ if __name__ == "__main__":
                 print(bcolors.OKGREEN + f"WROTE {key} to JSON" + bcolors.ENDC)
 
             except Exception as e:
-                print(
-                    bcolors.FAIL + f"FAILED JSON WRITE {key} - {str(e)}" + bcolors.ENDC
-                )
+                print(bcolors.FAIL + f"FAILED JSON WRITE {key} - {str(e)}" + bcolors.ENDC)
 
     print(f"FedInvest Scraper Script took: {time.time() - t1} seconds")
 
     # print(bcolors.OKBLUE + "STARTING TIMESERIES SCRIPT" + bcolors.ENDC)
-    
+
     time.sleep(10)
-    
+
     t1 = time.time()
 
     input_directory = r"C:\Users\chris\CUSIP-Set"
@@ -334,8 +315,7 @@ if __name__ == "__main__":
         "eod_price",
         "bid_yield",
         "offer_yield",
-        "mid_yield"
-        "eod_yield",
+        "mid_yield" "eod_yield",
     ]
 
     """ Entire Dir """
@@ -370,28 +350,19 @@ if __name__ == "__main__":
         except Exception as e:
             print(bcolors.FAIL + f"FAILED {file_name} - {str(e)}" + bcolors.ENDC)
 
-
     for cusip, timeseries in cusip_timeseries.items():
         try:
             output_file = os.path.join(output_directory, f"{cusip}.json")
             with open(output_file, "w") as json_file:
                 json.dump(timeseries, json_file, indent=4, default=str)
-            print(
-                bcolors.OKGREEN
-                + f"Wrote time series for CUSIP {cusip} to {output_file}"
-                + bcolors.ENDC
-            )
+            print(bcolors.OKGREEN + f"Wrote time series for CUSIP {cusip} to {output_file}" + bcolors.ENDC)
         except Exception as e:
-            print(
-                bcolors.FAIL
-                + f"FAILED to Write {cusip} to {output_file}"
-                + bcolors.ENDC
-            )
+            print(bcolors.FAIL + f"FAILED to Write {cusip} to {output_file}" + bcolors.ENDC)
 
     print(f"Timeseries Script took: {time.time() - t1} seconds")
-    
+
     ########################################################################################
-    
+
     # print(bcolors.OKBLUE + "STARTING CT TIMESERIES SCRIPT" + bcolors.ENDC)
     # t1 = time.time()
 
