@@ -127,6 +127,8 @@ def process_dataframe(key: datetime, df: pd.DataFrame, raw_auctions_df: pd.DataF
         raw_auctions_df = raw_auctions_df.sort_values(
             by=["issue_date"], ascending=False
         )
+        raw_auctions_df.loc[df["security_term"] == "4-Week", "original_security_term"] = "4-Week"
+        raw_auctions_df.loc[df["security_term"] == "8-Week", "original_security_term"] = "8-Week"
         otr_cusips = (
             raw_auctions_df.groupby("original_security_term")
             .first()

@@ -386,6 +386,8 @@ class CUSIP_Curve:
 
                     if assume_otrs and "original_security_term" in df.columns:
                         df = df.sort_values(by=["issue_date"], ascending=False)
+                        # df.loc[df["security_term"] == "4-Week", "original_security_term"] = "4-Week"
+                        # df.loc[df["security_term"] == "8-Week", "original_security_term"] = "8-Week"
                         df = df.groupby("original_security_term").first().reset_index()
                         cusip_to_term_dict = dict(zip(df["cusip"], df["original_security_term"]))
                         df["cusip"] = df["cusip"].replace(cusip_to_term_dict)
@@ -406,7 +408,7 @@ class CUSIP_Curve:
                     self._logger.debug(f"UST Prices GitHub - Timeout for {date}")
                     if uid:
                         return date, None, uid
-                    return date, None 
+                    return date, None
                 except httpx.HTTPStatusError as e:
                     self._logger.error(f"UST Prices GitHub - HTTPX Error for {date}: {e}")
                     if response.status_code == 404:
@@ -418,7 +420,7 @@ class CUSIP_Curve:
                     wait_time = backoff_factor * (2 ** (retries - 1))
                     self._logger.debug(f"UST Prices GitHub - Throttled for {date}. Waiting for {wait_time} seconds before retrying...")
                     await asyncio.sleep(wait_time)
-                
+
                 except Exception as e:
                     self._logger.error(f"UST Prices GitHub - Error for {date}: {e}")
                     retries += 1
