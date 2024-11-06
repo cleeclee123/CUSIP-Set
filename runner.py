@@ -14,7 +14,6 @@ import pandas as pd
 import ujson as json
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
-from RL_BondPricer import RL_BondPricer
 from QL_BondPricer import QL_BondPricer
 from script import FedInvestFetcher
 from ct import CUSIP_Curve
@@ -34,57 +33,31 @@ class bcolors:
     UNDERLINE = "\033[4m"
 
 
-def calculate_yields(row, as_of_date, use_quantlib=True):
-    if use_quantlib:
-        offer_yield = QL_BondPricer.bond_price_to_ytm(
-            type=row["security_type"],
-            issue_date=row["issue_date"],
-            maturity_date=row["maturity_date"],
-            as_of=as_of_date,
-            coupon=float(row["int_rate"]),
-            price=row["offer_price"],
-        )
-        bid_yield = QL_BondPricer.bond_price_to_ytm(
-            type=row["security_type"],
-            issue_date=row["issue_date"],
-            maturity_date=row["maturity_date"],
-            as_of=as_of_date,
-            coupon=float(row["int_rate"]),
-            price=row["bid_price"],
-        )
-        eod_yield = QL_BondPricer.bond_price_to_ytm(
-            type=row["security_type"],
-            issue_date=row["issue_date"],
-            maturity_date=row["maturity_date"],
-            as_of=as_of_date,
-            coupon=float(row["int_rate"]),
-            price=row["eod_price"],
-        )
-    else:
-        offer_yield = RL_BondPricer.bond_price_to_ytm(
-            type=row["security_type"],
-            issue_date=row["issue_date"],
-            maturity_date=row["maturity_date"],
-            as_of=as_of_date,
-            coupon=float(row["int_rate"]) / 100,
-            price=row["offer_price"],
-        )
-        bid_yield = RL_BondPricer.bond_price_to_ytm(
-            type=row["security_type"],
-            issue_date=row["issue_date"],
-            maturity_date=row["maturity_date"],
-            as_of=as_of_date,
-            coupon=float(row["int_rate"]) / 100,
-            price=row["bid_price"],
-        )
-        eod_yield = RL_BondPricer.bond_price_to_ytm(
-            type=row["security_type"],
-            issue_date=row["issue_date"],
-            maturity_date=row["maturity_date"],
-            as_of=as_of_date,
-            coupon=float(row["int_rate"]) / 100,
-            price=row["eod_price"],
-        )
+def calculate_yields(row, as_of_date):
+    offer_yield = QL_BondPricer.bond_price_to_ytm(
+        type=row["security_type"],
+        issue_date=row["issue_date"],
+        maturity_date=row["maturity_date"],
+        as_of=as_of_date,
+        coupon=float(row["int_rate"]),
+        price=row["offer_price"],
+    )
+    bid_yield = QL_BondPricer.bond_price_to_ytm(
+        type=row["security_type"],
+        issue_date=row["issue_date"],
+        maturity_date=row["maturity_date"],
+        as_of=as_of_date,
+        coupon=float(row["int_rate"]),
+        price=row["bid_price"],
+    )
+    eod_yield = QL_BondPricer.bond_price_to_ytm(
+        type=row["security_type"],
+        issue_date=row["issue_date"],
+        maturity_date=row["maturity_date"],
+        as_of=as_of_date,
+        coupon=float(row["int_rate"]),
+        price=row["eod_price"],
+    )
 
     return offer_yield, bid_yield, eod_yield
 
@@ -144,7 +117,7 @@ def process_dataframe(key: datetime, df: pd.DataFrame, raw_auctions_df: pd.DataF
         merged_df = merged_df.replace("null", np.nan)
 
         merged_df["eod_yield"] = merged_df.apply(
-            lambda row: RL_BondPricer.bond_price_to_ytm(
+            lambda row: QL_BondPricer.bond_price_to_ytm(
                 type=row["security_type"],
                 issue_date=row["issue_date"],
                 maturity_date=row["maturity_date"],
@@ -155,7 +128,7 @@ def process_dataframe(key: datetime, df: pd.DataFrame, raw_auctions_df: pd.DataF
             axis=1,
         )
         merged_df["bid_yield"] = merged_df.apply(
-            lambda row: RL_BondPricer.bond_price_to_ytm(
+            lambda row: QL_BondPricer.bond_price_to_ytm(
                 type=row["security_type"],
                 issue_date=row["issue_date"],
                 maturity_date=row["maturity_date"],
@@ -166,7 +139,7 @@ def process_dataframe(key: datetime, df: pd.DataFrame, raw_auctions_df: pd.DataF
             axis=1,
         )
         merged_df["offer_yield"] = merged_df.apply(
-            lambda row: RL_BondPricer.bond_price_to_ytm(
+            lambda row: QL_BondPricer.bond_price_to_ytm(
                 type=row["security_type"],
                 issue_date=row["issue_date"],
                 maturity_date=row["maturity_date"],
@@ -214,7 +187,7 @@ def process_dataframe(key: datetime, df: pd.DataFrame, raw_auctions_df: pd.DataF
 def parallel_process(dict_df, raw_auctions_df):
     result_dict = {}
 
-    with ProcessPoolExecutor(max_workers=mp.cpu_count()) as executor:
+    with ProcessPoolExecutor(max_workers=mp.cpu_count() - 2) as executor:
         futures = {executor.submit(process_dataframe, key, df, raw_auctions_df): key for key, df in dict_df.items()}
         for future in as_completed(futures):
             key, json_structure = future.result()
@@ -237,9 +210,9 @@ if __name__ == "__main__":
 
     start_date = y2bday
     end_date = ybday
-    
+
     start_date = datetime(2008, 5, 29)
-    end_date = datetime(2024, 11, 4)
+    end_date = datetime(2024, 11, 5)
 
     print(bcolors.OKBLUE + f"Fetching UST Prices for {start_date} and {end_date}" + bcolors.ENDC)
     weeks = get_business_days_groups(start_date, end_date, group_size=60)
@@ -273,7 +246,7 @@ if __name__ == "__main__":
     raw_auctions_df_2 = raw_auctions_df[raw_auctions_df["security_type"] != "Bill"].drop_duplicates(subset=["cusip"], keep="last")
 
     raw_auctions_df = pd.concat([raw_auctions_df_1, raw_auctions_df_2])
-    
+
     for week in weeks:
         dict_df: Dict[datetime, pd.DataFrame] = runner(dates=week)
         output_directory = r"C:\Users\chris\CUSIP-Set"
@@ -323,6 +296,9 @@ if __name__ == "__main__":
 
     for file_name in os.listdir(input_directory):
         try:
+            if "otr_date_range" in file_name:
+                continue
+
             if file_name.endswith(".json"):
                 file_path = os.path.join(input_directory, file_name)
                 with open(file_path, "r") as json_file:
@@ -346,7 +322,7 @@ if __name__ == "__main__":
                     }
                     cusip_timeseries[cusip].append(to_write)
 
-            print(bcolors.OKBLUE + f"Saw {file_name}" + bcolors.ENDC)
+                print(bcolors.OKBLUE + f"Saw {file_name}" + bcolors.ENDC)
 
         except Exception as e:
             print(bcolors.FAIL + f"FAILED {file_name} - {str(e)}" + bcolors.ENDC)
