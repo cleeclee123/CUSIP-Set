@@ -48,7 +48,7 @@ if __name__ == "__main__":
     )
     write_df_to_json(
         df=ct_bid_df,
-        file_path=r"C:\Users\chris\CUSIP-Timeseries\historical_ct_yields_bid_side.json",
+        file_path=r"C:\Users\chris\Project Bond King\CUSIP-Timeseries\historical_ct_yields_bid_side.json",
         date_format="iso",
     )
     print(ct_bid_df)
@@ -63,7 +63,7 @@ if __name__ == "__main__":
     )
     write_df_to_json(
         df=ct_offer_df,
-        file_path=r"C:\Users\chris\CUSIP-Timeseries\historical_ct_yields_offer_side.json",
+        file_path=r"C:\Users\chris\Project Bond King\CUSIP-Timeseries\historical_ct_yields_offer_side.json",
         date_format="iso",
     )
     print(ct_offer_df)
@@ -77,7 +77,7 @@ if __name__ == "__main__":
     )
     write_df_to_json(
         df=ct_eod_df,
-        file_path=r"C:\Users\chris\CUSIP-Timeseries\historical_ct_yields_eod_side.json",
+        file_path=r"C:\Users\chris\Project Bond King\CUSIP-Timeseries\historical_ct_yields_eod_side.json",
         date_format="iso",
     )
     print(ct_eod_df)
@@ -92,7 +92,7 @@ if __name__ == "__main__":
     )
     write_df_to_json(
         df=ct_mid_df,
-        file_path=r"C:\Users\chris\CUSIP-Timeseries\historical_ct_yields_mid_side.json",
+        file_path=r"C:\Users\chris\Project Bond King\CUSIP-Timeseries\historical_ct_yields_mid_side.json",
         date_format="iso",
     )
     print(ct_mid_df)

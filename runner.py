@@ -187,7 +187,7 @@ def process_dataframe(key: datetime, df: pd.DataFrame, raw_auctions_df: pd.DataF
 def parallel_process(dict_df, raw_auctions_df):
     result_dict = {}
 
-    with ProcessPoolExecutor(max_workers=mp.cpu_count() - 2) as executor:
+    with ProcessPoolExecutor(max_workers=mp.cpu_count() - 3) as executor:
         futures = {executor.submit(process_dataframe, key, df, raw_auctions_df): key for key, df in dict_df.items()}
         for future in as_completed(futures):
             key, json_structure = future.result()
@@ -211,11 +211,11 @@ if __name__ == "__main__":
     start_date = y2bday
     end_date = ybday
 
-    start_date = datetime(2008, 5, 29)
-    end_date = datetime(2024, 11, 5)
+    # start_date = datetime(2008, 5, 29)
+    # end_date = datetime(2024, 11, 5)
 
     print(bcolors.OKBLUE + f"Fetching UST Prices for {start_date} and {end_date}" + bcolors.ENDC)
-    weeks = get_business_days_groups(start_date, end_date, group_size=60)
+    weeks = get_business_days_groups(start_date, end_date, group_size=20)
 
     raw_auctions_df = FedInvestFetcher(use_ust_issue_date=True, error_verbose=True).get_auctions_df()
     raw_auctions_df["issue_date"] = pd.to_datetime(raw_auctions_df["issue_date"])
@@ -249,7 +249,7 @@ if __name__ == "__main__":
 
     for week in weeks:
         dict_df: Dict[datetime, pd.DataFrame] = runner(dates=week)
-        output_directory = r"C:\Users\chris\CUSIP-Set"
+        output_directory = r"C:\Users\chris\Project Bond King\CUSIP-Set"
         to_write = parallel_process(dict_df, raw_auctions_df)
 
         for key, json_structure in to_write.items():
@@ -274,8 +274,8 @@ if __name__ == "__main__":
 
     t1 = time.time()
 
-    input_directory = r"C:\Users\chris\CUSIP-Set"
-    output_directory = r"C:\Users\chris\CUSIP-Timeseries"
+    input_directory = r"C:\Users\chris\Project Bond King\CUSIP-Set"
+    output_directory = r"C:\Users\chris\Project Bond King\CUSIP-Timeseries"
 
     cusip_timeseries = defaultdict(list)
 
@@ -337,83 +337,3 @@ if __name__ == "__main__":
             print(bcolors.FAIL + f"FAILED to Write {cusip} to {output_file}" + bcolors.ENDC)
 
     print(f"Timeseries Script took: {time.time() - t1} seconds")
-
-    ########################################################################################
-
-    # print(bcolors.OKBLUE + "STARTING CT TIMESERIES SCRIPT" + bcolors.ENDC)
-    # t1 = time.time()
-
-    # def write_df_to_json(
-    #     df: pd.DataFrame,
-    #     file_path: str,
-    #     orient: str = "records",
-    #     date_format: str = "iso",
-    # ):
-    #     df.to_json(file_path, orient=orient, date_format=date_format, indent=4)
-
-    # cusip_curve_builder = CUSIP_Curve(use_ust_issue_date=True, error_verbose=True)
-    # ybday: pd.Timestamp = (datetime.today() - BDay(1))
-    # ybday = ybday.to_pydatetime()
-    # ybday = ybday.replace(hour=0, minute=0, second=0, microsecond=0)
-    # print(bcolors.OKBLUE + f"Fetching to {ybday}" + bcolors.ENDC)
-    # ct_bid_df = cusip_curve_builder.get_historical_cts_INTERNAL(
-    #     start_date=datetime(2008, 5, 30),
-    #     end_date=ybday,
-    #     use_bid_side=True,
-    #     max_concurrent_tasks=64,
-    #     max_keepalive_connections=12,
-    # )
-    # write_df_to_json(
-    #     df=ct_bid_df,
-    #     file_path=r"C:\Users\chris\CUSIP-Timeseries\historical_ct_yields_bid_side.json",
-    #     date_format="iso",
-    # )
-    # print(ct_bid_df)
-    # print(bcolors.OKGREEN + f"Wrote Bid CT Yields time series" + bcolors.ENDC)
-
-    # ct_offer_df = cusip_curve_builder.get_historical_cts_INTERNAL(
-    #     start_date=datetime(2008, 5, 30),
-    #     end_date=ybday,
-    #     use_offer_side=True,
-    #     max_concurrent_tasks=64,
-    #     max_keepalive_connections=12,
-    # )
-    # write_df_to_json(
-    #     df=ct_offer_df,
-    #     file_path=r"C:\Users\chris\CUSIP-Timeseries\historical_ct_yields_offer_side.json",
-    #     date_format="iso",
-    # )
-    # print(ct_offer_df)
-    # print(bcolors.OKGREEN + f"Wrote offer CT Yields time series" + bcolors.ENDC)
-
-    # ct_eod_df = cusip_curve_builder.get_historical_cts_INTERNAL(
-    #     start_date=datetime(2008, 5, 30),
-    #     end_date=ybday,
-    #     max_concurrent_tasks=64,
-    #     max_keepalive_connections=12,
-    # )
-    # write_df_to_json(
-    #     df=ct_eod_df,
-    #     file_path=r"C:\Users\chris\CUSIP-Timeseries\historical_ct_yields_eod_side.json",
-    #     date_format="iso",
-    # )
-    # print(ct_eod_df)
-    # print(bcolors.OKGREEN + f"Wrote EOD CT Yields time series" + bcolors.ENDC)
-
-    # ct_mid_df = cusip_curve_builder.get_historical_cts_INTERNAL(
-    #     start_date=datetime(2008, 5, 30),
-    #     end_date=ybday,
-    #     use_mid_side=True,
-    #     max_concurrent_tasks=64,
-    #     max_keepalive_connections=12,
-    # )
-    # write_df_to_json(
-    #     df=ct_mid_df,
-    #     file_path=r"C:\Users\chris\CUSIP-Timeseries\historical_ct_yields_mid_side.json",
-    #     date_format="iso",
-    # )
-    # print(ct_mid_df)
-    # print(bcolors.OKGREEN + f"Wrote Mid CT Yields time series" + bcolors.ENDC)
-    # print(f"CT Timeseries Script took: {time.time() - t1} seconds")
-
-    # print(f"Everything Script took: {time.time() - t1_parent} seconds")
