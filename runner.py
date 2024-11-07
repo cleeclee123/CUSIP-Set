@@ -91,11 +91,9 @@ def ust_labeler(mat_date: datetime | pd.Timestamp):
 
 def process_dataframe(key: datetime, df: pd.DataFrame, raw_auctions_df: pd.DataFrame):
     try:
-        raw_auctions_df["label"] = raw_auctions_df["maturity_date"].apply(ust_labeler)
         raw_auctions_df = raw_auctions_df.sort_values(by=["issue_date"], ascending=False)
         raw_auctions_df = raw_auctions_df[raw_auctions_df["issue_date"] < key]
-        otr_cusips = raw_auctions_df.groupby("original_security_term").first().reset_index()["cusip"].to_list()
-        raw_auctions_df["is_on_the_run"] = raw_auctions_df["cusip"].isin(otr_cusips)
+        raw_auctions_df = raw_auctions_df.drop_duplicates(subset=["cusip"], keep="first")
 
         cusip_ref_df = raw_auctions_df[raw_auctions_df["cusip"].isin(df["cusip"].to_list())][
             [
@@ -108,8 +106,6 @@ def process_dataframe(key: datetime, df: pd.DataFrame, raw_auctions_df: pd.DataF
                 "maturity_date",
                 "int_rate",
                 "high_investment_rate",
-                "label",
-                "is_on_the_run",
             ]
         ]
 
@@ -124,6 +120,7 @@ def process_dataframe(key: datetime, df: pd.DataFrame, raw_auctions_df: pd.DataF
                 as_of=key,
                 coupon=float(row["int_rate"]) / 100,
                 price=row["eod_price"],
+                cusip=row["cusip"]
             ),
             axis=1,
         )
@@ -135,6 +132,7 @@ def process_dataframe(key: datetime, df: pd.DataFrame, raw_auctions_df: pd.DataF
                 as_of=key,
                 coupon=float(row["int_rate"]) / 100,
                 price=row["bid_price"],
+                cusip=row["cusip"]
             ),
             axis=1,
         )
@@ -146,12 +144,14 @@ def process_dataframe(key: datetime, df: pd.DataFrame, raw_auctions_df: pd.DataF
                 as_of=key,
                 coupon=float(row["int_rate"]) / 100,
                 price=row["offer_price"],
+                cusip=row["cusip"]
             ),
             axis=1,
         )
 
-        merged_df["mid_price"] = (merged_df["offer_price"] + merged_df["bid_price"]) / 2
-        merged_df["mid_yield"] = (merged_df["offer_yield"] + merged_df["bid_yield"]) / 2
+        merged_df["mid_price"] = (merged_df["offer_price"] + merged_df["bid_price"]) / 2 
+        merged_df["mid_yield"] = (merged_df["offer_yield"] + merged_df["bid_yield"]) / 2 
+        
         merged_df = merged_df[
             [
                 "cusip",
@@ -163,8 +163,6 @@ def process_dataframe(key: datetime, df: pd.DataFrame, raw_auctions_df: pd.DataF
                 "maturity_date",
                 "int_rate",
                 "high_investment_rate",
-                "label",
-                "is_on_the_run",
                 "bid_price",
                 "offer_price",
                 "mid_price",
@@ -202,17 +200,15 @@ if __name__ == "__main__":
 
     y2bday: pd.Timestamp = datetime.today() - BDay(10)
     y2bday = y2bday.to_pydatetime()
-    # y2bday = y2bday.replace(hour=0, minute=0, second=0, microsecond=0)
 
     ybday: pd.Timestamp = datetime.today() - BDay(1)
     ybday = ybday.to_pydatetime()
-    # ybday = ybday.replace(hour=0, minute=0, second=0, microsecond=0)
 
-    # start_date = y2bday
-    # end_date = ybday
+    start_date = y2bday
+    end_date = ybday
 
     start_date = datetime(2008, 5, 29)
-    end_date = datetime(2024, 11, 5)
+    end_date = datetime(2024, 11, 6)
 
     print(bcolors.OKBLUE + f"Fetching UST Prices for {start_date} and {end_date}" + bcolors.ENDC)
     weeks = get_business_days_groups(start_date, end_date, group_size=60)
@@ -233,19 +229,6 @@ if __name__ == "__main__":
     raw_auctions_df = raw_auctions_df[
         (raw_auctions_df["security_type"] == "Bill") | (raw_auctions_df["security_type"] == "Note") | (raw_auctions_df["security_type"] == "Bond")
     ]
-
-    raw_auctions_df.loc[raw_auctions_df["security_term"] == "4-Week", "original_security_term"] = "4-Week"
-    raw_auctions_df.loc[raw_auctions_df["security_term"] == "8-Week", "original_security_term"] = "8-Week"
-    raw_auctions_df.loc[raw_auctions_df["security_term"] == "17-Week", "original_security_term"] = "17-Week"
-
-    raw_auctions_df.loc[raw_auctions_df["security_term"] == "13-Week", "original_security_term"] = "13-Week"
-    raw_auctions_df.loc[raw_auctions_df["security_term"] == "26-Week", "original_security_term"] = "26-Week"
-    raw_auctions_df.loc[raw_auctions_df["security_term"] == "52-Week", "original_security_term"] = "52-Week"
-
-    raw_auctions_df_1 = raw_auctions_df[raw_auctions_df["security_type"] == "Bill"].iloc[::-1].drop_duplicates(subset=["cusip"], keep="last")
-    raw_auctions_df_2 = raw_auctions_df[raw_auctions_df["security_type"] != "Bill"].drop_duplicates(subset=["cusip"], keep="last")
-
-    raw_auctions_df = pd.concat([raw_auctions_df_1, raw_auctions_df_2])
 
     for week in weeks:
         dict_df: Dict[datetime, pd.DataFrame] = runner(dates=week)
@@ -270,70 +253,70 @@ if __name__ == "__main__":
 
     # print(bcolors.OKBLUE + "STARTING TIMESERIES SCRIPT" + bcolors.ENDC)
 
-    time.sleep(10)
+    # time.sleep(10)
 
-    t1 = time.time()
+    # t1 = time.time()
 
-    input_directory = r"C:\Users\chris\Project Bond King\CUSIP-Set"
-    output_directory = r"C:\Users\chris\Project Bond King\CUSIP-Timeseries"
+    # input_directory = r"C:\Users\chris\Project Bond King\CUSIP-Set"
+    # output_directory = r"C:\Users\chris\Project Bond King\CUSIP-Timeseries"
 
-    cusip_timeseries = defaultdict(list)
+    # cusip_timeseries = defaultdict(list)
 
-    keys_to_include = [
-        "Date",
-        "cusip",
-        "bid_price",
-        "offer_price",
-        "mid_price",
-        "eod_price",
-        "bid_yield",
-        "offer_yield",
-        "mid_yield",
-        "eod_yield",
-    ]
+    # keys_to_include = [
+    #     "Date",
+    #     "cusip",
+    #     "bid_price",
+    #     "offer_price",
+    #     "mid_price",
+    #     "eod_price",
+    #     "bid_yield",
+    #     "offer_yield",
+    #     "mid_yield",
+    #     "eod_yield",
+    # ]
 
-    """ Entire Dir """
+    # """ Entire Dir """
 
-    for file_name in os.listdir(input_directory):
-        try:
-            if "otr_date_range" in file_name:
-                continue
+    # for file_name in os.listdir(input_directory):
+    #     try:
+    #         if "otr_date_range" in file_name:
+    #             continue
 
-            if file_name.endswith(".json"):
-                file_path = os.path.join(input_directory, file_name)
-                with open(file_path, "r") as json_file:
-                    daily_data = json.load(json_file)
+    #         if file_name.endswith(".json"):
+    #             file_path = os.path.join(input_directory, file_name)
+    #             with open(file_path, "r") as json_file:
+    #                 daily_data = json.load(json_file)
 
-                date_str = file_name.split(".json")[0]
-                date = datetime.strptime(date_str, "%Y-%m-%d")
+    #             date_str = file_name.split(".json")[0]
+    #             date = datetime.strptime(date_str, "%Y-%m-%d")
 
-                for entry in daily_data["data"]:
-                    cusip = entry["cusip"]
-                    to_write = {
-                        "Date": date_str,
-                        "bid_price": entry["bid_price"],
-                        "offer_price": entry["offer_price"],
-                        "mid_price": entry["mid_price"],
-                        "eod_price": entry["eod_price"],
-                        "bid_yield": entry["bid_yield"],
-                        "offer_yield": entry["offer_yield"],
-                        "mid_yield": entry["mid_yield"],
-                        "eod_yield": entry["eod_yield"],
-                    }
-                    cusip_timeseries[cusip].append(to_write)
+    #             for entry in daily_data["data"]:
+    #                 cusip = entry["cusip"]
+    #                 to_write = {
+    #                     "Date": date_str,
+    #                     "bid_price": entry["bid_price"],
+    #                     "offer_price": entry["offer_price"],
+    #                     "mid_price": entry["mid_price"],
+    #                     "eod_price": entry["eod_price"],
+    #                     "bid_yield": entry["bid_yield"],
+    #                     "offer_yield": entry["offer_yield"],
+    #                     "mid_yield": entry["mid_yield"],
+    #                     "eod_yield": entry["eod_yield"],
+    #                 }
+    #                 cusip_timeseries[cusip].append(to_write)
 
-                print(bcolors.OKBLUE + f"Saw {file_name}" + bcolors.ENDC)
+    #             print(bcolors.OKBLUE + f"Saw {file_name}" + bcolors.ENDC)
 
-        except Exception as e:
-            print(bcolors.FAIL + f"FAILED {file_name} - {str(e)}" + bcolors.ENDC)
+    #     except Exception as e:
+    #         print(bcolors.FAIL + f"FAILED {file_name} - {str(e)}" + bcolors.ENDC)
 
-    for cusip, timeseries in cusip_timeseries.items():
-        try:
-            output_file = os.path.join(output_directory, f"{cusip}.json")
-            with open(output_file, "w") as json_file:
-                json.dump(timeseries, json_file, indent=4, default=str)
-            print(bcolors.OKGREEN + f"Wrote time series for CUSIP {cusip} to {output_file}" + bcolors.ENDC)
-        except Exception as e:
-            print(bcolors.FAIL + f"FAILED to Write {cusip} to {output_file}" + bcolors.ENDC)
+    # for cusip, timeseries in cusip_timeseries.items():
+    #     try:
+    #         output_file = os.path.join(output_directory, f"{cusip}.json")
+    #         with open(output_file, "w") as json_file:
+    #             json.dump(timeseries, json_file, indent=4, default=str)
+    #         print(bcolors.OKGREEN + f"Wrote time series for CUSIP {cusip} to {output_file}" + bcolors.ENDC)
+    #     except Exception as e:
+    #         print(bcolors.FAIL + f"FAILED to Write {cusip} to {output_file}" + bcolors.ENDC)
 
-    print(f"Timeseries Script took: {time.time() - t1} seconds")
+    # print(f"Timeseries Script took: {time.time() - t1} seconds")

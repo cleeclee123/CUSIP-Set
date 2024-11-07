@@ -385,10 +385,16 @@ class CUSIP_Curve:
                         df["cusip"] = df["cusip"].replace(cusip_ref_replacement_dict)
 
                     if assume_otrs and "original_security_term" in df.columns:
-                        df = df.sort_values(by=["issue_date"], ascending=False)
-                        # df.loc[df["security_term"] == "4-Week", "original_security_term"] = "4-Week"
-                        # df.loc[df["security_term"] == "8-Week", "original_security_term"] = "8-Week"
-                        df = df.groupby("original_security_term").first().reset_index()
+                        df_coups = df.sort_values(by=["issue_date"], ascending=False)
+                        df_coups = df_coups[(df_coups["security_type"] == "Note") | (df_coups["security_type"] == "Bond")]
+                        df_coups = df_coups.groupby("original_security_term").first().reset_index()
+
+                        df_bills = df_bills.sort_values(by=["maturity_date"], ascending=True)
+                        df_bills = df_bills[(df_bills["security_type"] == "Bill")]
+                        df_bills = df_coups.groupby("security_term").last().reset_index()
+
+                        df = pd.concat([df_bills, df_coups])
+
                         cusip_to_term_dict = dict(zip(df["cusip"], df["original_security_term"]))
                         df["cusip"] = df["cusip"].replace(cusip_to_term_dict)
 

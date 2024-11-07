@@ -18,17 +18,33 @@ class QL_BondPricer:
         return rl.dt(date.year, date.month, date.day)
 
     @staticmethod
-    def _bill_price_to_ytm(maturity_date: datetime, as_of: datetime, price: float) -> float:
-        t = (maturity_date - as_of).days
-        if t <= 0:
-            return np.nan
+    def _bill_price_to_ytm(maturity_date: datetime, as_of: datetime, price: float, cusip: str) -> float:
+        as_of = as_of.date()
 
+        settlement_date = (pd.to_datetime(as_of) + pd.tseries.offsets.BDay(1)).to_pydatetime()
+        t = (maturity_date - settlement_date).days
         F = 100.0
         HPY = (F - price) / price
-        BEY = HPY * (365 / t)
+        BEY = HPY * (360 / t)
+
+        # if cusip == "912797MB0":
+        #     print("cusip ", cusip)
+        #     print("mat ", maturity_date)
+        #     print("as of", as_of)
+        #     print("price ", price)
+        #     print("settle ", (pd.to_datetime(as_of) + pd.tseries.offsets.BDay(1)).to_pydatetime())
+
+        #     settlement_date1 = (pd.to_datetime(as_of) + pd.tseries.offsets.BDay(1)).to_pydatetime()
+        #     t1 = (maturity_date - settlement_date1).days
+        #     F1 = 100.0
+        #     HPY1 = (F1 - price) / price
+        #     BEY1 = HPY1 * (360 / t1)
+        #     print("bey1 ", BEY1 * 100)
+        #     print("bey2 ", BEY * 100)
+
         return BEY * 100
 
-    # @staticmethod
+    # @staticmthod
     # def _coupon_bond_price_to_ytm(
     #     issue_date: datetime,
     #     maturity_date: datetime,
@@ -136,6 +152,7 @@ class QL_BondPricer:
         as_of: datetime,
         coupon: float,
         price: float,
+        cusip: str,
     ):
         try:
             if type == "Bill":
@@ -143,6 +160,7 @@ class QL_BondPricer:
                     maturity_date=maturity_date,
                     as_of=as_of,
                     price=price,
+                    cusip=cusip,
                 )
 
             return QL_BondPricer._coupon_bond_price_to_ytm(
