@@ -187,7 +187,7 @@ def process_dataframe(key: datetime, df: pd.DataFrame, raw_auctions_df: pd.DataF
 def parallel_process(dict_df, raw_auctions_df):
     result_dict = {}
 
-    with ProcessPoolExecutor(max_workers=mp.cpu_count() - 3) as executor:
+    with ProcessPoolExecutor(max_workers=mp.cpu_count() - 2) as executor:
         futures = {executor.submit(process_dataframe, key, df, raw_auctions_df): key for key, df in dict_df.items()}
         for future in as_completed(futures):
             key, json_structure = future.result()
@@ -208,14 +208,14 @@ if __name__ == "__main__":
     ybday = ybday.to_pydatetime()
     # ybday = ybday.replace(hour=0, minute=0, second=0, microsecond=0)
 
-    start_date = y2bday
-    end_date = ybday
+    # start_date = y2bday
+    # end_date = ybday
 
-    # start_date = datetime(2008, 5, 29)
-    # end_date = datetime(2024, 11, 5)
+    start_date = datetime(2008, 5, 29)
+    end_date = datetime(2024, 11, 5)
 
     print(bcolors.OKBLUE + f"Fetching UST Prices for {start_date} and {end_date}" + bcolors.ENDC)
-    weeks = get_business_days_groups(start_date, end_date, group_size=20)
+    weeks = get_business_days_groups(start_date, end_date, group_size=60)
 
     raw_auctions_df = FedInvestFetcher(use_ust_issue_date=True, error_verbose=True).get_auctions_df()
     raw_auctions_df["issue_date"] = pd.to_datetime(raw_auctions_df["issue_date"])
