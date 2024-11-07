@@ -40,9 +40,9 @@ if __name__ == "__main__":
     ybday = ybday.replace(hour=0, minute=0, second=0, microsecond=0)
 
     ct_bid_df = cusip_curve_builder.get_historical_cts_INTERNAL(
-        start_date=datetime(2024, 11, 1),
-        end_date=ybday,
-        use_bid_side=True,
+        start_date=datetime(2022, 11, 1),
+        end_date=datetime(2022, 11, 4),
+        # use_bid_side=True,
         max_concurrent_tasks=64,
         max_keepalive_connections=12,
     )

@@ -10,6 +10,7 @@ import pandas as pd
 import requests
 from pandas.tseries.holiday import USFederalHolidayCalendar
 from pandas.tseries.offsets import CustomBusinessDay
+from termcolor import colored
 
 from utils import (
     JSON,
@@ -274,6 +275,7 @@ class CUSIP_Curve:
 
                 except Exception as e:
                     self._logger.error(f"UST Prices - Error for {date}: {e}")
+                    print(colored(e, "red"))
                     retries += 1
                     wait_time = backoff_factor * (2 ** (retries - 1))
                     self._logger.debug(f"UST Prices - Throttled. Waiting for {wait_time} seconds before retrying...")
@@ -389,12 +391,20 @@ class CUSIP_Curve:
                         df_coups = df_coups[(df_coups["security_type"] == "Note") | (df_coups["security_type"] == "Bond")]
                         df_coups = df_coups.groupby("original_security_term").first().reset_index()
 
-                        df_bills = df_bills.sort_values(by=["maturity_date"], ascending=True)
-                        df_bills = df_bills[(df_bills["security_type"] == "Bill")]
-                        df_bills = df_coups.groupby("security_term").last().reset_index()
+                        df_bills = df.sort_values(by=["maturity_date"], ascending=True)
+                        df_bills = df_bills[df_bills["security_type"] == "Bill"]
+                        df_bills = df_bills.groupby("security_term").last().reset_index()
+
+                        df_bills.loc[df_bills['security_term'] == '4-Week', 'original_security_term'] = '4-Week' 
+                        df_bills.loc[df_bills['security_term'] == '8-Week', 'original_security_term'] = '8-Week' 
+                        df_bills.loc[df_bills['security_term'] == '13-Week', 'original_security_term'] = '13-Week' 
+                        df_bills.loc[df_bills['security_term'] == '17-Week', 'original_security_term'] = '17-Week' 
+                        df_bills.loc[df_bills['security_term'] == '26-Week', 'original_security_term'] = '26-Week' 
+                        df_bills.loc[df_bills['security_term'] == '52-Week', 'original_security_term'] = '52-Week' 
 
                         df = pd.concat([df_bills, df_coups])
-
+                        # print(date)
+                        # print(df) 
                         cusip_to_term_dict = dict(zip(df["cusip"], df["original_security_term"]))
                         df["cusip"] = df["cusip"].replace(cusip_to_term_dict)
 
@@ -429,6 +439,7 @@ class CUSIP_Curve:
 
                 except Exception as e:
                     self._logger.error(f"UST Prices GitHub - Error for {date}: {e}")
+                    print()
                     retries += 1
                     wait_time = backoff_factor * (2 ** (retries - 1))
                     self._logger.debug(f"UST Prices GitHub - Throttled for {date}. Waiting for {wait_time} seconds before retrying...")
