@@ -248,72 +248,72 @@ if __name__ == "__main__":
 
     print(f"FedInvest Scraper Script took: {time.time() - t1} seconds")
 
-    # print(bcolors.OKBLUE + "STARTING TIMESERIES SCRIPT" + bcolors.ENDC)
+    print(bcolors.OKBLUE + "STARTING TIMESERIES SCRIPT" + bcolors.ENDC)
 
-    # time.sleep(10)
+    time.sleep(10)
 
-    # t1 = time.time()
+    t1 = time.time()
 
-    # input_directory = r"C:\Users\chris\Project Bond King\CUSIP-Set"
-    # output_directory = r"C:\Users\chris\Project Bond King\CUSIP-Timeseries"
+    input_directory = r"C:\Users\chris\Project Bond King\CUSIP-Set"
+    output_directory = r"C:\Users\chris\Project Bond King\CUSIP-Timeseries"
 
-    # cusip_timeseries = defaultdict(list)
+    cusip_timeseries = defaultdict(list)
 
-    # keys_to_include = [
-    #     "Date",
-    #     "cusip",
-    #     "bid_price",
-    #     "offer_price",
-    #     "mid_price",
-    #     "eod_price",
-    #     "bid_yield",
-    #     "offer_yield",
-    #     "mid_yield",
-    #     "eod_yield",
-    # ]
+    keys_to_include = [
+        "Date",
+        "cusip",
+        "bid_price",
+        "offer_price",
+        "mid_price",
+        "eod_price",
+        "bid_yield",
+        "offer_yield",
+        "mid_yield",
+        "eod_yield",
+    ]
 
-    # """ Entire Dir """
+    """ Entire Dir """
 
-    # for file_name in os.listdir(input_directory):
-    #     try:
-    #         if "otr_date_range" in file_name:
-    #             continue
+    for file_name in os.listdir(input_directory):
+        try:
+            if "otr_date_range" in file_name:
+                continue
 
-    #         if file_name.endswith(".json"):
-    #             file_path = os.path.join(input_directory, file_name)
-    #             with open(file_path, "r") as json_file:
-    #                 daily_data = json.load(json_file)
+            if file_name.endswith(".json"):
+                file_path = os.path.join(input_directory, file_name)
+                with open(file_path, "r") as json_file:
+                    daily_data = json.load(json_file)
 
-    #             date_str = file_name.split(".json")[0]
-    #             date = datetime.strptime(date_str, "%Y-%m-%d")
+                date_str = file_name.split(".json")[0]
+                date = datetime.strptime(date_str, "%Y-%m-%d")
 
-    #             for entry in daily_data["data"]:
-    #                 cusip = entry["cusip"]
-    #                 to_write = {
-    #                     "Date": date_str,
-    #                     "bid_price": entry["bid_price"],
-    #                     "offer_price": entry["offer_price"],
-    #                     "mid_price": entry["mid_price"],
-    #                     "eod_price": entry["eod_price"],
-    #                     "bid_yield": entry["bid_yield"],
-    #                     "offer_yield": entry["offer_yield"],
-    #                     "mid_yield": entry["mid_yield"],
-    #                     "eod_yield": entry["eod_yield"],
-    #                 }
-    #                 cusip_timeseries[cusip].append(to_write)
+                for entry in daily_data["data"]:
+                    cusip = entry["cusip"]
+                    to_write = {
+                        "Date": date_str,
+                        "bid_price": entry["bid_price"],
+                        "offer_price": entry["offer_price"],
+                        "mid_price": entry["mid_price"],
+                        "eod_price": entry["eod_price"],
+                        "bid_yield": entry["bid_yield"],
+                        "offer_yield": entry["offer_yield"],
+                        "mid_yield": entry["mid_yield"],
+                        "eod_yield": entry["eod_yield"],
+                    }
+                    cusip_timeseries[cusip].append(to_write)
 
-    #             print(bcolors.OKBLUE + f"Saw {file_name}" + bcolors.ENDC)
+                print(bcolors.OKBLUE + f"Saw {file_name}" + bcolors.ENDC)
 
-    #     except Exception as e:
-    #         print(bcolors.FAIL + f"FAILED {file_name} - {str(e)}" + bcolors.ENDC)
+        except Exception as e:
+            print(bcolors.FAIL + f"FAILED {file_name} - {str(e)}" + bcolors.ENDC)
 
-    # for cusip, timeseries in cusip_timeseries.items():
-    #     try:
-    #         output_file = os.path.join(output_directory, f"{cusip}.json")
-    #         with open(output_file, "w") as json_file:
-    #             json.dump(timeseries, json_file, indent=4, default=str)
-    #         print(bcolors.OKGREEN + f"Wrote time series for CUSIP {cusip} to {output_file}" + bcolors.ENDC)
-    #     except Exception as e:
-    #         print(bcolors.FAIL + f"FAILED to Write {cusip} to {output_file}" + bcolors.ENDC)
+    for cusip, timeseries in cusip_timeseries.items():
+        try:
+            output_file = os.path.join(output_directory, f"{cusip}.json")
+            with open(output_file, "w") as json_file:
+                json.dump(timeseries, json_file, indent=4, default=str)
+            print(bcolors.OKGREEN + f"Wrote time series for CUSIP {cusip} to {output_file}" + bcolors.ENDC)
+        except Exception as e:
+            print(bcolors.FAIL + f"FAILED to Write {cusip} to {output_file}" + bcolors.ENDC)
 
-    # print(f"Timeseries Script took: {time.time() - t1} seconds")
+    print(f"Timeseries Script took: {time.time() - t1} seconds")
