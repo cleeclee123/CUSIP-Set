@@ -198,7 +198,7 @@ if __name__ == "__main__":
     t1_parent = time.time()
     t1 = time.time()
 
-    y2bday: pd.Timestamp = datetime.today() - BDay(10)
+    y2bday: pd.Timestamp = datetime.today() - BDay(20)
     y2bday = y2bday.to_pydatetime()
 
     ybday: pd.Timestamp = datetime.today() - BDay(1)
@@ -206,9 +206,6 @@ if __name__ == "__main__":
 
     start_date = y2bday
     end_date = ybday
-
-    start_date = datetime(2008, 5, 29)
-    end_date = datetime(2024, 11, 6)
 
     print(bcolors.OKBLUE + f"Fetching UST Prices for {start_date} and {end_date}" + bcolors.ENDC)
     weeks = get_business_days_groups(start_date, end_date, group_size=60)
