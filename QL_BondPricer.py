@@ -154,6 +154,9 @@ class QL_BondPricer:
         price: float,
         cusip: str,
     ):
+        if not price or np.isnan(price):
+            return np.nan
+
         try:
             if type == "Bill":
                 return QL_BondPricer._bill_price_to_ytm(
